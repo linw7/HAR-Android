@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lele.protoui">
+
+    <!-- 权限在此 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:configChanges="orientation|keyboardHidden"
+        android:icon="@drawable/head_circle"
+        android:label="康复助手"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ClothInfoActivity" />
+        <activity android:name=".RecommendActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".InitiateActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".UploadPicInfoActivity" />
+        <activity android:name=".AdjustActivity" />
+        <activity android:name=".CollectActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".SuggestActivity" />
+        <activity android:name=".GatewayActivity"></activity>
+    </application>
+
+</manifest>

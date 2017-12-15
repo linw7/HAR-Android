@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">ProtoUI</string>
+    <string name="logo">logo</string>
+    <string name="barTitle_recmd">拍一拍</string>
+    <string name="barTitle_cloth">服装详情</string>
+    <string name="barTitle_setting">偏好设置</string>
+    <string name="AlertDialog_title">帮助</string>
+    <!-- 登陆页面 -->
+    <string name="login_msg_dialog_title">登陆中...</string>
+    <string name="login_msg_dialog_content">请稍等</string>
+    <string name="login_msg_timeout">登陆超时，请检查网络</string>
+    <string name="login_msg_nouser">请输入用户名</string>
+    <string name="login_msg_nopwd">请输入密码</string>
+    <!-- 注册页面 -->
+    <string name="register_msg_psd_confirm">请再次输入相同密码</string>
+    <string name="register_msg_psd_unconfirm">密码不一致，请再次检查</string>
+    <!-- 其他 -->
+    <string name="AlertDialog_content">确定吗？</string>
+    <string name="AlertDialog_yes">是</string>
+    <string name="AlertDialog_no">否</string>
+    <string name="AlertDialog_cancel">取消</string>
+    <string name="AlertDialog_confirm">确认</string>
+    <string name="logout">"再按一次退出登录 "</string>
+    <string name="msg1">你点击了第</string>
+    <string name="msg2">行</string>
+    <string name="msg3">动态加载</string>
+    <string name="msg_takephotot">拍摄成功，开始分析</string>
+    <string name="recmd_msg_nosd">没有检测到内存卡</string>
+    <string name="reg_bar_title">欢迎使用</string>
+    <!-- 用户初始化 -->
+    <string name="init_bar_title">初始化</string>
+    <string name="reg_alertdialog_title">信息</string>
+    <string name="reg_alertdialog_content">确认要放弃注册吗？</string>
+    <string name="init_alertdialog_title">确认要放弃初始化吗？</string>
+    <string name="init_alertdialog_content">初始化后，系统能为您推荐更符合您口味的时装。当然也可以稍后在“偏好设置”中设置。</string>
+    <string name="setting_sex">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="succeed">完成</string>
+    <string name="next">下一项</string>
+    <string name="init_succeed">完成初始化</string>
+    <!-- 偏好设置 -->
+    <string name="setting_clt_len">服装长度</string>
+    <string name="setting_sle_len">袖口长度</string>
+    <string name="setting_clt_tight">服装松紧程度</string>
+    <string name="setting_nckl_shp">领口形状</string>
+    <string name="setting_stmp_sty">印花样式</string>
+    <string name="setting_prf_color">偏好颜色</string>
+    <!-- 详细选项 -->
+    <string name="clt_len_l">长</string>
+    <string name="clt_len_m">中</string>
+    <string name="clt_len_s">短</string>
+    <string name="clt_tight_l">宽松</string>
+    <string name="clt_tight_m">中等</string>
+    <string name="clt_tight_s">紧</string>
+    <string name="nckl_shp_1">立领</string>
+    <string name="nckl_shp_2">V领</string>
+    <string name="nckl_shp_3">船型领</string>
+    <string name="nckl_shp_4">圆领</string>
+    <string name="nckl_shp_5">翻领</string>
+    <string name="nckl_shp_6">高领</string>
+    <string name="nckl_shp_7">连帽衫</string>
+    <string name="nckl_shp_8">无领</string>
+    <string name="stmp_sty_pure">纯色</string>
+    <string name="stmp_sty_grid">网格</string>
+    <string name="stmp_sty_dot">圆点</string>
+    <string name="stmp_sty_flower">花纹</string>
+    <string name="stmp_sty_cross">横条纹</string>
+    <string name="stmp_sty_vertical">竖条纹</string>
+    <string name="stmp_sty_charnum">字母或数字</string>
+    <string name="stmp_sty_dup">重复样式</string>
+    <string name="setting_plus">" 等"</string>
+    <string name="button">Button</string>
+
+    <drawable name="clr_normal">#000000</drawable>
+    <drawable name="clr_pressed">#ed4255</drawable>
+
+</resources>

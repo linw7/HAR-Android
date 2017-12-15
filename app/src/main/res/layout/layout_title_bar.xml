@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Last Updated 2017-12-13, TeeKee -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="45.0dip"
+    android:gravity="top"
+    android:background="#ed4255">
+
+    <ImageView
+        android:id="@+id/title_bar_menu_btn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3.0dip"
+        android:layout_marginRight="3.0dip"
+        android:layout_marginTop="3.0dip"
+        android:gravity="center"
+        android:background="@drawable/bars_white" />
+
+    <TextView
+        android:id="@+id/title_bar_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="75.0dip"
+        android:paddingRight="75.0dip"
+        android:maxLines="1"
+        android:text="导航栏"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/title_bar_tag_btn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3.0dip"
+        android:layout_marginRight="3.0dip"
+        android:gravity="center"
+        android:background="@drawable/tags_white"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

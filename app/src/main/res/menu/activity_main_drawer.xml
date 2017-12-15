@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_retarget"
+            android:icon="@drawable/nav_retarget"
+            android:title="个人校准设置" />
+        <item
+            android:id="@+id/nav_collect"
+            android:icon="@drawable/nav_collect"
+            android:title="开始采集数据" />
+        <item
+            android:id="@+id/nav_level"
+            android:icon="@drawable/nav_his"
+            android:title="查看历史数据" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/nav_sugg"
+            android:title="主治医师建议" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/nav_setting"
+            android:title="基本信息设置" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/help_2a2a2a"
+                android:title="帮助" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/exit_2a2a2a"
+                android:title="退出" />
+        </menu>
+    </item>
+</menu>
