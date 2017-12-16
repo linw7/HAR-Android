@@ -38,7 +38,6 @@
         <activity android:name=".CollectActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".SuggestActivity" />
-        <activity android:name=".GatewayActivity" />
         <activity android:name=".TestActivity"></activity>
     </application>
 

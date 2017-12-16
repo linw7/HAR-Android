@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     //-------------------
     private TextView loginbtn;
     private TextView registerbtn;
+    private TextView visitbtn;
     private EditText editTextName;
     private EditText editTextPwd;
     private String uname;
@@ -93,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         registerbtn = findViewById(R.id.registerbtn);
         editTextName = findViewById(R.id.login_user_name);
         editTextPwd = findViewById(R.id.login_user_pwd);
+        visitbtn = findViewById(R.id.visitbtn);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +115,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        visitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, AdjustActivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 
     private boolean loginCheck() {
         if (TextUtils.isEmpty(editTextName.getText()) && TextUtils.isEmpty(editTextPwd.getText())) {

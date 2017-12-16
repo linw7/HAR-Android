@@ -66,11 +66,11 @@
                 android:layout_height="match_parent">
             </FrameLayout>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_chart"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:layout_weight="0.80"
                 android:layout_gravity="center" />
 
             <FrameLayout
