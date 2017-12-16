@@ -31,7 +31,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/mysql-connector-java-5.1.39-bin.jar')
     compile files('libs/org.apache.http.legacy.jar')
-    compile files('libs/weka.jar')
     compile files('libs/mpandroidchartlibrary-2-2-4.jar')
     compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.android.support:design:23.0.0'
