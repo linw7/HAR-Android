@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="19"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -37,7 +36,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -128,8 +127,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5">
-        </FrameLayout>
+            android:layout_weight="0.5"></FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,10 +144,66 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="采样进度"
+                android:text="当前加速度"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <Button
+                android:id="@+id/show_x"
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="" />
+
+            <Button
+                android:id="@+id/show_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:layout_weight="0.8"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="实时数据" />
+
+            <Button
+                android:id="@+id/show_z"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:background="#ffffff"
+                android:layout_weight="0.8"
+                android:textSize="18sp"
+                android:text="" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
         </LinearLayout>
 
         <FrameLayout
@@ -162,42 +216,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="16dp"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:progressDrawable="@drawable/custom_progress" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.05"
-                android:layout_gravity="center"
-                android:text="Loading"/>
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -210,209 +228,111 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="开始采样"
+                android:text="实时模式"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
-
         </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"></FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="16dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" >
+                android:layout_weight="0.2" >
             </FrameLayout>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/sit_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="静坐"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1" />
+
+                <Switch
+                    android:id="@+id/switch_online"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:text="实时开关"
+                    android:textOff="off"
+                    android:textOn="on"
+                    android:showText="true"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1" />
+
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.1" />
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/stand_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="站立"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="25sp"
+                    android:background="#ffffff"
+                    android:text="实时结果" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45sp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.10" />
+
+                    <ImageView
+                        android:id="@+id/result_online"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.15"
+                        android:background="@drawable/upstairs_r"
+                        android:clickable="true"
+                        android:contentDescription=""
+                        tools:ignore="ContentDescription" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.10" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.2" />
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@drawable/upstairs_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="上楼"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@drawable/downstairs_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="下楼"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@drawable/walk_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="步行"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:background="@drawable/jog_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="慢跑"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.6">
         </FrameLayout>
 
         <LinearLayout
@@ -430,76 +350,140 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="开始校准"
+                android:text="离线模式"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"></FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="16dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.2" >
+            </FrameLayout>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/upload_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="上传数据"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1" />
+
+                <Switch
+                    android:id="@+id/switch_offline"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:text="离线开关"
+                    android:textOff="off"
+                    android:textOn="on"
+                    android:showText="true"
+                 />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1" />
+
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.1" />
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:background="@drawable/train_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:text="训练模型"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:background="@drawable/btn_selector" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="25sp"
+                    android:background="#ffffff"
+                    android:text="上传分析" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45sp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <ImageView
+                        android:id="@+id/analysis_offline"
+                        android:clickable="true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.15"
+                        android:background="@drawable/analys_r"
+                        android:contentDescription=""
+                        tools:ignore="ContentDescription" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+                </LinearLayout>
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.2" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8">
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:text="TeeKee"/>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8">
+            </FrameLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>
