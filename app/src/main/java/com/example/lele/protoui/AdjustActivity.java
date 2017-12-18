@@ -27,9 +27,13 @@ import java.util.TimerTask;
 import java.util.logging.LogRecord;
 
 public class AdjustActivity extends AppCompatActivity {
-    private float acc_x, acc_x_array[];
-    private float acc_y, acc_y_array[];
-    private float acc_z, acc_z_array[];
+    private float acc_x;
+    private float acc_y;
+    private float acc_z;
+    private float acc_x_array[] = new float[20];
+    private float acc_y_array[] = new float[20];
+    private float acc_z_array[] = new float[20];
+    private float features[] = new float[9];
 
     private Button collect_sit;
     private Button collect_stand;
@@ -113,13 +117,14 @@ public class AdjustActivity extends AppCompatActivity {
 
     // 展示任务执行
     private void display() {
-        if(sample++ < SAMPLE) {
-            // acc_x_array[sample]=this.acc_x;
-            // acc_y_array[sample]=this.acc_y;
-            // acc_z_array[sample]=this.acc_z;
+        if(sample < SAMPLE) {
+            acc_x_array[sample]=this.acc_x;
+            acc_y_array[sample]=this.acc_y;
+            acc_z_array[sample]=this.acc_z;
             show_x.setText(String.format("%.2f", this.acc_x));
             show_y.setText(String.format("%.2f", this.acc_y));
             show_z.setText(String.format("%.2f", this.acc_z));
+            sample = sample + 1;
         } else {
             Log.v("acc","finish");
         }

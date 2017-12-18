@@ -150,12 +150,6 @@
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="16dp"
@@ -210,8 +204,57 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5">
-
         </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <Button
+                android:id="@+id/max_x"
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="" />
+
+            <Button
+                android:id="@+id/max_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:layout_weight="0.8"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="实时特征" />
+
+            <Button
+                android:id="@+id/max_z"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#d3217b"
+                android:background="#ffffff"
+                android:layout_weight="0.8"
+                android:textSize="18sp"
+                android:text="" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -263,7 +306,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.4"
                     android:textColor="#000000"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="实时开关"
                     android:textOff="off"
                     android:textOn="on"
@@ -385,7 +428,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.4"
                     android:textColor="#000000"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="离线开关"
                     android:textOff="off"
                     android:textOn="on"
@@ -454,7 +497,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.5">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
@@ -478,7 +521,7 @@
                 android:text="TeeKee"/>
 
             <FrameLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8">
             </FrameLayout>

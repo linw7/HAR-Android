@@ -27,13 +27,17 @@ public class CollectActivity extends AppCompatActivity {
     private float acc_x;
     private float acc_y;
     private float acc_z;
+    private float acc_x_array[] = new float[20];
+    private float acc_y_array[] = new float[20];
+    private float acc_z_array[] = new float[20];
+    private float features[] = new float[9];
     private Switch switch_online;
     private Switch switch_offline;
     private ImageView result_online;
     private ImageView analysis_offline;
-    private Button show_x;
-    private Button show_y;
-    private Button show_z;
+    private Button show_x, max_x;
+    private Button show_y, max_y;
+    private Button show_z, max_z;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -103,15 +107,22 @@ public class CollectActivity extends AppCompatActivity {
 
     // 展示任务执行
     private void display() {
-        if(sample++ < SAMPLE) {
-            // acc_x_array[sample]=this.acc_x;
-            // acc_y_array[sample]=this.acc_y;
-            // acc_z_array[sample]=this.acc_z;
+        if(sample < SAMPLE) {
+            acc_x_array[sample]=this.acc_x;
+            acc_y_array[sample]=this.acc_y;
+            acc_z_array[sample]=this.acc_z;
             show_x.setText(String.format("%.2f", this.acc_x));
             show_y.setText(String.format("%.2f", this.acc_y));
             show_z.setText(String.format("%.2f", this.acc_z));
-        } else {
-            Log.v("acc","finish");
+            sample = sample + 1;
+        }
+        if(sample == 20) {
+            sample = 0;
+            GetFeatures gf = new GetFeatures();
+            features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
+            max_x.setText(String.format("%.2f", features[3]));
+            max_y.setText(String.format("%.2f", features[4]));
+            max_z.setText(String.format("%.2f", features[5]));
         }
     }
 
@@ -145,6 +156,9 @@ public class CollectActivity extends AppCompatActivity {
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
+        max_x = findViewById(R.id.max_x);
+        max_y = findViewById(R.id.max_y);
+        max_z = findViewById(R.id.max_z);
 
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -159,7 +173,7 @@ public class CollectActivity extends AppCompatActivity {
                     // Intent i = new Intent(AdjustActivity.this, MainActivity.class);
                     // startActivity(i);
                 } else {
-
+                    timer.cancel();
                 }
             }
         });
