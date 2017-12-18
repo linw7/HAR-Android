@@ -31,16 +31,4 @@
         android:textColor="#ffffff"
         android:textSize="22sp" />
 
-    <ImageView
-        android:id="@+id/title_bar_tag_btn"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3.0dip"
-        android:layout_marginRight="3.0dip"
-        android:gravity="center"
-        android:background="@drawable/tags_white"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
-
 </RelativeLayout>

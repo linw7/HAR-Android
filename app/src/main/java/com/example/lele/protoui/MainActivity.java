@@ -43,19 +43,16 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //右上弹出框
-    private PopMenu topPopWindow;
     //主页加载与刷新
     private SwipeRefreshLayout mSwipeLayout;
     private ListView mListView;
     private SimpleAdapter mSimpleAdapter;
     private ArrayList<HashMap<String, Object>> listItem;
-    //public TextView maintext;
     private int mBackKeyPressedTimes = 0;
-    //侧栏头像操作
     private ImageView main_avator;
     private SharedPrefsUtil sharedPrefsUtil = new SharedPrefsUtil();
-    private static final String IMAGE_FILE_CUT_NAME = "avatarImage_cut.jpg";
+    private NavigationView nav_view;
+    private DrawerLayout drawer;
 
     private static String IMAGEPATH = "http://192.168.1.66:8080/fashion_server/recommendPic";
     private static String INFOPATH = "http://192.168.1.66:8080/fashion_server/returnClothInfo";
@@ -70,19 +67,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.side_menu);
 
-        //maintext = findViewById(R.id.textView2);
         ImageView menuImg = findViewById(R.id.title_bar_menu_btn);
-        final ImageView tagImg = findViewById(R.id.title_bar_tag_btn);
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         mListView = findViewById(R.id.listview);
         main_avator = findViewById(R.id.main_avator);
-        NavigationView nav_view = findViewById(R.id.nav_view);
+        nav_view = findViewById(R.id.nav_view);
         nav_view.setItemTextColor(null);
         nav_view.setItemIconTintList(null);
 
-        //获取上一页面传递的用户名信息
-        Bundle bundle_fromLogin = this.getIntent().getExtras();
-        userName = bundle_fromLogin.getString("userName");
+        userName = "Linwen";
 
         //侧栏监听
         menuImg.setOnClickListener(new View.OnClickListener() {
@@ -91,17 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-        //右上弹框监听
-        tagImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                showTopRightPopMenu(tagImg);
-            }
-        });
-
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        //navigationView.setNavigationItemSelectedListener(this);
         nav_view.setNavigationItemSelectedListener(this);
+
 
         //主页内容加载------------------------------------------------------------------------------
         listItem = new ArrayList<HashMap<String, Object>>();
@@ -169,18 +153,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (scrollState) {
                     //当不滚动的时候
                     case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                        //判断是否是最底部
-                        //if (view.getLastVisiblePosition() == (view.getCount()) - 1) {
-                        //    maintext.setText(R.string.msg3);
-                        //    HashMap<String, Object> map = new HashMap<String, Object>();
-                        //    map.put("ItemImage", R.drawable.mainpage_test3);
-                        //    listItem.add(map);
-                        //    mSimpleAdapter.notifyDataSetChanged();
-                        //}
                         break;
                 }
             }
-
             //正在滑动的时候执行
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
             }
@@ -188,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //太乱了，需要精简
         if (sharedPrefsUtil.readPreferences(MainActivity.this, "DataBase")) {
-            setPicToView();
         }
     }
 
@@ -444,29 +418,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_camera) {
-            // 拍一拍
-            Bundle bundle_toRecommend = new Bundle();
-            bundle_toRecommend.putString("userName",userName);
-            Intent i = new Intent(MainActivity.this, RecommendActivity.class);
-            i.putExtras(bundle_toRecommend);
+        if (id == R.id.nav_retarget) {
+            Intent i = new Intent(MainActivity.this, AdjustActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_setting) {
-            // 偏好设置
+        }
+        if (id == R.id.nav_collect) {
+            Intent i = new Intent(MainActivity.this, CollectActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.nav_his) {
+            Intent i = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(i);
+        }
+        if(id == R.id.nav_sugg){
+            Intent i = new Intent(MainActivity.this, SuggestActivity.class);
+            startActivity(i);
+        }
+        if(id == R.id.nav_setting){
             Intent i = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_level) {
-
-        } else if (id == R.id.nav_help) {
+        }
+        if (id == R.id.nav_help) {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.AlertDialog_title)
                     .setMessage(R.string.AlertDialog_content)
                     .setPositiveButton(R.string.AlertDialog_yes, null)
                     .setNegativeButton(R.string.AlertDialog_no, null)
                     .show();
-        } else if (id == R.id.nav_exit) {
+        }
+        if (id == R.id.nav_exit) {
             Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
@@ -474,46 +455,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    //显示右上角popup菜单---------------------------------------------------------------------------
-    private void showTopRightPopMenu(ImageView imgView) {
-        if (topPopWindow == null) {
-            //(activity,onclicklistener,width,height)
-            WindowManager windowManager = getWindowManager();
-            Display display = windowManager.getDefaultDisplay();
-            int screenWidth = display.getWidth();
-            int screenHeight = display.getHeight();
-            int width, height;
-            width = (new Double(screenWidth * 0.65)).intValue();
-            height = (new Double(screenHeight * 0.16)).intValue();
-            topPopWindow = new PopMenu(MainActivity.this, width, height);
-        }
-        //设置默认获取焦点
-        topPopWindow.setFocusable(true);
-        //以某个控件的x和y的偏移量位置开始显示窗口
-        topPopWindow.showAsDropDown(imgView, 0, 0);
-        int[] arr = new int[2];
-        arr = topPopWindow.getTagInfo();
-        //maintext.setText("Year:" + arr[0] + "Season" + arr[1]);
-    }
-
-    private void setPicToView() {
-        Bitmap avator;
-        String status = Environment.getExternalStorageState();
-        if (status.equals(Environment.MEDIA_MOUNTED)) {
-            try {
-                File dir = new File(Environment.getExternalStorageDirectory().toString() + "/ProtoUI/");
-                File mPhotoFile = new File(dir, IMAGE_FILE_CUT_NAME);//保存拍摄的图片
-                String path = dir + IMAGE_FILE_CUT_NAME;
-                if (mPhotoFile.exists()) {
-                    avator = BitmapFactory.decodeFile(path);
-                    Drawable drawable = new BitmapDrawable(null, avator);
-                    main_avator.setImageDrawable(drawable);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

@@ -12,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="19">
+        android:weightSum="19"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -35,8 +38,8 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:background="@drawable/activity"
+                android:layout_weight="1"
+                android:background="@drawable/logo_activity"
                 android:contentDescription="@string/logo"
                 android:scaleType="centerInside" />
 
@@ -254,7 +257,7 @@
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:stateListAnimator="@null"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:text="中山大学数字家庭中心" />
                 </LinearLayout>
 

@@ -17,7 +17,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5">
+            android:layout_weight="4">
         </FrameLayout>
 
         <LinearLayout
@@ -172,14 +172,13 @@
 
             <TextView
                 android:id="@+id/reg_next_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:background="@drawable/editor_rec"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="3.35"
                 android:text="完善信息"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -188,14 +187,13 @@
 
             <TextView
                 android:id="@+id/reg_giveup_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/editor_rec"
                 android:layout_gravity="center"
-                android:layout_weight="3.35"
                 android:text="返回首页"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <FrameLayout
                 android:layout_width="0dp"

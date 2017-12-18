@@ -19,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,17 +45,13 @@ public class CollectActivity extends AppCompatActivity {
     private int sensor_type;
 
     private int sample = 0;
+    private int record = 0;
     private int ready = 3;
-    final int SAMPLE = 200;
-    final int PERCENT = 100;
+    final int SAMPLE = 20;
+    final int BUFFLINE = 20;
+    private ArrayList<String> array_record_line = new ArrayList<String>();
 
-    // 产生随机数，用于测试
-    private int rand(){
-        int min = -10;
-        int max = 10;
-        Random random = new Random();
-        return random.nextInt(max)%(max - min + 1) + min;
-    }
+    String path;
 
     // 开始提示定时任务
     TimerTask hint_task = new TimerTask() {
@@ -76,6 +73,15 @@ public class CollectActivity extends AppCompatActivity {
         }
     };
 
+    TimerTask record_task = new TimerTask() {
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = 2;
+            handler.sendMessage(message);
+        }
+    };
+
     // Handler分发器
     final Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -83,6 +89,8 @@ public class CollectActivity extends AppCompatActivity {
                 hint();
             if (msg.what == 1)
                 display();
+            if(msg.what == 2)
+                record();
             super.handleMessage(msg);
         }
     };
@@ -116,13 +124,35 @@ public class CollectActivity extends AppCompatActivity {
             show_z.setText(String.format("%.2f", this.acc_z));
             sample = sample + 1;
         }
-        if(sample == 20) {
+        if(sample == SAMPLE) {
             sample = 0;
             GetFeatures gf = new GetFeatures();
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
             max_x.setText(String.format("%.2f", features[3]));
             max_y.setText(String.format("%.2f", features[4]));
             max_z.setText(String.format("%.2f", features[5]));
+        }
+    }
+
+    private void record() {
+        max_x.setText("运");
+        max_y.setText("行");
+        max_z.setText("中");
+
+        String record_line = new String();
+        record_line = String.format("%.2f", this.acc_x) + "," + String.format("%.2f", this.acc_y)
+                + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
+        array_record_line.add(record_line);
+
+        show_x.setText(String.format("%.2f", this.acc_x));
+        show_y.setText(String.format("%.2f", this.acc_y));
+        show_z.setText(String.format("%.2f", this.acc_z));
+
+        if(array_record_line.size() == BUFFLINE) {
+            show_y.setText("Fresh !" + array_record_line.size());
+            OfflineFileRW raw_rw = new OfflineFileRW();
+            this.path = raw_rw.write_raw_data(array_record_line);
+            array_record_line.clear();
         }
     }
 
@@ -170,8 +200,22 @@ public class CollectActivity extends AppCompatActivity {
                     // task为任务，1000为延迟1000ms，每隔50ms收集一次
                     timer.schedule(hint_task, 1000, 1000);
                     timer.schedule(display_task, 5000, 500);
-                    // Intent i = new Intent(AdjustActivity.this, MainActivity.class);
-                    // startActivity(i);
+                } else {
+                    timer.cancel();
+                }
+            }
+        });
+
+        switch_offline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                    sensor_type = Sensor.TYPE_ACCELEROMETER;
+                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                    timer.schedule(hint_task, 1000, 1000);
+                    timer.schedule(record_task, 5000, 500);
                 } else {
                     timer.cancel();
                 }
