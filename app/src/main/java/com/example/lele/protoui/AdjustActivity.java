@@ -30,9 +30,9 @@ public class AdjustActivity extends AppCompatActivity {
     private float acc_x;
     private float acc_y;
     private float acc_z;
-    private float acc_x_array[] = new float[20];
-    private float acc_y_array[] = new float[20];
-    private float acc_z_array[] = new float[20];
+    private float acc_x_array[] = new float[200];
+    private float acc_y_array[] = new float[200];
+    private float acc_z_array[] = new float[200];
     private float features[] = new float[9];
 
     private Button collect_sit;
@@ -110,7 +110,7 @@ public class AdjustActivity extends AppCompatActivity {
                 show_y.setText("1 !");
                 break;
             case 0:
-                show_y.setText("运动起来！");
+                show_y.setText("开始！");
                 break;
         }
     }
@@ -118,9 +118,9 @@ public class AdjustActivity extends AppCompatActivity {
     // 展示任务执行
     private void display() {
         if(sample < SAMPLE) {
-            acc_x_array[sample]=this.acc_x;
-            acc_y_array[sample]=this.acc_y;
-            acc_z_array[sample]=this.acc_z;
+            // acc_x_array[sample]=this.acc_x;
+            // acc_y_array[sample]=this.acc_y;
+            // acc_z_array[sample]=this.acc_z;
             show_x.setText(String.format("%.2f", this.acc_x));
             show_y.setText(String.format("%.2f", this.acc_y));
             show_z.setText(String.format("%.2f", this.acc_z));
@@ -154,6 +154,11 @@ public class AdjustActivity extends AppCompatActivity {
             @Override
             public void run() {
                 int percent = 0;
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 while(percent++ < PERCENT) {
                     try {
                         Thread.sleep(1000);
@@ -209,13 +214,13 @@ public class AdjustActivity extends AppCompatActivity {
         collect_sit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                collect_progress();
                 acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
                 sensor_type = Sensor.TYPE_ACCELEROMETER;
                 acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
                 // task为任务，1000为延迟1000ms，每隔50ms收集一次
                 timer.schedule(hint_task, 1000, 1000);
-                timer.schedule(display_task, 0, 500);
+                collect_progress();
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustActivity.this, MainActivity.class);
                 // startActivity(i);
             }

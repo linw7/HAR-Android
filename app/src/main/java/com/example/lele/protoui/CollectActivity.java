@@ -100,7 +100,7 @@ public class CollectActivity extends AppCompatActivity {
                 show_y.setText("1 !");
                 break;
             case 0:
-                show_y.setText("运动起来！");
+                show_y.setText("开始！");
                 break;
         }
     }
@@ -169,7 +169,7 @@ public class CollectActivity extends AppCompatActivity {
                     acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
                     // task为任务，1000为延迟1000ms，每隔50ms收集一次
                     timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(display_task, 0, 500);
+                    timer.schedule(display_task, 5000, 500);
                     // Intent i = new Intent(AdjustActivity.this, MainActivity.class);
                     // startActivity(i);
                 } else {
