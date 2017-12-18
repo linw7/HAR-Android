@@ -39,8 +39,7 @@
             </FrameLayout>
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.6"
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="match_parent"
                 android:textSize="18sp"

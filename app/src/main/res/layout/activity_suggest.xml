@@ -47,9 +47,9 @@
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:clickable="true"
-                android:text="运动量评级"
+                android:text="运动强度"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout
@@ -78,7 +78,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="0.5"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal"
             android:baselineAligned="false">
@@ -102,17 +102,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="2.5"
+                android:layout_weight="3.5"
                 android:clickable="true"
                 android:text="每日建议"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.6"
+                android:layout_weight="0.4"
                 tools:ignore="NestedWeights,UselessLeaf">
             </FrameLayout>
 
@@ -120,9 +120,9 @@
                 android:id="@+id/suggest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
+                android:layout_weight="5"
                 android:layout_gravity="center"
-                android:text="TextView" />
+                android:text="今日运动量过大" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -135,9 +135,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.8"
+            android:layout_weight="0.5"
             android:baselineAligned="false"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +163,7 @@
                 android:clickable="true"
                 android:text="每日反馈"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout
@@ -184,7 +185,7 @@
                     android:layout_height="match_parent"
                     android:inputType="text"
                     android:layout_gravity="center"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="请填写" />
 
             </LinearLayout>
@@ -201,7 +202,7 @@
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_weight="2"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_gravity="center"
                 android:textColor="#ffffff"
                 android:background="@drawable/btn_selector"
@@ -219,9 +220,41 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.8"
+            android:layout_weight="0.5"
             android:baselineAligned="false"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                tools:ignore="Useless">
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:text="TeeKee"/>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                tools:ignore="Useless">
+            </FrameLayout>
+
+        </LinearLayout>
 
 
     </LinearLayout>
