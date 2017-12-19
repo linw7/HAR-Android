@@ -129,16 +129,23 @@ public class TestActivity extends AppCompatActivity {
             sample = 0;
             GetFeatures gf = new GetFeatures();
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
-            if(features[6] > 0){
+
+            // 新周期清空显示
+            image_hand.setImageResource(R.drawable.white);
+            image_read.setImageResource(R.drawable.white);
+            image_shirt.setImageResource(R.drawable.white);
+            image_trousers.setImageResource(R.drawable.white);
+
+            if(features[6] > 1){
                 image_hand.setImageResource(R.drawable.hand);
             }
-            if(features[14] > 0) {
+            if(features[14] > 5) {
                 image_read.setImageResource(R.drawable.read);
             }
-            if(features[22] > 0) {
+            if(features[22] > 9) {
                 image_shirt.setImageResource(R.drawable.shirt);
             }
-            if(features[30] > 0){
+            if(features[30] > 13){
                 image_trousers.setImageResource(R.drawable.trousers);
             }
         }
