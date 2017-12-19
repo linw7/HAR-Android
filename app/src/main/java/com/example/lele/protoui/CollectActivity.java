@@ -28,7 +28,7 @@ public class CollectActivity extends AppCompatActivity {
     private float acc_x_array[] = new float[20];
     private float acc_y_array[] = new float[20];
     private float acc_z_array[] = new float[20];
-    private float features[] = new float[9];
+    private float features[] = new float[32];
     private Switch switch_online;
     private Switch switch_offline;
     private ImageView result_online;
@@ -125,9 +125,11 @@ public class CollectActivity extends AppCompatActivity {
             sample = 0;
             GetFeatures gf = new GetFeatures();
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
-            max_x.setText(String.format("%.2f", features[3]));
-            max_y.setText(String.format("%.2f", features[4]));
-            max_z.setText(String.format("%.2f", features[5]));
+
+            // Max
+            max_x.setText(String.format("%.2f", features[14]));
+            max_y.setText(String.format("%.2f", features[22]));
+            max_z.setText(String.format("%.2f", features[30]));
         }
     }
 
@@ -146,7 +148,7 @@ public class CollectActivity extends AppCompatActivity {
         show_z.setText(String.format("%.2f", this.acc_z));
 
         if(array_record_line.size() == BUFFLINE) {
-            show_y.setText("Fresh !" + array_record_line.size());
+            show_y.setText("Fresh");
             OfflineFileRW raw_rw = new OfflineFileRW();
             this.path = raw_rw.write_raw_data(array_record_line);
             array_record_line.clear();

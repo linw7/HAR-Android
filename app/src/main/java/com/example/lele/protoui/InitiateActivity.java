@@ -32,7 +32,6 @@ public class InitiateActivity extends AppCompatActivity {
     private LinearLayout scene_1;
     private LinearLayout scene_2;
     private TextView scene_1_btn;
-    private TextView scene_2_btn_back;
     private TextView scene_2_btn_next;
     private TextView scene_1_txt;
     private TextView scene_2_txt;
@@ -162,7 +161,6 @@ public class InitiateActivity extends AppCompatActivity {
     private void scene2() {
         setVisibility(2);
         scene_2_btn_next = (TextView) findViewById(R.id.scene_2_btn_next);
-        scene_2_btn_back = (TextView) findViewById(R.id.scene_2_btn_back);
         scene_2_txt = (TextView) findViewById(R.id.scene_2_txt);
         scene_2_grid = (GridView) findViewById(R.id.scene_2_grid);
         scene_2_title = (TextView) findViewById(R.id.scene_2_title);
@@ -179,11 +177,9 @@ public class InitiateActivity extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.scene_2_btn_next:
                         UploadData.put("clt_len", result);
-                        scene3();
-                        break;
-                    case R.id.scene_2_btn_back:
-                        UploadData.put("clt_len", result);
-                        scene1();
+                        Intent i = new Intent(InitiateActivity.this, MainActivity.class);
+                        startActivity(i);
+                        // scene3();
                         break;
                     default:
                         break;
@@ -191,7 +187,6 @@ public class InitiateActivity extends AppCompatActivity {
             }
         };
         scene_2_btn_next.setOnClickListener(scene2Listener);
-        scene_2_btn_back.setOnClickListener(scene2Listener);
     }
 
     private void scene3() {
@@ -210,17 +205,12 @@ public class InitiateActivity extends AppCompatActivity {
                         UploadData.put("sle_len", result);
                         scene4();
                         break;
-                    case R.id.scene_2_btn_back:
-                        UploadData.put("sle_len", result);
-                        scene2();
-                        break;
                     default:
                         break;
                 }
             }
         };
         scene_2_btn_next.setOnClickListener(scene3Listener);
-        scene_2_btn_back.setOnClickListener(scene3Listener);
     }
 
     private void scene4() {
@@ -239,17 +229,12 @@ public class InitiateActivity extends AppCompatActivity {
                         UploadData.put("clt_tight", result);
                         scene5();
                         break;
-                    case R.id.scene_2_btn_back:
-                        UploadData.put("clt_tight", result);
-                        scene3();
-                        break;
                     default:
                         break;
                 }
             }
         };
         scene_2_btn_next.setOnClickListener(scene4Listener);
-        scene_2_btn_back.setOnClickListener(scene4Listener);
     }
 
     private void scene5() {
@@ -268,17 +253,10 @@ public class InitiateActivity extends AppCompatActivity {
                         UploadData.put("nckl_shp", result);
                         scene6();
                         break;
-                    case R.id.scene_2_btn_back:
-                        UploadData.put("nckl_shp", result);
-                        scene4();
-                        break;
-                    default:
-                        break;
                 }
             }
         };
         scene_2_btn_next.setOnClickListener(scene5Listener);
-        scene_2_btn_back.setOnClickListener(scene5Listener);
     }
 
     private void scene6() {
@@ -297,17 +275,12 @@ public class InitiateActivity extends AppCompatActivity {
                         UploadData.put("stmp_sty", result);
                         scene7();
                         break;
-                    case R.id.scene_2_btn_back:
-                        UploadData.put("stmp_sty", result);
-                        scene5();
-                        break;
                     default:
                         break;
                 }
             }
         };
         scene_2_btn_next.setOnClickListener(scene6Listener);
-        scene_2_btn_back.setOnClickListener(scene6Listener);
     }
 
     private void scene7() {
@@ -341,18 +314,12 @@ public class InitiateActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                         break;
-                    case R.id.scene_2_btn_back:
-                        scroll_view.setVisibility(View.VISIBLE);
-                        scene6();
-                        scene_2_btn_next.setText(R.string.next);
-                        break;
                     default:
                         break;
                 }
             }
         };
         scene_2_btn_next.setOnClickListener(scene7Listener);
-        scene_2_btn_back.setOnClickListener(scene7Listener);
     }
 
     private void setGridView(String type) {

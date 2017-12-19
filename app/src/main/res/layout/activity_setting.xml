@@ -36,6 +36,11 @@
                 android:textColor="#ff888888"
                 android:textSize="20sp" />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent">
@@ -52,22 +57,22 @@
                         android:layout_height="20dp"
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="20.0dip"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
                         android:background="@drawable/editor_top"
-                        android:minHeight="60dp">
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="11"
+                            android:layout_weight="15"
                             android:drawablePadding="10.0dip"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="15dip"
                             android:text="头像"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <com.example.lele.protoui.CircleImg
                             android:id="@+id/setting_user_protrait"
@@ -75,10 +80,9 @@
                             android:layout_height="match_parent"
                             android:layout_column="1"
                             android:layout_gravity="left"
-                            android:layout_marginRight="50dp"
-                            android:layout_weight="2"
-                            android:foregroundGravity="left"
-                            android:src="@drawable/user" />
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:foregroundGravity="left" />
 
                         <ImageView
                             android:layout_width="0dp"
@@ -96,9 +100,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:id="@+id/textView2"
@@ -110,9 +114,9 @@
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="15.0dip"
-                            android:text="登陆名"
+                            android:text="医保号码"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/setting_uname"
@@ -120,7 +124,7 @@
                             android:layout_height="fill_parent"
                             android:layout_column="1"
                             android:layout_gravity="left"
-                            android:layout_weight="6"
+                            android:layout_weight="2"
                             android:gravity="left"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
@@ -133,9 +137,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -148,27 +152,19 @@
                             android:paddingLeft="15.0dip"
                             android:text="用户昵称"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/setting_nickname"
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="2"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
                             android:textSize="18sp" />
 
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="fill_parent"
-                            android:layout_column="2"
-                            android:layout_gravity="right"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:src="@drawable/arrow_forward_7f8c8d" />
                     </TableRow>
 
                     <TableRow
@@ -177,9 +173,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_bottom"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -192,7 +188,7 @@
                             android:paddingLeft="15.0dip"
                             android:text="修改密码"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/setting_sex"
@@ -217,6 +213,11 @@
                 </TableLayout>
             </LinearLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+            </FrameLayout>
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -227,6 +228,11 @@
                 android:text="基本信息"
                 android:textColor="#ff888888"
                 android:textSize="20sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -244,9 +250,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_top"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -259,17 +265,17 @@
                             android:paddingLeft="15.0dip"
                             android:text="性别"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:id="@+id/setting_clt_len" />
 
                         <ImageView
@@ -288,9 +294,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="40dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -303,13 +309,13 @@
                             android:paddingLeft="15.0dip"
                             android:text="年龄"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
@@ -333,9 +339,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:minHeight="50dp"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip">
+                        android:minHeight="0dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -348,18 +354,18 @@
                             android:paddingLeft="15.0dip"
                             android:text="科室"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/setting_clt_tight"
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="0dp"
@@ -377,9 +383,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -392,13 +398,13 @@
                             android:paddingLeft="15.0dip"
                             android:text="病床号"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
@@ -421,9 +427,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_mid"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="0dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -436,18 +442,18 @@
                             android:paddingLeft="17.0dip"
                             android:text="入院时间"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/setting_stmp_sty"
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="0dp"
@@ -465,9 +471,9 @@
                         android:layout_marginLeft="2.0dip"
                         android:layout_marginRight="2.0dip"
                         android:background="@drawable/editor_bottom"
-                        android:paddingBottom="15.0dip"
-                        android:paddingTop="15.0dip"
-                        android:minHeight="50dp">
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:minHeight="40dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -480,17 +486,17 @@
                             android:paddingLeft="17.0dip"
                             android:text="主治医师"
                             android:textColor="#ff333333"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="fill_parent"
                             android:layout_column="1"
-                            android:layout_weight="5"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:textColor="#ff333333"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:id="@+id/setting_prf_color" />
 
                         <ImageView
