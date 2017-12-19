@@ -428,6 +428,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(MainActivity.this, SuggestActivity.class);
             startActivity(i);
         }
+        if(id == R.id.nav_pos){
+            Intent i = new Intent(MainActivity.this, TestActivity.class);
+            startActivity(i);
+        }
         if(id == R.id.nav_setting){
             Intent i = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(i);

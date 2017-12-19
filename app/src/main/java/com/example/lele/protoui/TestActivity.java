@@ -1,138 +1,251 @@
 package com.example.lele.protoui;
 
-import android.graphics.Color;
+
+import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TestActivity extends AppCompatActivity {
+    private float acc_x;
+    private float acc_y;
+    private float acc_z;
+    private float acc_x_array[] = new float[20];
+    private float acc_y_array[] = new float[20];
+    private float acc_z_array[] = new float[20];
+    private float features[] = new float[32];
+    private Switch switch_online;
+    private Switch switch_offline;
+    private ImageView result_online;
+    private ImageView analysis_offline;
+    private Button show_x;
+    private Button show_y;
+    private Button show_z;
+    private ImageView image_hand;
+    private ImageView image_read;
+    private ImageView image_shirt;
+    private ImageView image_trousers;
 
-    private LineChart line_chart;
-    private XAxis xAxis;
-    private YAxis yAxis;
-    private YAxis yAxisR;
+    private Timer timer = new Timer();
+    private SensorManager acc_sensor;
+    private int sensor_type;
+
+    private int sample = 0;
+    private int record = 0;
+    private int ready = 3;
+    final int SAMPLE = 20;
+    final int BUFFLINE = 20;
+    private ArrayList<String> array_record_line = new ArrayList<String>();
+
+    String path;
+
+    // 开始提示定时任务
+    TimerTask hint_task = new TimerTask() {
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = 0;
+            handler.sendMessage(message);
+        }
+    };
+
+    // 展示数据定时任务
+    TimerTask display_task = new TimerTask() {
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = 1;
+            handler.sendMessage(message);
+        }
+    };
+
+    TimerTask record_task = new TimerTask() {
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = 2;
+            handler.sendMessage(message);
+        }
+    };
+
+    // Handler分发器
+    final Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (msg.what == 0)
+                hint();
+            if (msg.what == 1)
+                display();
+            if(msg.what == 2)
+                record();
+            super.handleMessage(msg);
+        }
+    };
+
+    // 提示任务执行
+    private void hint(){
+        switch (ready--){
+            case 3:
+                show_y.setText("3 !");
+                break;
+            case 2:
+                show_y.setText("2 !");
+                break;
+            case 1:
+                show_y.setText("1 !");
+                break;
+            case 0:
+                show_y.setText("开始！");
+                break;
+        }
+    }
+
+    // 展示任务执行
+    private void display() {
+        if(sample < SAMPLE) {
+            acc_x_array[sample]=this.acc_x;
+            acc_y_array[sample]=this.acc_y;
+            acc_z_array[sample]=this.acc_z;
+            show_x.setText(String.format("%.2f", this.acc_x));
+            show_y.setText(String.format("%.2f", this.acc_y));
+            show_z.setText(String.format("%.2f", this.acc_z));
+            sample = sample + 1;
+        }
+        if(sample == SAMPLE) {
+            sample = 0;
+            GetFeatures gf = new GetFeatures();
+            features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
+            if(features[6] > 0){
+                image_hand.setImageResource(R.drawable.hand);
+            }
+            if(features[14] > 0) {
+                image_read.setImageResource(R.drawable.read);
+            }
+            if(features[22] > 0) {
+                image_shirt.setImageResource(R.drawable.shirt);
+            }
+            if(features[30] > 0){
+                image_trousers.setImageResource(R.drawable.trousers);
+            }
+        }
+    }
+
+    private void record() {
+
+        String record_line = new String();
+        record_line = String.format("%.2f", this.acc_x) + "," + String.format("%.2f", this.acc_y)
+                + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
+        array_record_line.add(record_line);
+
+        show_x.setText(String.format("%.2f", this.acc_x));
+        show_y.setText(String.format("%.2f", this.acc_y));
+        show_z.setText(String.format("%.2f", this.acc_z));
+
+        if(array_record_line.size() == BUFFLINE) {
+            show_y.setText("Fresh");
+            OfflineFileRW raw_rw = new OfflineFileRW();
+            this.path = raw_rw.write_raw_data(array_record_line);
+            array_record_line.clear();
+        }
+    }
+
+    // 加速度数据监听
+    final SensorEventListener acc_listener = new SensorEventListener() {
+        @Override
+        // 传感器值改变时调用
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if(sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                acc_x = sensorEvent.values[0];
+                acc_y = sensorEvent.values[1];
+                acc_z = sensorEvent.values[2];
+            }
+        }
+        @Override
+        // 传感器精度改变时调用
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        line_chart = (LineChart)findViewById(R.id.line_chart);
-        xAxis = line_chart.getXAxis();
-        yAxis = line_chart.getAxisLeft();
-        yAxisR = line_chart.getAxisRight();
+        switch_online = (Switch) findViewById(R.id.switch_online);
+        switch_offline = (Switch) findViewById(R.id.switch_offline);
+        result_online = (ImageView) findViewById(R.id.result_online);
+        analysis_offline = (ImageView) findViewById(R.id.analysis_offline);
+        show_x = findViewById(R.id.show_x);
+        show_y = findViewById(R.id.show_y);
+        show_z = findViewById(R.id.show_z);
 
-        // 获取显示数据
-        LineData line_data = get_line_data();
-        // 其他设置
-        show_chart(line_chart, line_data);
-    }
-    private void show_chart(LineChart line_chart, LineData line_data) {
-        // 图表概览
-        // 右下角图表描述、颜色、位置、字体、大小
-        line_chart.setDescription("HAR");
-        line_chart.setDescriptionColor(Color.rgb(227, 135, 0));
-        // line_chart.setDescriptionPosition(800f,1200f);
-        // line_chart.setDescriptionTypeface();
-        line_chart.setDescriptionTextSize(8);
-        // line_chart.setNoDataTextDescription("没有数据呢(⊙o⊙)");
+        image_hand = findViewById(R.id.image_hand);
+        image_read = findViewById(R.id.image_read);
+        image_shirt = findViewById(R.id.image_shirt);
+        image_trousers = findViewById(R.id.image_trousers);
 
-        // 是否显示格子背景
-        // line_chart.setDrawGridBackground(false);
-        // 设置背景色
-        line_chart.setBackgroundColor(Color.WHITE & 0x70FFFFFF);
-        // 边框
-        line_chart.setDrawBorders(true);
-        line_chart.setBorderColor(Color.rgb(57, 135, 200));   //上面的边框颜色
-        line_chart.setBorderWidth(2);       //上面边框的宽度，float类型，dp单位
+        switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                    sensor_type = Sensor.TYPE_ACCELEROMETER;
+                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                    timer.schedule(hint_task, 1000, 1000);
+                    timer.schedule(display_task, 5000, 500);
+                } else {
+                    timer.cancel();
+                }
+            }
+        });
 
-        // 交互设置
-        // 是否可触摸
-        line_chart.setTouchEnabled(true);
-        // 是否可拖拽
-        line_chart.setDragEnabled(true);
-        // 是否可缩放
-        line_chart.setScaleEnabled(true);
-        // 是否可同时缩放
-        line_chart.setPinchZoom(true);
-        // 是否双击方法图表
-        line_chart.setDoubleTapToZoomEnabled(true);
-        // 是否自动缩放
-        line_chart.setAutoScaleMinMaxEnabled(true);
+        switch_offline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                    sensor_type = Sensor.TYPE_ACCELEROMETER;
+                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                    timer.schedule(hint_task, 1000, 1000);
+                    timer.schedule(record_task, 5000, 500);
+                } else {
+                    timer.cancel();
+                }
+            }
+        });
 
-        // line_chart.setViewPortOffsets(10, 0, 10, 0);
-        // Legend l = line_chart.getLegend();
-        // l.setEnabled(true);
+        result_online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TestActivity.this, HistoryActivity.class);
+                startActivity(i);
+            }
+        });
 
-        yAxisR.setDrawGridLines(false);
-        yAxisR.setEnabled(false);
+        analysis_offline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TestActivity.this, SuggestActivity.class);
+                startActivity(i);
+            }
+        });
 
-        yAxis.resetAxisMaxValue();
-        yAxis.resetAxisMinValue();
-        yAxis.setSpaceTop(15);
-        yAxis.setSpaceBottom(15);
-        yAxis.setEnabled(true);
-        yAxis.setDrawGridLines(false);
-        yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-
-        xAxis.resetAxisMinValue();
-        xAxis.resetAxisMaxValue();
-        xAxis.setDrawGridLines(false);
-        xAxis.setAxisLineColor(Color.rgb(244, 117, 117));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
-        line_chart.setData(line_data);
-        line_chart.animateX(2000);
-        line_chart.invalidate();
-
-    }
-
-    private LineData get_line_data() {
-        // 生成x轴数据
-        ArrayList<String> xVal = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
-            xVal.add("" + i);
-
-        // 生成y轴数据
-        ArrayList<Entry> yVal = new ArrayList<>();
-        yVal.add(new Entry(6, 0));
-        yVal.add(new Entry(13, 1));
-        yVal.add(new Entry(6, 2));
-        yVal.add(new Entry(3, 3));
-        yVal.add(new Entry(7, 4));
-        yVal.add(new Entry(2, 5));
-        yVal.add(new Entry(5, 6));
-        yVal.add(new Entry(12, 7));
-        yVal.add(new Entry(2, 8));
-        yVal.add(new Entry(5, 9));
-
-        LineDataSet set1 = new LineDataSet(yVal, "Data");
-        set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-
-        // 设置线宽和颜色
-        set1.setLineWidth(1.75f);
-        set1.setColor(Color.rgb(244, 117, 117));
-
-        // 设置点数据半径和颜色
-        set1.setCircleRadius(4f);
-        set1.setCircleColor(Color.rgb(244, 117, 117));
-
-        // 焦点线
-        set1.setHighLightColor(Color.RED);
-
-        // 是否显示值
-        set1.setDrawValues(true);
-
-        LineData data = new LineData(xVal, set1);
-
-        return data;
     }
 }
