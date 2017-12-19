@@ -1,11 +1,14 @@
 package com.example.lele.protoui;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 public class HistoryActivity extends AppCompatActivity {
     private CalendarView calendar;
     private PieChart pie_chart;
+    private ImageView title_bar_back_btn;
 
     private LineChart line_chart;
     private XAxis xAxis;
@@ -35,11 +39,20 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         calendar = (CalendarView) findViewById(R.id.calendarView);
         pie_chart = (PieChart) findViewById(R.id.pie_chart);
+        title_bar_back_btn = (ImageView)findViewById(R.id.title_bar_back_btn);
 
         line_chart = (LineChart)findViewById(R.id.line_chart);
         xAxis = line_chart.getXAxis();
         yAxis = line_chart.getAxisLeft();
         yAxisR = line_chart.getAxisRight();
+
+        title_bar_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HistoryActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         LineData line_data = get_line_data();
         show_chart(line_chart, line_data);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ public class SuggestActivity extends AppCompatActivity {
     TextView suggest;
     EditText commit_text;
     Button commit_button;
+    ImageView title_bar_back_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,15 @@ public class SuggestActivity extends AppCompatActivity {
         suggest = (TextView)findViewById(R.id.suggest);
         commit_text = (EditText)findViewById(R.id.commit_text);
         commit_button = (Button)findViewById(R.id.commit_button);
+        title_bar_back_btn = (ImageView)findViewById(R.id.title_bar_back_btn);
+
+        title_bar_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SuggestActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         suggest.setOnClickListener(new View.OnClickListener() {
             @Override

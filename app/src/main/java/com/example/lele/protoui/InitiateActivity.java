@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +51,6 @@ public class InitiateActivity extends AppCompatActivity {
     private float density;
     //色板
     private HorizontalScrollView scroll_view;
-    private ColorPickerLayout cpv;
     private int r, g, b = 0;
     //最终上传SharedPreferences
     private SharedPrefsUtil sharedPrefsUtil = new SharedPrefsUtil();
@@ -71,7 +69,6 @@ public class InitiateActivity extends AppCompatActivity {
         scene_1 = (LinearLayout) findViewById(R.id.init_scene_1);
         scene_2 = (LinearLayout) findViewById(R.id.init_scene_2);
         scroll_view = (HorizontalScrollView) findViewById(R.id.scroll_view);
-        cpv = (ColorPickerLayout) findViewById(R.id.cpv_simple_light);
 
         DisplayMetrics dm = new DisplayMetrics();
         InitiateActivity.this.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -319,23 +316,7 @@ public class InitiateActivity extends AppCompatActivity {
         scene_2_txt.setText("");
         scene_2_btn_next.setText(R.string.succeed);
         scroll_view.setVisibility(View.INVISIBLE);
-        cpv.setVisibility(View.VISIBLE);
-        initCPVView();
         setScene7Listener();
-    }
-
-    private void initCPVView() {
-        if (cpv != null) {
-            cpv.setOnColorChangeListener(new ColorPickerLayout.OnColorChangeListener() {
-                @Override
-                public void doColor(int color) {
-                    r = Color.red(color);
-                    g = Color.green(color);
-                    b = Color.blue(color);
-                    scene_2_txt.setText("r=" + r + " g=" + g + " b=" + b);
-                }
-            });
-        }
     }
 
     private void setScene7Listener() {
@@ -362,7 +343,6 @@ public class InitiateActivity extends AppCompatActivity {
                         break;
                     case R.id.scene_2_btn_back:
                         scroll_view.setVisibility(View.VISIBLE);
-                        cpv.setVisibility(View.INVISIBLE);
                         scene6();
                         scene_2_btn_next.setText(R.string.next);
                         break;
