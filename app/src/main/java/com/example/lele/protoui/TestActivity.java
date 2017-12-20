@@ -25,10 +25,10 @@ public class TestActivity extends AppCompatActivity {
     private float acc_x;
     private float acc_y;
     private float acc_z;
-    private float acc_x_array[] = new float[20];
-    private float acc_y_array[] = new float[20];
-    private float acc_z_array[] = new float[20];
-    private float features[] = new float[32];
+    private float acc_x_array[] = new float[40];
+    private float acc_y_array[] = new float[40];
+    private float acc_z_array[] = new float[40];
+    private float features[] = new float[8];
     private Switch switch_online;
     private Switch switch_offline;
     private ImageView result_online;
@@ -46,10 +46,9 @@ public class TestActivity extends AppCompatActivity {
     private int sensor_type;
 
     private int sample = 0;
-    private int record = 0;
     private int ready = 3;
-    final int SAMPLE = 20;
-    final int BUFFLINE = 20;
+    final int SAMPLE = 40;
+    final int BUFFLINE = 40;
     private ArrayList<String> array_record_line = new ArrayList<String>();
 
     String path;
@@ -136,16 +135,16 @@ public class TestActivity extends AppCompatActivity {
             image_shirt.setImageResource(R.drawable.white);
             image_trousers.setImageResource(R.drawable.white);
 
-            if(features[6] > 1){
+            if(features[0] > 1){
                 image_hand.setImageResource(R.drawable.hand);
             }
-            if(features[14] > 5) {
+            if(features[1] > 5) {
                 image_read.setImageResource(R.drawable.read);
             }
-            if(features[22] > 9) {
+            if(features[2] > 9) {
                 image_shirt.setImageResource(R.drawable.shirt);
             }
-            if(features[30] > 13){
+            if(features[3] > 13){
                 image_trousers.setImageResource(R.drawable.trousers);
             }
         }

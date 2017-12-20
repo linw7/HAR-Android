@@ -22,13 +22,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CollectActivity extends AppCompatActivity {
+    final int SAMPLE = 40;
+    final int BUFFLINE = 5000;
+
     private float acc_x;
     private float acc_y;
     private float acc_z;
-    private float acc_x_array[] = new float[20];
-    private float acc_y_array[] = new float[20];
-    private float acc_z_array[] = new float[20];
-    private float features[] = new float[32];
+    private float acc_x_array[] = new float[SAMPLE];
+    private float acc_y_array[] = new float[SAMPLE];
+    private float acc_z_array[] = new float[SAMPLE];
+    private float features[] = new float[8];
+
     private Switch switch_online;
     private Switch switch_offline;
     private ImageView result_online;
@@ -42,13 +46,10 @@ public class CollectActivity extends AppCompatActivity {
     private int sensor_type;
 
     private int sample = 0;
-    private int record = 0;
     private int ready = 3;
-    final int SAMPLE = 20;
-    final int BUFFLINE = 20;
-    private ArrayList<String> array_record_line = new ArrayList<String>();
+    private String path;
 
-    String path;
+    private ArrayList<String> array_record_line = new ArrayList<String>();
 
     // 开始提示定时任务
     TimerTask hint_task = new TimerTask() {
@@ -127,9 +128,9 @@ public class CollectActivity extends AppCompatActivity {
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
 
             // Max
-            max_x.setText(String.format("%.2f", features[14]));
-            max_y.setText(String.format("%.2f", features[22]));
-            max_z.setText(String.format("%.2f", features[30]));
+            max_x.setText(String.format("%.2f", features[0]));
+            max_y.setText(String.format("%.2f", features[7]));
+            max_z.setText(String.format("%.2f", features[1]));
         }
     }
 
