@@ -31,7 +31,9 @@ public class CollectActivity extends AppCompatActivity {
     private float acc_x_array[] = new float[SAMPLE];
     private float acc_y_array[] = new float[SAMPLE];
     private float acc_z_array[] = new float[SAMPLE];
+
     private float features[] = new float[8];
+    private String activity;
 
     private Switch switch_online;
     private Switch switch_offline;
@@ -48,6 +50,13 @@ public class CollectActivity extends AppCompatActivity {
     private int sample = 0;
     private int ready = 3;
     private String path;
+
+    final String W = "Walking";
+    final String U = "Upstairs";
+    final String D = "Downstairs";
+    final String J = "Jogging";
+    final String SI = "Sitting";
+    final String ST = "Standing";
 
     private ArrayList<String> array_record_line = new ArrayList<String>();
 
@@ -117,20 +126,51 @@ public class CollectActivity extends AppCompatActivity {
             acc_x_array[sample]=this.acc_x;
             acc_y_array[sample]=this.acc_y;
             acc_z_array[sample]=this.acc_z;
-            show_x.setText(String.format("%.2f", this.acc_x));
-            show_y.setText(String.format("%.2f", this.acc_y));
-            show_z.setText(String.format("%.2f", this.acc_z));
+
+            if(sample % 10 == 0) {
+                show_x.setText(String.format("%.2f", this.acc_x));
+                show_y.setText(String.format("%.2f", this.acc_y));
+                show_z.setText(String.format("%.2f", this.acc_z));
+            }
+
             sample = sample + 1;
         }
         if(sample == SAMPLE) {
             sample = 0;
+
             GetFeatures gf = new GetFeatures();
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
+            GetClassifify gc = new GetClassifify();
+            activity = gc.activity_online(features);
 
-            // Max
-            max_x.setText(String.format("%.2f", features[0]));
-            max_y.setText(String.format("%.2f", features[7]));
-            max_z.setText(String.format("%.2f", features[1]));
+            check_activity(activity);
+
+            max_x.setText("运");
+            max_y.setText("行");
+            max_z.setText("中");
+        }
+    }
+
+    private void check_activity(String activity) {
+        result_online.setImageResource(R.drawable.white);
+
+        if(activity == W) {
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == J) {
+            result_online.setImageResource(R.drawable.jog_r);
+        }
+        if(activity == U) {
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == D){
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == ST) {
+            result_online.setImageResource(R.drawable.stand_r);
+        }
+        if(activity == SI) {
+            result_online.setImageResource(R.drawable.sit_r);
         }
     }
 
@@ -199,7 +239,7 @@ public class CollectActivity extends AppCompatActivity {
                     acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
                     // task为任务，1000为延迟1000ms，每隔50ms收集一次
                     timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(display_task, 5000, 500);
+                    timer.schedule(display_task, 5000, 50);
                 } else {
                     timer.cancel();
                 }
