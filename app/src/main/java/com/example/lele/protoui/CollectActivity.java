@@ -39,9 +39,14 @@ public class CollectActivity extends AppCompatActivity {
     private Switch switch_offline;
     private ImageView result_online;
     private ImageView analysis_offline;
-    private Button show_x, max_x;
-    private Button show_y, max_y;
-    private Button show_z, max_z;
+    private Button show_x;
+    private Button show_y;
+    private Button show_z;
+
+    private ImageView image_hand;
+    private ImageView image_read;
+    private ImageView image_shirt;
+    private ImageView image_trousers;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -144,9 +149,7 @@ public class CollectActivity extends AppCompatActivity {
             activity = gc.activity_online(features);
             check_activity(activity);
 
-            max_x.setText("运");
-            max_y.setText("行");
-            max_z.setText("中");
+            check_position();
         }
     }
 
@@ -173,11 +176,28 @@ public class CollectActivity extends AppCompatActivity {
         }
     }
 
-    private void record() {
-        max_x.setText("运");
-        max_y.setText("行");
-        max_z.setText("中");
+    private void check_position() {
+        // 新周期清空显示
+        image_hand.setImageResource(R.drawable.white);
+        image_read.setImageResource(R.drawable.white);
+        image_shirt.setImageResource(R.drawable.white);
+        image_trousers.setImageResource(R.drawable.white);
 
+        if(features[3] > -10 && features[3] <= 5){
+            image_hand.setImageResource(R.drawable.hand);
+        }
+        if(features[3] > 5 && features[3] <= 9) {
+            image_read.setImageResource(R.drawable.read);
+        }
+        if(features[3] > 9 && features[3] <= 13) {
+            image_shirt.setImageResource(R.drawable.shirt);
+        }
+        if(features[3] > 13){
+            image_trousers.setImageResource(R.drawable.trousers);
+        }
+    }
+
+    private void record() {
         String record_line = new String();
         record_line = String.format("%.2f", this.acc_x) + "," + String.format("%.2f", this.acc_y)
                 + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
@@ -225,9 +245,10 @@ public class CollectActivity extends AppCompatActivity {
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
-        max_x = findViewById(R.id.max_x);
-        max_y = findViewById(R.id.max_y);
-        max_z = findViewById(R.id.max_z);
+        image_hand = findViewById(R.id.image_hand);
+        image_read = findViewById(R.id.image_read);
+        image_shirt = findViewById(R.id.image_shirt);
+        image_trousers = findViewById(R.id.image_trousers);
 
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

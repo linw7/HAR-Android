@@ -200,12 +200,6 @@
                 android:layout_weight="0.25" />
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="16dp"
@@ -217,38 +211,48 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.25" />
 
-            <Button
-                android:id="@+id/max_x"
+            <ImageView
+                android:id="@+id/image_hand"
                 android:layout_width="0dp"
-                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25" />
+            // app:srcCompat="@drawable/catch"
+
+            <FrameLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="" />
+                android:layout_weight="0.25" />
 
-            <Button
-                android:id="@+id/max_y"
+            <ImageView
+                android:id="@+id/image_read"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:layout_weight="0.8"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="实时特征" />
+                android:layout_weight="0.25" />
+            // app:srcCompat="@drawable/read"
 
-            <Button
-                android:id="@+id/max_z"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_shirt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:layout_weight="0.8"
-                android:textSize="18sp"
-                android:text="" />
+                android:layout_weight="0.25"  />
+            // app:srcCompat="@drawable/shirt"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_trousers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"/>
+            //app:srcCompat="@drawable/trousers"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -256,26 +260,11 @@
                 android:layout_weight="0.25" />
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.05" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="实时模式"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/foreground_material_light" />
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -375,7 +364,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
