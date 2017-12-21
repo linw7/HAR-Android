@@ -7,14 +7,6 @@
     tools:context="com.example.lele.protoui.CollectActivity"
     android:background="#ffffff">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_title_bar_normal" />
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_title_bar_normal" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,10 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
-        <TimePicker
-            android:layout_width="match_parent"
-            android:layout_height="90dp" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -144,60 +132,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="当前加速度"
+                android:text="手机位置"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <Button
-                android:id="@+id/show_x"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="" />
-
-            <Button
-                android:id="@+id/show_y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:layout_weight="0.8"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="实时数据" />
-
-            <Button
-                android:id="@+id/show_z"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:layout_weight="0.8"
-                android:textSize="18sp"
-                android:text="" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
         </LinearLayout>
 
         <LinearLayout
@@ -253,6 +191,83 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"/>
             //app:srcCompat="@drawable/trousers"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="实时数据"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:textColor="@color/foreground_material_light" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <Button
+                android:id="@+id/show_x"
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textColor="#ff0000"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="" />
+
+            <Button
+                android:id="@+id/show_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#ff0000"
+                android:layout_weight="0.8"
+                android:background="#ffffff"
+                android:textSize="18sp"
+                android:text="实时数据" />
+
+            <Button
+                android:id="@+id/show_z"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#ff0000"
+                android:background="#ffffff"
+                android:layout_weight="0.8"
+                android:textSize="18sp"
+                android:text="" />
 
             <FrameLayout
                 android:layout_width="0dp"

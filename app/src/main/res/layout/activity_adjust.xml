@@ -7,9 +7,6 @@
     tools:context="com.example.lele.protoui.AdjustActivity"
     android:background="#ffffff">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_title_bar_normal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +17,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="match_parent"
-            android:layout_height="90dp" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -34,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.75"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -126,7 +118,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
@@ -248,7 +240,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
@@ -474,7 +466,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
@@ -567,7 +559,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5">
+            android:layout_weight="2.4">
         </FrameLayout>
 
         <LinearLayout
