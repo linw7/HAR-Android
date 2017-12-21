@@ -5,27 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lele.protoui.CollectActivity"
-    android:background="#ffffff">
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_title_bar_normal" />
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_title_bar_normal" />
+    android:background="#ffffff"
+    android:id="@+id/watch_layout">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TimePicker
-            android:layout_width="match_parent"
-            android:layout_height="90dp" />
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -36,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -144,7 +130,94 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="当前加速度"
+                android:text="手机位置"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:textColor="@color/foreground_material_light" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_hand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25" />
+            // app:srcCompat="@drawable/catch"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_read"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25" />
+            // app:srcCompat="@drawable/read"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_shirt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"  />
+            // app:srcCompat="@drawable/shirt"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+
+            <ImageView
+                android:id="@+id/image_trousers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"/>
+            //app:srcCompat="@drawable/trousers"
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="当前数据"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
@@ -205,56 +278,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.5">
         </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <Button
-                android:id="@+id/max_x"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="" />
-
-            <Button
-                android:id="@+id/max_y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:layout_weight="0.8"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:text="实时特征" />
-
-            <Button
-                android:id="@+id/max_z"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:background="#ffffff"
-                android:layout_weight="0.8"
-                android:textSize="18sp"
-                android:text="" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -356,6 +379,7 @@
                         android:layout_weight="0.15"
                         android:background="@drawable/white"
                         android:clickable="true"
+                        android:contentDescription=""
                         tools:ignore="ContentDescription" />
 
                     <FrameLayout
@@ -375,7 +399,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6">
+            android:layout_weight="0.5">
         </FrameLayout>
 
         <LinearLayout
@@ -433,7 +457,7 @@
                     android:textOff="×"
                     android:textOn="√"
                     android:showText="true"
-                 />
+                    />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -492,39 +516,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5">
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textSize="15sp"
-                android:text="TeeKee"/>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5">
-            </FrameLayout>
 
         </LinearLayout>
 

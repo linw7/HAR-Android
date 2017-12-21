@@ -142,7 +142,6 @@ public class CollectActivity extends AppCompatActivity {
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
             GetClassifify gc = new GetClassifify();
             activity = gc.activity_online(features);
-
             check_activity(activity);
 
             max_x.setText("运");

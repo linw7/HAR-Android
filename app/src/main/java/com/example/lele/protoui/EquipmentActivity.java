@@ -1,6 +1,5 @@
 package com.example.lele.protoui;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -11,24 +10,24 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TestActivity extends AppCompatActivity {
-    private float acc_x;
-    private float acc_y;
-    private float acc_z;
-    private float acc_x_array[] = new float[40];
-    private float acc_y_array[] = new float[40];
-    private float acc_z_array[] = new float[40];
-    private float features[] = new float[8];
+public class EquipmentActivity extends AppCompatActivity {
+
+    // 按钮
+    private TabHost tabhost;
+
+    /*
     private Switch switch_online;
     private Switch switch_offline;
     private ImageView result_online;
@@ -41,17 +40,33 @@ public class TestActivity extends AppCompatActivity {
     private ImageView image_shirt;
     private ImageView image_trousers;
 
+    // 常量
+    final int SAMPLE = 40;
+    final int BUFFLINE = 5000;
+    final String W = "Walking";
+    final String U = "Upstairs";
+    final String D = "Downstairs";
+    final String J = "Jogging";
+    final String SI = "Sitting";
+    final String ST = "Standing";
+
+    // 加速度数据及特征相关
+    private float acc_x;
+    private float acc_y;
+    private float acc_z;
+    private float acc_x_array[] = new float[SAMPLE];
+    private float acc_y_array[] = new float[SAMPLE];
+    private float acc_z_array[] = new float[SAMPLE];
+    private float features[] = new float[8];
+
+    private String activity;
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
     private int sensor_type;
-
     private int sample = 0;
     private int ready = 3;
-    final int SAMPLE = 40;
-    final int BUFFLINE = 40;
+    private String path;
     private ArrayList<String> array_record_line = new ArrayList<String>();
-
-    String path;
 
     // 开始提示定时任务
     TimerTask hint_task = new TimerTask() {
@@ -128,33 +143,70 @@ public class TestActivity extends AppCompatActivity {
             sample = sample + 1;
         }
         if(sample == SAMPLE) {
+            // 数据窗内数据置位
             sample = 0;
+
+            // 计算特征值
             GetFeatures gf = new GetFeatures();
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
 
-            // 新周期清空显示
-            image_hand.setImageResource(R.drawable.white);
-            image_read.setImageResource(R.drawable.white);
-            image_shirt.setImageResource(R.drawable.white);
-            image_trousers.setImageResource(R.drawable.white);
+            // 分类并返回结果
+            GetClassifify gc = new GetClassifify();
+            activity = gc.activity_online(features);
 
-            if(features[0] > 1){
-                image_hand.setImageResource(R.drawable.hand);
-            }
-            if(features[1] > 5) {
-                image_read.setImageResource(R.drawable.read);
-            }
-            if(features[2] > 9) {
-                image_shirt.setImageResource(R.drawable.shirt);
-            }
-            if(features[3] > 13){
-                image_trousers.setImageResource(R.drawable.trousers);
-            }
+            // 显示实时行为
+            check_activity(activity);
+
+            // 显示实时位置
+            check_position();
+        }
+    }
+
+    private void check_activity(String activity) {
+        result_online.setImageResource(R.drawable.white);
+
+        if(activity == W) {
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == J) {
+            result_online.setImageResource(R.drawable.jog_r);
+        }
+        if(activity == U) {
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == D){
+            result_online.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == ST) {
+            result_online.setImageResource(R.drawable.stand_r);
+        }
+        if(activity == SI) {
+            result_online.setImageResource(R.drawable.sit_r);
+        }
+    }
+
+    private void check_position() {
+        // 新周期清空显示
+        image_hand.setImageResource(R.drawable.white);
+        image_read.setImageResource(R.drawable.white);
+        image_shirt.setImageResource(R.drawable.white);
+        image_trousers.setImageResource(R.drawable.white);
+
+        if(features[0] > 1){
+            image_hand.setImageResource(R.drawable.hand);
+        }
+        if(features[1] > 5) {
+            image_read.setImageResource(R.drawable.read);
+        }
+        if(features[2] > 9) {
+            image_shirt.setImageResource(R.drawable.shirt);
+        }
+        if(features[3] > 13){
+            image_trousers.setImageResource(R.drawable.trousers);
         }
     }
 
     private void record() {
-
         String record_line = new String();
         record_line = String.format("%.2f", this.acc_x) + "," + String.format("%.2f", this.acc_y)
                 + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
@@ -190,11 +242,17 @@ public class TestActivity extends AppCompatActivity {
         }
     };
 
+    */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_equipment);
 
+        tabhost = (TabHost) findViewById(android.R.id.tabhost);
+        tabhost.setup();    //初始化TabHost组件
+
+        /*
         switch_online = (Switch) findViewById(R.id.switch_online);
         switch_offline = (Switch) findViewById(R.id.switch_offline);
         result_online = (ImageView) findViewById(R.id.result_online);
@@ -202,12 +260,25 @@ public class TestActivity extends AppCompatActivity {
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
-
         image_hand = findViewById(R.id.image_hand);
         image_read = findViewById(R.id.image_read);
         image_shirt = findViewById(R.id.image_shirt);
         image_trousers = findViewById(R.id.image_trousers);
+        */
 
+        //声明并实例化一个LayoutInflater对象
+        LayoutInflater inflater = LayoutInflater.from(this);
+        inflater.inflate(R.layout.mobile_model,tabhost.getTabContentView());
+        inflater.inflate(R.layout.watch_model,tabhost.getTabContentView());
+
+
+        //添加第一个标签页
+        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("手机模式").setContent(R.id.mobile_layout));
+
+        //添加第二个标签页
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("手环模式").setContent(R.id.watch_layout));
+
+        /*
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -243,7 +314,7 @@ public class TestActivity extends AppCompatActivity {
         result_online.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TestActivity.this, HistoryActivity.class);
+                Intent i = new Intent(EquipmentActivity.this, HistoryActivity.class);
                 startActivity(i);
             }
         });
@@ -251,10 +322,10 @@ public class TestActivity extends AppCompatActivity {
         analysis_offline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TestActivity.this, SuggestActivity.class);
+                Intent i = new Intent(EquipmentActivity.this, SuggestActivity.class);
                 startActivity(i);
             }
         });
-
+        */
     }
 }
