@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SimpleAdapter mSimpleAdapter;
     private ArrayList<HashMap<String, Object>> listItem;
     private int mBackKeyPressedTimes = 0;
-    private ImageView main_avator;
     private SharedPrefsUtil sharedPrefsUtil = new SharedPrefsUtil();
     private NavigationView nav_view;
     private DrawerLayout drawer;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageView menuImg = findViewById(R.id.title_bar_menu_btn);
         drawer = findViewById(R.id.drawer_layout);
         mListView = findViewById(R.id.listview);
-        main_avator = findViewById(R.id.main_avator);
         nav_view = findViewById(R.id.nav_view);
         nav_view.setItemTextColor(null);
         nav_view.setItemIconTintList(null);
@@ -405,7 +403,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
