@@ -28,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClothInfoActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".InitiateActivity" />
         <activity android:name=".SettingActivity" />

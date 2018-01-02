@@ -359,7 +359,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String s = (String) msg.obj;
                 String[] attr_value = s.split(",");
 
-                Intent i = new Intent(MainActivity.this, ClothInfoActivity.class);
                 Bundle bundle_toClothInfo = new Bundle();
 
                 if(dynamicFlag != 1) {
@@ -370,8 +369,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 bundle_toClothInfo.putString("userName",userName);
                 bundle_toClothInfo.putStringArray("clothingInfo",attr_value);
 
-                i.putExtras(bundle_toClothInfo);
-                startActivity(i);
             }
         }
     };

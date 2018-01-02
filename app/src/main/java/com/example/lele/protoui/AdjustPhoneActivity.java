@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class AdjustPhoneActivity extends AppCompatActivity {
     private Button show_x;
     private Button show_y;
     private Button show_z;
+    private ImageView phone;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -51,14 +53,6 @@ public class AdjustPhoneActivity extends AppCompatActivity {
     private int ready = 3;
     final int SAMPLE = 200;
     final int PERCENT = 100;
-
-    // 产生随机数，用于测试
-    private int rand(){
-        int min = -10;
-        int max = 10;
-        Random random = new Random();
-        return random.nextInt(max)%(max - min + 1) + min;
-    }
 
     // 开始提示定时任务
     TimerTask hint_task = new TimerTask() {
@@ -80,6 +74,15 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         }
     };
 
+    TimerTask phone_task = new TimerTask() {
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = 2;
+            handler.sendMessage(message);
+        }
+    };
+
     // Handler分发器
     final Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -87,6 +90,8 @@ public class AdjustPhoneActivity extends AppCompatActivity {
                 hint();
             if (msg.what == 1)
                 display();
+            if (msg.what == 2)
+                phone();
             super.handleMessage(msg);
         }
     };
@@ -122,6 +127,10 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         } else {
             Log.v("acc","finish");
         }
+    }
+
+    private void phone() {
+        phone.setImageResource(R.drawable.phone);
     }
 
     // 加速度数据监听
@@ -199,6 +208,7 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
+        phone = findViewById(R.id.phone);
 
         // 加速度缓冲数据
         acc_y_array = new float[200];
@@ -214,6 +224,7 @@ public class AdjustPhoneActivity extends AppCompatActivity {
                 // task为任务，1000为延迟1000ms，每隔50ms收集一次
                 timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
                 timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
@@ -223,7 +234,14 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         collect_stand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                sensor_type = Sensor.TYPE_ACCELEROMETER;
+                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
             }
@@ -232,7 +250,14 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         collect_upstairs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                sensor_type = Sensor.TYPE_ACCELEROMETER;
+                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
             }
@@ -241,7 +266,14 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         collect_downstairs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                sensor_type = Sensor.TYPE_ACCELEROMETER;
+                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
             }
@@ -250,7 +282,14 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         collect_walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                sensor_type = Sensor.TYPE_ACCELEROMETER;
+                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
             }
@@ -259,7 +298,14 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         collect_jog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+                sensor_type = Sensor.TYPE_ACCELEROMETER;
+                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+                // task为任务，1000为延迟1000ms，每隔50ms收集一次
+                timer.schedule(hint_task, 1000, 1000);
                 collect_progress();
+                timer.schedule(phone_task, 1000, 1000);
+                timer.schedule(display_task, 5000, 500);
                 // Intent i = new Intent(AdjustPhoneActivity.this, MainActivity.class);
                 // startActivity(i);
             }

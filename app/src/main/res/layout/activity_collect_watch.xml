@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="手机位置"
+                android:text="手环状态"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
@@ -147,14 +147,13 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25" />
+                android:layout_weight="0.75" />
 
             <ImageView
-                android:id="@+id/image_hand"
+                android:id="@+id/unconnect"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25" />
-            // app:srcCompat="@drawable/catch"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -162,40 +161,16 @@
                 android:layout_weight="0.25" />
 
             <ImageView
-                android:id="@+id/image_read"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
-            // app:srcCompat="@drawable/read"
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <ImageView
-                android:id="@+id/image_shirt"
+                android:id="@+id/connect"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"  />
-            // app:srcCompat="@drawable/shirt"
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25" />
+                android:layout_weight="0.75" />
 
-            <ImageView
-                android:id="@+id/image_trousers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"/>
-            //app:srcCompat="@drawable/trousers"
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
         </LinearLayout>
 
         <FrameLayout

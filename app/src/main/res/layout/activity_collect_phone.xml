@@ -154,7 +154,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25" />
-            // app:srcCompat="@drawable/catch"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -166,7 +165,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25" />
-            // app:srcCompat="@drawable/read"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -178,7 +176,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"  />
-            // app:srcCompat="@drawable/shirt"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -190,7 +187,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"/>
-            //app:srcCompat="@drawable/trousers"
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -516,6 +512,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5">
             </FrameLayout>
+
 
 
             <FrameLayout
