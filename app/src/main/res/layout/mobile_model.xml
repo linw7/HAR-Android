@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.CollectActivity"
+    tools:context="com.example.lele.protoui.CollectPhoneActivity"
     android:background="#ffffff"
     android:id="@+id/mobile_layout">
 

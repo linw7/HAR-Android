@@ -56,7 +56,7 @@ public class SuggestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 上传服务器
-                Intent i = new Intent(SuggestActivity.this, CollectActivity.class);
+                Intent i = new Intent(SuggestActivity.this, CollectPhoneActivity.class);
                 startActivity(i);
             }
         });

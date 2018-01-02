@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.CollectPhoneActivity"
-    android:background="#ffffff"
-    android:id="@+id/watch_layout">
+    tools:context="com.example.lele.protoui.CollectWatchActivity"
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -217,7 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="当前数据"
+                android:text="实时数据"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
@@ -278,27 +280,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.5">
         </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.05" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="实时模式"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/foreground_material_light" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -379,7 +360,6 @@
                         android:layout_weight="0.15"
                         android:background="@drawable/white"
                         android:clickable="true"
-                        android:contentDescription=""
                         tools:ignore="ContentDescription" />
 
                     <FrameLayout
@@ -516,6 +496,32 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+            </FrameLayout>
 
         </LinearLayout>
 

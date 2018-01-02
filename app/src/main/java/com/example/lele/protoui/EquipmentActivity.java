@@ -26,10 +26,10 @@ public class EquipmentActivity extends ActivityGroup {
         tabhost.setup(this.getLocalActivityManager());
 
         //添加第一个标签页
-        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("手机模式").setContent(new Intent(this, CollectActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("手机模式").setContent(new Intent(this, CollectPhoneActivity.class)));
 
         //添加第二个标签页
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("手环模式").setContent(new Intent(this, AdjustActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("手环模式").setContent(new Intent(this, AdjustPhoneActivity.class)));
 
         title_bar_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
