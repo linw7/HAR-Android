@@ -36,12 +36,12 @@
         <activity android:name=".CollectPhoneActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".SuggestActivity" />
-        <activity android:name=".TestActivity" />
         <activity android:name=".EquipmentActivity" />
         <activity android:name=".AdjustWatchActivity" />
         <activity android:name=".CollectWatchActivity" />
         <activity android:name=".AdjustActivity" />
-        <activity android:name=".CollectActivity"></activity>
+        <activity android:name=".CollectActivity" />
+        <activity android:name=".RemindActivity"></activity>
     </application>
 
 </manifest>
