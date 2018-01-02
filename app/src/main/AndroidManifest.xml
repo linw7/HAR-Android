@@ -41,7 +41,9 @@
         <activity android:name=".CollectWatchActivity" />
         <activity android:name=".AdjustActivity" />
         <activity android:name=".CollectActivity" />
-        <activity android:name=".RemindActivity"></activity>
+        <activity android:name=".RemindActivity" />
+        <activity android:name=".RemindWatchActivity" />
+        <activity android:name=".RemindPhoneActivity"></activity>
     </application>
 
 </manifest>
