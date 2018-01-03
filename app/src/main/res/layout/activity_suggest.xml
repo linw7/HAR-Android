@@ -233,27 +233,6 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.6"
-                tools:ignore="Useless">
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textSize="15sp"
-                android:text="TeeKee"/>
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.6"
-                tools:ignore="Useless">
-            </FrameLayout>
-
         </LinearLayout>
 
 

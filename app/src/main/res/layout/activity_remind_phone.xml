@@ -54,7 +54,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.35"
+                android:layout_weight="0.25"
                 android:orientation="horizontal">
 
                 <FrameLayout
@@ -96,7 +96,7 @@
                         </FrameLayout>
 
                         <CheckBox
-                            android:id="@+id/chec_stand"
+                            android:id="@+id/check_stand"
                             android:layout_width="0dp"
                             android:layout_weight="0.4"
                             android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                         </FrameLayout>
 
                         <CheckBox
-                            android:id="@+id/check_walking"
+                            android:id="@+id/check_walk"
                             android:layout_width="0dp"
                             android:layout_weight="0.4"
                             android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                         </FrameLayout>
 
                         <CheckBox
-                            android:id="@+id/check_jogging"
+                            android:id="@+id/check_jog"
                             android:layout_width="0dp"
                             android:layout_weight="0.4"
                             android:layout_height="wrap_content"
@@ -200,9 +200,9 @@
 
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/set_activity"
                     android:layout_width="0dp"
-                    android:layout_weight="0.15"
+                    android:layout_weight="0.14"
                     android:layout_height="match_parent"
                     android:text="点击选择" />
 
@@ -249,7 +249,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.35"
+                android:layout_weight="0.25"
                 android:orientation="horizontal">
 
                 <FrameLayout
@@ -272,9 +272,9 @@
                 </FrameLayout>
 
                 <Button
-                    android:id="@+id/buttone"
+                    android:id="@+id/set_time"
                     android:layout_width="0dp"
-                    android:layout_weight="0.15"
+                    android:layout_weight="0.14"
                     android:layout_height="match_parent"
                     android:text="点击设置" />
 
@@ -288,10 +288,84 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_weight="0.025"
                 android:orientation="horizontal">
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.95"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:text="开始计时" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.025"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/set_start"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="开始" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/set_end"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="结束" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal">
+            </LinearLayout>
 
         </LinearLayout>
 
