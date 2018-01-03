@@ -6,18 +6,294 @@
     android:layout_height="match_parent"
     tools:context="com.example.lele.protoui.RemindWatchActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <TimePicker
-            android:id="@+id/timePicker"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:timePickerMode="spinner"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.025"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.95"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:text="设置提醒行为" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.025"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.35"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.75"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/check_sit"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:text="静坐" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.1"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/chec_stand"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="站立" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/check_upstair"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="上楼" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.1"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/check_downstair"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="下楼" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/check_walking"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="步行" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.1"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                        <CheckBox
+                            android:id="@+id/check_jogging"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="慢跑" />
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="0.10"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:layout_height="match_parent"
+                    android:text="点击选择" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05"></FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.025"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.95"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:text="设置时长限制" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.025"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.35"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <TimePicker
+                    android:id="@+id/timePicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.75"
+                    android:layout_height="wrap_content"
+                    android:timePickerMode="spinner"/>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/buttone"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:layout_height="match_parent"
+                    android:text="点击设置" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.05"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
