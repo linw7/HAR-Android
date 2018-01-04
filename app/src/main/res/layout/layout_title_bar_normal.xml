@@ -35,6 +35,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="返回"
+        android:textSize="18dp"
+        android:textColor="#ffffff"
         android:id="@+id/textView4"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/title_bar_back_btn" />
