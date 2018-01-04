@@ -1,5 +1,6 @@
 package com.example.lele.protoui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,11 +43,17 @@ public class SuggestMainActivity extends AppCompatActivity {
         commit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 上传服务器
-                Intent i = new Intent(SuggestMainActivity.this, CollectPhoneActivity.class);
-                startActivity(i);
+                alter_submit();
             }
         });
-
+    }
+    private void alter_submit() {
+        String msg = "请确认反馈建议";
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.Alert_submit)
+                .setMessage(msg)
+                .setPositiveButton(R.string.AlertDialog_yes, null)
+                .setNegativeButton(R.string.AlertDialog_no, null)
+                .show();
     }
 }

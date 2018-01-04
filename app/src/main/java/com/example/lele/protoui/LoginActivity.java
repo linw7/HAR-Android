@@ -124,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
     private boolean loginCheck() {
         if (TextUtils.isEmpty(editTextName.getText()) && TextUtils.isEmpty(editTextPwd.getText())) {
             // 如果用户名或密码为空，发送消息197

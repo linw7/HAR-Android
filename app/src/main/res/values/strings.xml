@@ -7,6 +7,8 @@
     <string name="AlertDialog_title">帮助</string>
     <string name="Alert_activity">请确认待监控行为</string>
     <string name="Alert_time">请确认监控时长</string>
+    <string name="Alert_submit">反馈建议</string>
+
     <!-- 登陆页面 -->
     <string name="login_msg_dialog_title">登陆中...</string>
     <string name="login_msg_dialog_content">请稍等</string>

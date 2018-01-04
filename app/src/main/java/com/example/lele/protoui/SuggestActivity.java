@@ -1,6 +1,7 @@
 package com.example.lele.protoui;
 
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class SuggestActivity extends AppCompatActivity {
     EditText commit_text;
     Button commit_button;
     ImageView title_bar_back_btn;
-
+    String doctor_suggest = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +56,18 @@ public class SuggestActivity extends AppCompatActivity {
         commit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 上传服务器
-                Intent i = new Intent(SuggestActivity.this, CollectPhoneActivity.class);
-                startActivity(i);
+                alter_submit();
             }
         });
+    }
 
+    private void alter_submit() {
+        String msg = "请确认反馈建议";
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.Alert_submit)
+                .setMessage(msg)
+                .setPositiveButton(R.string.AlertDialog_yes, null)
+                .setNegativeButton(R.string.AlertDialog_no, null)
+                .show();
     }
 }
