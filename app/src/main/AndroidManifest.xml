@@ -45,7 +45,8 @@
         <activity android:name=".RemindWatchActivity" />
         <activity android:name=".RemindPhoneActivity" />
         <activity android:name=".HistoryMainActivity" />
-        <activity android:name=".SuggestMainActivity"></activity>
+        <activity android:name=".SuggestMainActivity" />
+        <activity android:name=".ModeActivity"></activity>
     </application>
 
 </manifest>

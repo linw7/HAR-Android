@@ -19,10 +19,8 @@ public class RemindActivity extends ActivityGroup {
 
         title_bar_back_btn = (ImageView)findViewById(R.id.title_bar_back_btn);
 
-
         tabhost = (TabHost) findViewById(android.R.id.tabhost);
         tabhost.setup();    //初始化TabHost组件
-
         tabhost.setup(this.getLocalActivityManager());
 
         //添加第一个标签页

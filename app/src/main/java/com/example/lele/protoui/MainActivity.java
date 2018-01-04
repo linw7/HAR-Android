@@ -66,11 +66,12 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
         tabhost.setup();
         tabhost.setup(this.getLocalActivityManager());
 
-        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("校准").setContent(new Intent(this, AdjustPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("实时").setContent(new Intent(this, CollectPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("提醒").setContent(new Intent(this, RemindPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("历史").setContent(new Intent(this, HistoryMainActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("建议").setContent(new Intent(this, SuggestMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("模式").setContent(new Intent(this, ModeActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("校准").setContent(new Intent(this, AdjustPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("实时").setContent(new Intent(this, CollectPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("提醒").setContent(new Intent(this, RemindPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("历史").setContent(new Intent(this, HistoryMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("建议").setContent(new Intent(this, SuggestMainActivity.class)));
     }
 
     @Override

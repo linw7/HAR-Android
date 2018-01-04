@@ -55,6 +55,5 @@
                 </LinearLayout>
             </TabHost>
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>

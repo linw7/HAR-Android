@@ -8,6 +8,8 @@
     <string name="Alert_activity">请确认待监控行为</string>
     <string name="Alert_time">请确认监控时长</string>
     <string name="Alert_submit">反馈建议</string>
+    <string name="Alert_phone_mode">手机模式</string>
+    <string name="Alert_watch_mode">手环模式</string>
 
     <!-- 登陆页面 -->
     <string name="login_msg_dialog_title">登陆中...</string>
