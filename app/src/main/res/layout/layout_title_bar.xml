@@ -16,19 +16,5 @@
         android:layout_marginTop="3.0dip"
         android:gravity="center"
         android:background="@drawable/bars_white" />
-
-    <TextView
-        android:id="@+id/title_bar_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:paddingLeft="75.0dip"
-        android:paddingRight="75.0dip"
-        android:maxLines="1"
-        android:text="导航栏"
-        android:textColor="#ffffff"
-        android:textSize="22sp" />
-
+    
 </RelativeLayout>

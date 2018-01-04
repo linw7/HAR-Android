@@ -43,7 +43,9 @@
         <activity android:name=".CollectActivity" />
         <activity android:name=".RemindActivity" />
         <activity android:name=".RemindWatchActivity" />
-        <activity android:name=".RemindPhoneActivity"></activity>
+        <activity android:name=".RemindPhoneActivity" />
+        <activity android:name=".HistoryMainActivity" />
+        <activity android:name=".SuggestMainActivity"></activity>
     </application>
 
 </manifest>

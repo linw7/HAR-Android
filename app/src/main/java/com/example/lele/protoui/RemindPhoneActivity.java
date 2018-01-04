@@ -1,5 +1,6 @@
 package com.example.lele.protoui;
 
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class RemindPhoneActivity extends AppCompatActivity {
     private boolean [] check = {false, false, false, false, false, false};
     private HashMap times = new HashMap();
     private final String [] ACTIVITY = {"Sitting", "Standing", "Upstairs", "Downstairs", "Walking", "Jogging"};
+    private final String [] ACTIVITY_C = {"静坐", "站立", "上楼", "下楼", "步行", "慢跑"};
     private int second = 0;
 
     @Override
@@ -50,6 +52,10 @@ public class RemindPhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = new String();
+
+                for(int i = 0; i < check.length; i++)
+                    check[i] = false;
+
                 if(check_sit.isChecked()){
                     check[0] = true;
                 }
@@ -73,19 +79,22 @@ public class RemindPhoneActivity extends AppCompatActivity {
                         Log.i("" + i, ACTIVITY[i]);
                     }
                 }
-                set_activity.setText("已设置");
+                set_activity.setText("已锁定");
+                alert_activity();
             }
         });
 
         set_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                second = 0;
                 int hour = timepicker.getCurrentHour();
                 int minute = timepicker.getCurrentMinute();
                 times.put("Hours", hour);
                 times.put("Minutes", minute);
                 second = hour * 3600 + minute * 60;
-                set_time.setText("已设置");
+                set_time.setText("已锁定");
+                alter_time();
             }
         });
 
@@ -102,5 +111,38 @@ public class RemindPhoneActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void alert_activity() {
+        int count = 0;
+        for(int i = 0; i < check.length; i++){
+            if(check[i] == true){
+                count = count + 1;
+            }
+        }
+        String checked_activity = "您当前共监控" + count + "种行为，包括：";
+        for(int i = 0; i < check.length; i++){
+            if(check[i] == true){
+                checked_activity = checked_activity + ACTIVITY_C[i];
+                checked_activity = checked_activity + " ";
+            }
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.Alert_activity)
+                .setMessage(checked_activity)
+                .setPositiveButton(R.string.AlertDialog_yes, null)
+                .setNegativeButton(R.string.AlertDialog_no, null)
+                .show();
+    }
+
+    private void alter_time() {
+        int minute = second / 60;
+        String set_time = "您设置的监控时长为：" + minute + "分钟";
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.Alert_time)
+                .setMessage(set_time)
+                .setPositiveButton(R.string.AlertDialog_yes, null)
+                .setNegativeButton(R.string.AlertDialog_no, null)
+                .show();
     }
 }
