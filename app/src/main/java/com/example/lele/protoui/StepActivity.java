@@ -16,11 +16,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.os.Handler;
+import android.widget.TextView;
 
 public class StepActivity extends AppCompatActivity {
 
     Button step;
+    TextView total_step;
+    TextView current_step;
+    TextView energy_step;
+    TextView distance_step;
 
+    private float energy;
+    private float distance;
+    private int cur_step;
+    private int range_step;
+    private boolean new_start = false;
     private SensorManager mSensorManager;
     private Sensor mStepCount;
     private Sensor mStepDetector;
@@ -48,24 +58,34 @@ public class StepActivity extends AppCompatActivity {
     };
 
     private void display() {
-        String step_display = "步数为：" + mCount;
-        step.setText(step_display);
+        range_step = (int)(mCount - cur_step);
+        distance = (float)((mCount * 0.75) / 1000);
+        energy = (float) (68 * distance * 1.036);
+
+        total_step.setText("总计：" + (int)(mCount));
+        current_step.setText("当前：" + range_step);
+        energy_step.setText("卡路里：" + energy);
+        distance_step.setText("距离：" + distance);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step);
-
         step = (Button) findViewById(R.id.step);
-        step.setText("步数");
+        total_step = (TextView) findViewById(R.id.total_step);
+        current_step = (TextView) findViewById(R.id.current_step);
+        energy_step = (TextView) findViewById(R.id.energy_step);
+        distance_step = (TextView) findViewById(R.id.distance_step);
 
-        // 加速度数据监听
         final SensorEventListener step_listener = new SensorEventListener() {
             @Override
-            // 传感器值改变时调用
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(sensorEvent.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                    if(new_start == false) {
+                        new_start = true;
+                        cur_step = (int)(sensorEvent.values[0]);
+                    }
                     mCount = sensorEvent.values[0];
                 }
                 if(sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
@@ -95,8 +115,7 @@ public class StepActivity extends AppCompatActivity {
                 mSensorManager.registerListener(step_listener, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
                 mSensorManager.registerListener(step_listener, mStepDetector,SensorManager.SENSOR_DELAY_FASTEST);
 
-                timer.schedule(display_task, 1000, 500);
-
+                timer.schedule(display_task, 0, 100);
             }
         });
 
