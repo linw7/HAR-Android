@@ -36,7 +36,6 @@
         <activity android:name=".CollectPhoneActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".SuggestActivity" />
-        <activity android:name=".EquipmentActivity" />
         <activity android:name=".AdjustWatchActivity" />
         <activity android:name=".CollectWatchActivity" />
         <activity android:name=".AdjustActivity" />
@@ -46,7 +45,8 @@
         <activity android:name=".RemindPhoneActivity" />
         <activity android:name=".HistoryMainActivity" />
         <activity android:name=".SuggestMainActivity" />
-        <activity android:name=".ModeActivity"></activity>
+        <activity android:name=".ModeActivity" />
+        <activity android:name=".StepActivity"></activity>
     </application>
 
 </manifest>

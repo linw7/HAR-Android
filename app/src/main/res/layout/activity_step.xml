@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lele.protoui.StepActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_title_bar_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+    <Button
+            android:id="@+id/step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Step"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
