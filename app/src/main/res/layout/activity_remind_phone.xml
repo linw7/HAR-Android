@@ -40,8 +40,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="设置提醒行为" />
+                    android:textSize="16sp"
+                    android:text="设置提醒行为"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout
@@ -235,8 +236,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="设置时长限制" />
+                    android:textSize="16sp"
+                    android:text="设置时长限制"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout
@@ -308,8 +310,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="开始计时" />
+                    android:textSize="16sp"
+                    android:text="开始计时"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.lele.protoui.RemindWatchActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,8 +40,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="设置提醒行为" />
+                    android:textSize="16sp"
+                    android:text="设置提醒行为"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout
@@ -234,8 +236,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="设置时长限制" />
+                    android:textSize="16sp"
+                    android:text="设置时长限制"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout
@@ -307,8 +310,9 @@
                     android:layout_weight="0.95"
                     android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="开始计时" />
+                    android:textSize="16sp"
+                    android:text="开始计时"
+                    android:textColor="@color/foreground_material_light"/>
             </LinearLayout>
 
             <LinearLayout
@@ -332,7 +336,7 @@
                 </FrameLayout>
 
                 <Button
-                    android:id="@+id/start"
+                    android:id="@+id/set_start"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
@@ -345,7 +349,7 @@
                 </FrameLayout>
 
                 <Button
-                    android:id="@+id/end"
+                    android:id="@+id/set_end"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
@@ -364,26 +368,6 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
                 android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-
             </LinearLayout>
 
         </LinearLayout>

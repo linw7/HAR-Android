@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="手环状态"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="实时数据"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
@@ -219,7 +219,6 @@
                 android:layout_gravity="center"
                 android:textColor="#ff0000"
                 android:background="#ffffff"
-                android:textSize="18sp"
                 android:text="" />
 
             <Button
@@ -230,7 +229,6 @@
                 android:textColor="#ff0000"
                 android:layout_weight="0.8"
                 android:background="#ffffff"
-                android:textSize="18sp"
                 android:text="实时数据" />
 
             <Button
@@ -241,7 +239,6 @@
                 android:textColor="#ff0000"
                 android:background="#ffffff"
                 android:layout_weight="0.8"
-                android:textSize="18sp"
                 android:text="" />
 
             <FrameLayout
@@ -373,7 +370,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="离线模式"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
