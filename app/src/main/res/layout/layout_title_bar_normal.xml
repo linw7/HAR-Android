@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="返回"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="#ffffff"
         android:id="@+id/textView4"
         android:layout_centerVertical="true"
