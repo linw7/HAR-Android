@@ -20,7 +20,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.05"
+                android:layout_weight="0.025"
                 android:orientation="horizontal">
             </LinearLayout>
 
@@ -193,20 +193,19 @@
                             android:layout_weight="0.10"
                             android:layout_height="match_parent">
                         </FrameLayout>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
-                <com.dd.CircularProgressButton
+
+
+                <Button
                     android:id="@+id/set_activity"
                     android:layout_width="0dp"
                     android:layout_weight="0.14"
                     android:layout_height="match_parent"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="失败"
-                    app:cpb_textComplete="已选择"
-                    app:cpb_textIdle="点击选择" />
+                    android:text="点击选择" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -274,17 +273,12 @@
                     android:layout_height="match_parent">
                 </FrameLayout>
 
-                <com.dd.CircularProgressButton
+                <Button
                     android:id="@+id/set_time"
                     android:layout_width="0dp"
                     android:layout_weight="0.14"
                     android:layout_height="match_parent"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="失败"
-                    app:cpb_textComplete="已选择"
-                    app:cpb_textIdle="点击选择" />
+                    android:text="点击设置" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -341,17 +335,12 @@
                     android:layout_height="match_parent">
                 </FrameLayout>
 
-                <com.dd.CircularProgressButton
+                <Button
                     android:id="@+id/set_start"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="失败"
-                    app:cpb_textComplete="已完成"
-                    app:cpb_textIdle="开始" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="开始" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -359,17 +348,12 @@
                     android:layout_height="match_parent">
                 </FrameLayout>
 
-                <com.dd.CircularProgressButton
+                <Button
                     android:id="@+id/set_end"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="失败"
-                    app:cpb_textComplete="已停止"
-                    app:cpb_textIdle="停止" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="结束" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -382,7 +366,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.05"
+                android:layout_weight="0.1"
                 android:orientation="horizontal">
             </LinearLayout>
 

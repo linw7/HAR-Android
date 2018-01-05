@@ -46,5 +46,4 @@ dependencies {
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     // compile 'com.google.android.gms:play-services-maps:10.2.6'
     // compile group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.0
-    // compile 'com.google.android.gms:play-services-maps:11.0.4'
 }

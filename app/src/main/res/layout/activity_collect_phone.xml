@@ -490,11 +490,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
 
-            <com.suke.widget.SwitchButton
-                android:id="@+id/switch_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
         </LinearLayout>
 
         <FrameLayout

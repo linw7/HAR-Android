@@ -17,8 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.suke.widget.SwitchButton;
-
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,7 +42,6 @@ public class CollectPhoneActivity extends AppCompatActivity {
     private Button show_x;
     private Button show_y;
     private Button show_z;
-    SwitchButton switchButton;
 
     private ImageView image_hand;
     private ImageView image_read;
@@ -252,31 +249,6 @@ public class CollectPhoneActivity extends AppCompatActivity {
         image_read = findViewById(R.id.image_read);
         image_shirt = findViewById(R.id.image_shirt);
         image_trousers = findViewById(R.id.image_trousers);
-        switchButton = (SwitchButton) findViewById(R.id.switch_button);
-
-        // switchButton.setChecked(true);
-        // switchButton.isChecked();
-        // switchButton.toggle();     //switch state
-        // switchButton.toggle(false);//switch without animation
-
-        // switchButton.setEnabled(false);//disable button
-        switchButton.setEnableEffect(true);
-        switchButton.setShadowEffect(true);
-        switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-                if(isChecked) {
-                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-                    sensor_type = Sensor.TYPE_ACCELEROMETER;
-                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
-                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
-                    timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(display_task, 5000, 50);
-                } else {
-                    timer.cancel();
-                }
-            }
-        });
 
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
