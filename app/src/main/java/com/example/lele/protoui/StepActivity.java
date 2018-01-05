@@ -17,13 +17,17 @@ import java.util.TimerTask;
 import android.os.Handler;
 import android.widget.TextView;
 
+import com.dd.CircularProgressButton;
+
+import static android.os.SystemClock.sleep;
+
 public class StepActivity extends AppCompatActivity {
 
-    Button step;
     TextView total_step;
     TextView current_step;
     TextView energy_step;
     TextView distance_step;
+    CircularProgressButton circular_button;
 
     private float energy;
     private float distance;
@@ -61,19 +65,19 @@ public class StepActivity extends AppCompatActivity {
 
         total_step.setText("总计：" + (int)(mCount));
         current_step.setText("当前：" + range_step);
-        energy_step.setText("卡路里：" + energy);
-        distance_step.setText("距离：" + distance);
+        energy_step.setText("卡路里：" + String .format("%.2f", energy));
+        distance_step.setText("距离：" + String .format("%.2f", distance));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step);
-        step = (Button) findViewById(R.id.step);
         total_step = (TextView) findViewById(R.id.total_step);
         current_step = (TextView) findViewById(R.id.current_step);
         energy_step = (TextView) findViewById(R.id.energy_step);
         distance_step = (TextView) findViewById(R.id.distance_step);
+        circular_button = (CircularProgressButton) findViewById(R.id.circular_button);
 
         final SensorEventListener step_listener = new SensorEventListener() {
             @Override
@@ -98,21 +102,24 @@ public class StepActivity extends AppCompatActivity {
             }
         };
 
-        step.setOnClickListener(new View.OnClickListener() {
+        circular_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                circular_button.setIndeterminateProgressMode(true);
+                for(int i = 1; i < 100; i++)
+                    circular_button.setProgress(i);
+
                 mCount = 0;
                 mDetector = 0;
-
                 mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
                 mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
                 mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
                 mSensorManager.registerListener(step_listener, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
                 mSensorManager.registerListener(step_listener, mStepDetector,SensorManager.SENSOR_DELAY_FASTEST);
-
                 timer.schedule(display_task, 0, 100);
+
+                circular_button.setProgress(100);
             }
         });
 

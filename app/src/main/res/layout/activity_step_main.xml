@@ -14,34 +14,34 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:orientation="vertical">
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="125dp"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.35" />
+                android:layout_weight="0.15" />
 
             <TextView
                 android:id="@+id/total_step"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
                 android:layout_height="match_parent"
-                android:background="@drawable/circle_y"
                 android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:background="@drawable/circle_y"
                 android:gravity="center"
                 android:text="总步数" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+                android:layout_weight="0.15" />
 
             <TextView
                 android:id="@+id/current_step"
@@ -56,7 +56,7 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.35" />
+                android:layout_weight="0.15" />
 
         </LinearLayout>
 
@@ -68,13 +68,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="125dp"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.35" />
+                android:layout_weight="0.15" />
 
             <TextView
                 android:id="@+id/energy_step"
@@ -89,7 +89,7 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+                android:layout_weight="0.15" />
 
             <TextView
                 android:id="@+id/distance_step"
@@ -104,23 +104,43 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.35" />
+                android:layout_weight="0.15" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:orientation="horizontal">
         </LinearLayout>
 
-        <Button
-            android:id="@+id/step"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="开始"/>
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.35" />
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/circular_button"
+                android:layout_width="0dp"
+                android:layout_weight="0.35"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                app:cpb_cornerRadius="48dp"
+                app:cpb_textError="上传失败"
+                app:cpb_textComplete="记录中"
+                app:cpb_textIdle="开始运动" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.35" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>
