@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lele.protoui.TestActivity"
+    android:background="#ffffff">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_title_bar_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/circular_button"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:textColor="#ffffff"
+            app:cpb_cornerRadius="48dp"
+            app:cpb_textError="上传失败"
+            app:cpb_textComplete="完成上传"
+            app:cpb_textIdle="上传资料" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.mxn.soul.flowingdrawer_core.FlowingDrawer
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/drawerlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:edPosition="1"
+                app:edMenuSize="260dp"
+                app:edMenuBackground="#dddddd">
+
+                <!--content-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <!--menu-->
+                <com.mxn.soul.flowingdrawer_core.FlowingMenuLayout
+                    android:id="@+id/menulayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
+            </com.mxn.soul.flowingdrawer_core.FlowingDrawer>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

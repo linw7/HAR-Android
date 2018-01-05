@@ -17,7 +17,7 @@ import java.util.TimerTask;
 import android.os.Handler;
 import android.widget.TextView;
 
-public class StepActivity extends AppCompatActivity {
+public class StepMainActivity extends AppCompatActivity {
 
     Button step;
     TextView total_step;
@@ -68,7 +68,7 @@ public class StepActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_step);
+        setContentView(R.layout.activity_step_main);
         step = (Button) findViewById(R.id.step);
         total_step = (TextView) findViewById(R.id.total_step);
         current_step = (TextView) findViewById(R.id.current_step);
@@ -103,9 +103,7 @@ public class StepActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mCount = 0;
                 mDetector = 0;
-
                 mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
                 mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
                 mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 

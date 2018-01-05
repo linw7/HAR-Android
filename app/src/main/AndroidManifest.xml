@@ -46,7 +46,9 @@
         <activity android:name=".HistoryMainActivity" />
         <activity android:name=".SuggestMainActivity" />
         <activity android:name=".ModeActivity" />
-        <activity android:name=".StepActivity"></activity>
+        <activity android:name=".StepActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".StepMainActivity"></activity>
     </application>
 
 </manifest>

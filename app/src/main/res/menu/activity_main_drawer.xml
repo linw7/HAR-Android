@@ -11,6 +11,14 @@
             android:icon="@drawable/nav_collect"
             android:title="开始采集数据" />
         <item
+            android:id="@+id/nav_remind"
+            android:icon="@drawable/nav_remind"
+            android:title="一键运动提醒" />
+        <item
+            android:id="@+id/nav_step"
+            android:icon="@drawable/nav_step"
+            android:title="每日计步统计" />
+        <item
             android:id="@+id/nav_his"
             android:icon="@drawable/nav_his"
             android:title="查看历史数据" />
@@ -19,25 +27,21 @@
             android:icon="@drawable/nav_sugg"
             android:title="主治医师建议" />
         <item
-            android:id="@+id/nav_pos"
-            android:icon="@drawable/nav_pos"
-            android:title="一键走失提醒" />
-        <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/nav_setting"
-            android:title="基本信息设置" />
+            android:title="快速设置" />
     </group>
 
     <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/help_2a2a2a"
-                android:title="帮助" />
-            <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/exit_2a2a2a"
                 android:title="退出" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/help_2a2a2a"
+                android:title="帮助" />
         </menu>
     </item>
 </menu>

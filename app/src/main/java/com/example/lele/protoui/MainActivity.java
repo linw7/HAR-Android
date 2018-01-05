@@ -70,8 +70,9 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
         tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("校准").setContent(new Intent(this, AdjustPhoneActivity.class)));
         tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("实时").setContent(new Intent(this, CollectPhoneActivity.class)));
         tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("提醒").setContent(new Intent(this, RemindPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("历史").setContent(new Intent(this, HistoryMainActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("建议").setContent(new Intent(this, SuggestMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("步数").setContent(new Intent(this, StepActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("历史").setContent(new Intent(this, HistoryMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab6").setIndicator("建议").setContent(new Intent(this, SuggestMainActivity.class)));
     }
 
     @Override
@@ -85,16 +86,20 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
             Intent i = new Intent(MainActivity.this, CollectActivity.class);
             startActivity(i);
         }
+        if(id == R.id.nav_remind){
+            Intent i = new Intent(MainActivity.this, RemindActivity.class);
+            startActivity(i);
+        }
+        if(id == R.id.nav_step){
+            Intent i = new Intent(MainActivity.this, StepActivity.class);
+            startActivity(i);
+        }
         if (id == R.id.nav_his) {
             Intent i = new Intent(MainActivity.this, HistoryActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_sugg){
             Intent i = new Intent(MainActivity.this, SuggestActivity.class);
-            startActivity(i);
-        }
-        if(id == R.id.nav_pos){
-            Intent i = new Intent(MainActivity.this, RemindActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_setting){
