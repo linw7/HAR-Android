@@ -9,21 +9,24 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TimePicker;
 
+import com.dd.CircularProgressButton;
+
 import java.util.HashMap;
 
 public class RemindPhoneActivity extends AppCompatActivity {
 
     private TimePicker timepicker;
-    private Button set_activity;
-    private Button set_time;
-    private Button set_start;
-    private Button set_end;
     private CheckBox check_sit;
     private CheckBox check_stand;
     private CheckBox check_upstair;
     private CheckBox check_downstair;
     private CheckBox check_walk;
     private CheckBox check_jog;
+    CircularProgressButton set_start;
+    CircularProgressButton set_end;
+    CircularProgressButton set_time;
+    CircularProgressButton set_activity;
+
     private boolean [] check = {false, false, false, false, false, false};
     private HashMap times = new HashMap();
     private final String [] ACTIVITY = {"Sitting", "Standing", "Upstairs", "Downstairs", "Walking", "Jogging"};
@@ -36,10 +39,10 @@ public class RemindPhoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_remind_phone);
 
         timepicker = (TimePicker) findViewById(R.id.timePicker);
-        set_activity = (Button) findViewById(R.id.set_activity);
-        set_time = (Button) findViewById(R.id.set_time);
-        set_start = (Button) findViewById(R.id.set_start);
-        set_end = (Button) findViewById(R.id.set_end);
+        set_activity = (CircularProgressButton) findViewById(R.id.set_activity);
+        set_time = (CircularProgressButton) findViewById(R.id.set_time);
+        set_start = (CircularProgressButton) findViewById(R.id.set_start);
+        set_end = (CircularProgressButton) findViewById(R.id.set_end);
         check_sit = (CheckBox) findViewById(R.id.check_sit);
         check_stand = (CheckBox) findViewById(R.id.check_stand);
         check_upstair = (CheckBox) findViewById(R.id.check_upstair);
@@ -101,6 +104,13 @@ public class RemindPhoneActivity extends AppCompatActivity {
         set_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                set_start.setIndeterminateProgressMode(true);
+                for(int i = 1; i < 100; i++)
+                    set_start.setProgress(i);
+
+                // Start !
+
+                set_start.setProgress(100);
 
             }
         });
@@ -108,7 +118,13 @@ public class RemindPhoneActivity extends AppCompatActivity {
         set_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                set_start.setIndeterminateProgressMode(true);
+                for(int i = 1; i < 100; i++)
+                    set_start.setProgress(i);
 
+                // Start !
+
+                set_start.setProgress(100);
             }
         });
     }
