@@ -14,52 +14,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25"
-            android:orientation="horizontal">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent">
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.4"
-                android:background="@drawable/logo_activity" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent">
-            </FrameLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:text="康复助手" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="0.1"
             android:orientation="horizontal">
         </LinearLayout>
@@ -193,7 +147,7 @@
                 android:id="@+id/phone_mode"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3"
+                android:layout_weight="0.25"
                 android:background="@drawable/phone_mode" />
 
             <FrameLayout
@@ -205,21 +159,21 @@
                 android:id="@+id/watch_mode"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3"
+                android:layout_weight="0.25"
                 android:background="@drawable/watch_mode" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25"
+            android:layout_weight="1.5"
             android:orientation="horizontal">
         </LinearLayout>
-
     </LinearLayout>
 </RelativeLayout>

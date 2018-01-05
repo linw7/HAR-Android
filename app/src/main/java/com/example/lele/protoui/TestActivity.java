@@ -1,6 +1,5 @@
 package com.example.lele.protoui;
 
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +10,6 @@ import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.suke.widget.SwitchButton;
 import com.dd.CircularProgressButton;
-
 
 public class TestActivity extends AppCompatActivity {
 
@@ -38,7 +36,6 @@ public class TestActivity extends AppCompatActivity {
                 circular_button.setProgress(60);
                 circular_button.setProgress(80);
                 circular_button.setProgress(100);
-
                 progressView.startAnimation();
             }
         });
