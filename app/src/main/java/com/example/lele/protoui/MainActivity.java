@@ -66,13 +66,13 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
         tabhost.setup();
         tabhost.setup(this.getLocalActivityManager());
 
-        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("模式").setContent(new Intent(this, ModeActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("校准").setContent(new Intent(this, AdjustPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("实时").setContent(new Intent(this, CollectPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("提醒").setContent(new Intent(this, RemindPhoneActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("步数").setContent(new Intent(this, StepActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("历史").setContent(new Intent(this, HistoryMainActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab6").setIndicator("建议").setContent(new Intent(this, SuggestMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("首页").setContent(new Intent(this, ModeActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.nav_retarget)).setContent(new Intent(this, AdjustPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.nav_collect)).setContent(new Intent(this, CollectPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.nav_remind)).setContent(new Intent(this, RemindPhoneActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("", getResources().getDrawable(R.drawable.nav_step)).setContent(new Intent(this, StepMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("", getResources().getDrawable(R.drawable.nav_his)).setContent(new Intent(this, HistoryMainActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab6").setIndicator("", getResources().getDrawable(R.drawable.nav_sugg)).setContent(new Intent(this, SuggestMainActivity.class)));
     }
 
     @Override
