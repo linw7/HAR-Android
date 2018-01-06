@@ -50,6 +50,8 @@
             android:orientation="horizontal">
         </LinearLayout>
 
+
+
         <com.github.rahatarmanahmed.cpv.CircularProgressView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/progress_view"
@@ -58,7 +60,11 @@
             app:cpv_animAutostart="true"
             app:cpv_indeterminate="true" />
 
-
+        <TextView
+            android:id="@+id/click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click !" />
 
         <LinearLayout
             android:layout_width="match_parent"

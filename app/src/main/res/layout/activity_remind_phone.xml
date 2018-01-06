@@ -52,31 +52,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.75"
-                    android:orientation="horizontal">
-
-                    <TimePicker
-                        android:id="@+id/timePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:timePickerMode="spinner"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
                 android:layout_weight="2"
                 android:orientation="horizontal">
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,10 +76,21 @@
                     android:gravity="center"
                     android:text="持续行为" />
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_weight="0.15"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.15" />
+                    android:orientation="horizontal">
+
+                    <com.github.rahatarmanahmed.cpv.CircularProgressView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/progress_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cpv_indeterminate="true" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/distance_step"
@@ -123,9 +112,70 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15" />
+
+                    <TextView
+                        android:id="@+id/activity"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="设置监控行为" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15" >
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="设置预警时长" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.15" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,14 +200,14 @@
                     android:layout_weight="0.15" />
 
                 <com.dd.CircularProgressButton
-                    android:id="@+id/set_time"
+                    android:id="@+id/set"
                     android:layout_width="0dp"
                     android:layout_weight="0.35"
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
                     android:layout_gravity="center"
                     app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="失败"
+                    app:cpb_textError="请确认设置"
                     app:cpb_textComplete="设置完成"
                     app:cpb_textIdle="确认设置" />
 

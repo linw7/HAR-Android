@@ -62,8 +62,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="40dp"
             android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15" />
+
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progress_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:cpv_indeterminate="true" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,8 +127,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/target_step"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="步数目标"/>
+
+                <TextView
+                    android:id="@+id/target_energy"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="能量目标"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -124,11 +181,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="步数进度"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="能量进度"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -159,37 +226,6 @@
                     android:gravity="center"
                     android:layout_gravity="center" />
 
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="能量进度"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:orientation="horizontal">
-
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -213,12 +249,18 @@
                     android:gravity="center"
                     android:layout_gravity="center" />
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2" />
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2" />
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:orientation="vertical">
         </LinearLayout>
 
         <LinearLayout

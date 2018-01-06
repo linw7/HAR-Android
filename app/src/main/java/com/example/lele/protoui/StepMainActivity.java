@@ -1,6 +1,8 @@
 package com.example.lele.protoui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,8 +19,10 @@ import java.util.TimerTask;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 public class StepMainActivity extends AppCompatActivity {
 
@@ -37,6 +41,9 @@ public class StepMainActivity extends AppCompatActivity {
     private ProgressBar progress_energy;
     private TextView progress_step_text;
     private TextView progress_energy_text;
+    private CircularProgressView progressView;
+    private TextView target_step;
+    private TextView target_energy;
 
     private float energy;
     private float distance;
@@ -49,6 +56,9 @@ public class StepMainActivity extends AppCompatActivity {
     private float mCount;//步行总数
     private float mDetector;//步行探测器
     private Timer timer = new Timer();
+
+    private final String [] STEP = {"2000步", "4000步", "6000步", "8000步", "10000步", "10000"};
+
 
     TimerTask display_task = new TimerTask() {
         @Override
@@ -138,6 +148,32 @@ public class StepMainActivity extends AppCompatActivity {
         progress_energy = (ProgressBar) findViewById(R.id.progress_energy);
         progress_step_text = (TextView) findViewById(R.id.progress_step_text);
         progress_energy_text = (TextView) findViewById(R.id.progress_energy_text);
+        progressView = (CircularProgressView) findViewById(R.id.progress_view);
+        target_step = (TextView) findViewById(R.id.target_step);
+        target_energy = (TextView) findViewById(R.id.target_energy);
+
+        target_step.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog dialog = new AlertDialog.Builder(StepMainActivity.this).setTitle("请设置步数目标")
+                        .setIcon(R.drawable.logo_activity)
+                        .setSingleChoiceItems(STEP, -1, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        }).create();
+                dialog.show();
+            }
+        });
+
+        target_energy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         final SensorEventListener step_listener = new SensorEventListener() {
             @Override
@@ -184,6 +220,7 @@ public class StepMainActivity extends AppCompatActivity {
                 step_progress();
 
                 circular_button.setProgress(100);
+                progressView.startAnimation();
             }
         });
 
