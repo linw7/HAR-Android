@@ -1,6 +1,7 @@
 package com.example.lele.protoui;
 
 
+import android.app.ActivityGroup;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -16,12 +17,13 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CollectPhoneActivity extends AppCompatActivity {
+public class CollectPhoneActivity extends ActivityGroup {
     final int SAMPLE = 40;
     final int BUFFLINE = 5000;
 
@@ -42,11 +44,11 @@ public class CollectPhoneActivity extends AppCompatActivity {
     private Button show_x;
     private Button show_y;
     private Button show_z;
-
     private ImageView image_hand;
     private ImageView image_read;
     private ImageView image_shirt;
     private ImageView image_trousers;
+    private TabHost tabhost;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -249,6 +251,16 @@ public class CollectPhoneActivity extends AppCompatActivity {
         image_read = findViewById(R.id.image_read);
         image_shirt = findViewById(R.id.image_shirt);
         image_trousers = findViewById(R.id.image_trousers);
+
+        tabhost = (TabHost) findViewById(android.R.id.tabhost);
+        tabhost.setup();    //初始化TabHost组件
+        tabhost.setup(this.getLocalActivityManager());
+        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("", getResources().getDrawable(R.drawable.sit_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.stand_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.upstairs_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.downstairs_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("", getResources().getDrawable(R.drawable.walk_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("", getResources().getDrawable(R.drawable.jog_r)).setContent(new Intent(this, BlankActivity.class)));
 
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

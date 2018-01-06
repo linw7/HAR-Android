@@ -48,7 +48,8 @@
         <activity android:name=".ModeActivity" />
         <activity android:name=".StepActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".StepMainActivity"></activity>
+        <activity android:name=".StepMainActivity" />
+        <activity android:name=".BlankActivity"></activity>
     </application>
 
 </manifest>

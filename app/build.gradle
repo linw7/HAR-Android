@@ -43,6 +43,7 @@ dependencies {
 
     compile 'com.mxn.soul:flowingdrawer-core:2.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
     // compile 'com.google.android.gms:play-services-maps:10.2.6'
     // compile group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.0

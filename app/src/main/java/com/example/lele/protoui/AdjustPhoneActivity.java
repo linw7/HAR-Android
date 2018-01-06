@@ -1,6 +1,8 @@
 package com.example.lele.protoui;
 
+import android.app.ActivityGroup;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import android.os.Handler;
@@ -20,14 +23,10 @@ import android.os.Handler;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AdjustPhoneActivity extends AppCompatActivity {
+public class AdjustPhoneActivity extends ActivityGroup {
     private float acc_x;
     private float acc_y;
     private float acc_z;
-    private float acc_x_array[] = new float[200];
-    private float acc_y_array[] = new float[200];
-    private float acc_z_array[] = new float[200];
-    private float features[] = new float[9];
 
     private Button collect_sit;
     private Button collect_stand;
@@ -43,6 +42,7 @@ public class AdjustPhoneActivity extends AppCompatActivity {
     private Button show_y;
     private Button show_z;
     private ImageView phone;
+    private TabHost tabhost;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -180,14 +180,6 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         }.start();
     }
 
-    public void raw_data_upload(){
-
-    }
-
-    public void model_adjust(){
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -209,10 +201,15 @@ public class AdjustPhoneActivity extends AppCompatActivity {
         show_z = findViewById(R.id.show_z);
         phone = findViewById(R.id.phone);
 
-        // 加速度缓冲数据
-        acc_y_array = new float[200];
-        acc_y_array = new float[200];
-        acc_z_array = new float[200];
+        tabhost = (TabHost) findViewById(android.R.id.tabhost);
+        tabhost.setup();    //初始化TabHost组件
+        tabhost.setup(this.getLocalActivityManager());
+        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("", getResources().getDrawable(R.drawable.sit_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.stand_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.upstairs_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.downstairs_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("", getResources().getDrawable(R.drawable.walk_r)).setContent(new Intent(this, BlankActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("", getResources().getDrawable(R.drawable.jog_r)).setContent(new Intent(this, BlankActivity.class)));
 
         collect_sit.setOnClickListener(new View.OnClickListener() {
             @Override

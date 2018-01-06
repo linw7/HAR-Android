@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.RemindPhoneActivity">
-
+    tools:context="com.example.lele.protoui.RemindPhoneActivity"
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,203 +20,110 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.025"
+                android:layout_weight="4"
                 android:orientation="horizontal">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.95"
-                    android:layout_gravity="center"
+                <TabHost
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:text="设置提醒行为"
-                    android:textColor="@color/foreground_material_light"/>
+                    android:id="@android:id/tabhost">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TabWidget
+                            android:id="@android:id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:contextClickable="true">
+                        </TabWidget>
+
+                        <FrameLayout
+                            android:id="@android:id/tabcontent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        </FrameLayout>
+                    </LinearLayout>
+                </TabHost>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.025"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
+                android:layout_weight="5"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.75"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TimePicker
+                        android:id="@+id/timePicker"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_sit"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="静坐" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.1"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_stand"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="站立" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_upstair"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="上楼" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.1"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_downstair"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="下楼" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_walk"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="步行" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.1"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                        <CheckBox
-                            android:id="@+id/check_jog"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.4"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="慢跑" />
-
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="0.10"
-                            android:layout_height="match_parent">
-                        </FrameLayout>
-
-                    </LinearLayout>
-
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:timePickerMode="spinner"/>
                 </LinearLayout>
-
-
-
-                <Button
-                    android:id="@+id/set_activity"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.14"
-                    android:layout_height="match_parent"
-                    android:text="点击选择" />
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.05"></FrameLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.025"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15" />
+
+                <TextView
+                    android:id="@+id/energy_step"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/circle_b"
+                    android:gravity="center"
+                    android:text="持续行为" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15" />
+
+                <TextView
+                    android:id="@+id/distance_step"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/circle_g"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="持续时长" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
             </LinearLayout>
 
@@ -227,146 +134,61 @@
 
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.05"
+                    android:layout_weight="0.15"
                     android:layout_height="match_parent">
                 </FrameLayout>
+            </LinearLayout>
 
-                <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.95"
-                    android:layout_gravity="center"
                     android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:text="设置时长限制"
-                    android:textColor="@color/foreground_material_light"/>
-            </LinearLayout>
+                    android:layout_weight="0.15" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.025"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.25"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <TimePicker
-                    android:id="@+id/timePicker"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.75"
-                    android:layout_height="wrap_content"
-                    android:timePickerMode="spinner"/>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <Button
+                <com.dd.CircularProgressButton
                     android:id="@+id/set_time"
                     android:layout_width="0dp"
-                    android:layout_weight="0.14"
-                    android:layout_height="match_parent"
-                    android:text="点击设置" />
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.025"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.95"
+                    android:layout_weight="0.35"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
                     android:layout_gravity="center"
-                    android:layout_height="match_parent"
-                    android:textSize="16sp"
-                    android:text="开始计时"
-                    android:textColor="@color/foreground_material_light"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.025"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:orientation="horizontal">
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textError="失败"
+                    app:cpb_textComplete="设置完成"
+                    app:cpb_textIdle="确认设置" />
 
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.15" />
 
-                <Button
+                <com.dd.CircularProgressButton
                     android:id="@+id/set_start"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:text="开始" />
+                    android:layout_weight="0.35"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#ffffff"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textError="上传失败"
+                    app:cpb_textComplete="记录中"
+                    app:cpb_textIdle="开始运动" />
 
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
-
-                <Button
-                    android:id="@+id/set_end"
-                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:text="结束" />
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="0.05"
-                    android:layout_height="match_parent">
-                </FrameLayout>
+                    android:layout_weight="0.15" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.1"
+                android:layout_weight="2"
                 android:orientation="horizontal">
             </LinearLayout>
 

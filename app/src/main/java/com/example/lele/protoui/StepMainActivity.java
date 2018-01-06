@@ -8,26 +8,35 @@ import android.hardware.SensorManager;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.os.Handler;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dd.CircularProgressButton;
 
-import static android.os.SystemClock.sleep;
-
 public class StepMainActivity extends AppCompatActivity {
 
-    TextView total_step;
-    TextView current_step;
-    TextView energy_step;
-    TextView distance_step;
-    CircularProgressButton circular_button;
+    final float PERCENT = 100;
+    final float DEFAULT_STEP = 1000;
+    final float DEFAULT_ENERGY = 20;
+    float step_pencent = 0;
+    float energy_percent = 0;
+
+    private TextView total_step;
+    private TextView current_step;
+    private TextView energy_step;
+    private TextView distance_step;
+    private CircularProgressButton circular_button;
+    private ProgressBar progress_step;
+    private ProgressBar progress_energy;
+    private TextView progress_step_text;
+    private TextView progress_energy_text;
 
     private float energy;
     private float distance;
@@ -69,6 +78,53 @@ public class StepMainActivity extends AppCompatActivity {
         distance_step.setText("距离：" + String .format("%.2f", distance));
     }
 
+    private void step_progress(){
+        new Thread(){
+            @Override
+            public void run() {
+                while(step_pencent <= PERCENT) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    step_pencent = (float) ((float)range_step / DEFAULT_STEP) * 100 ;
+                    progress_step.setProgress((int)(step_pencent));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress_step_text.setText(" " + (int)(step_pencent) + "%");
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+
+    private void energy_progress() {
+        new Thread() {
+            @Override
+            public void run() {
+                while (energy_percent <= PERCENT) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    energy_percent = (float) ((float)energy / DEFAULT_ENERGY) * 100;
+                    Log.i("s","" + energy_percent);
+                    progress_energy.setProgress((int) (energy));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress_energy_text.setText(" " + (int)energy + "%");
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +134,10 @@ public class StepMainActivity extends AppCompatActivity {
         energy_step = (TextView) findViewById(R.id.energy_step);
         distance_step = (TextView) findViewById(R.id.distance_step);
         circular_button = (CircularProgressButton) findViewById(R.id.circular_button);
+        progress_step = (ProgressBar) findViewById(R.id.progress_step);
+        progress_energy = (ProgressBar) findViewById(R.id.progress_energy);
+        progress_step_text = (TextView) findViewById(R.id.progress_step_text);
+        progress_energy_text = (TextView) findViewById(R.id.progress_energy_text);
 
         final SensorEventListener step_listener = new SensorEventListener() {
             @Override
@@ -119,6 +179,9 @@ public class StepMainActivity extends AppCompatActivity {
                 mSensorManager.registerListener(step_listener, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
                 mSensorManager.registerListener(step_listener, mStepDetector,SensorManager.SENSOR_DELAY_FASTEST);
                 timer.schedule(display_task, 0, 100);
+
+                energy_progress();
+                step_progress();
 
                 circular_button.setProgress(100);
             }

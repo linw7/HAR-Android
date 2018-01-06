@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="45dp"
             android:orientation="vertical">
         </LinearLayout>
 
@@ -79,10 +79,10 @@
             <TextView
                 android:id="@+id/energy_step"
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
                 android:layout_height="match_parent"
-                android:background="@drawable/circle_b"
                 android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:background="@drawable/circle_b"
                 android:gravity="center"
                 android:text="卡路里" />
 
@@ -109,8 +109,116 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal">
+            android:layout_height="20dp"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="步数进度"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+
+                <ProgressBar
+                    android:id="@+id/progress_step"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:tooltipText="步数进度"
+                    android:progressDrawable="@drawable/custom_progress" />
+
+                <TextView
+                    android:id="@+id/progress_step_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="能量进度"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+
+                <ProgressBar
+                    android:id="@+id/progress_energy"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:tooltipText="步数进度"
+                    android:progressDrawable="@drawable/custom_progress" />
+
+                <TextView
+                    android:id="@+id/progress_energy_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

@@ -15,101 +15,37 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="0dp"
+            <TabHost
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
+                android:id="@android:id/tabhost">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/sit_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contextClickable="true">
+                    </TabWidget>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/stand_r"
-                tools:ignore="ContentDescription" />
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/upstairs_r"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/downstairs_r" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/walk_r"
-                android:contentDescription="" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/jog_r" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2">
-            </FrameLayout>
         </LinearLayout>
 
         <FrameLayout

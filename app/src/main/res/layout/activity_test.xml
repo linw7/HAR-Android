@@ -58,6 +58,8 @@
             app:cpv_animAutostart="true"
             app:cpv_indeterminate="true" />
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
