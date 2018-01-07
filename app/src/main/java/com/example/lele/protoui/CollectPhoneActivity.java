@@ -2,7 +2,9 @@ package com.example.lele.protoui;
 
 
 import android.app.ActivityGroup;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,14 +12,12 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
-import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -41,14 +41,17 @@ public class CollectPhoneActivity extends ActivityGroup {
     private Switch switch_offline;
     private ImageView result_online;
     private ImageView analysis_offline;
-    private Button show_x;
-    private Button show_y;
-    private Button show_z;
+    private TextView show_x;
+    private TextView show_y;
+    private TextView show_z;
+    /*
     private ImageView image_hand;
     private ImageView image_read;
     private ImageView image_shirt;
     private ImageView image_trousers;
-    private TabHost tabhost;
+    */
+    private TextView online;
+    private TextView offline;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -151,7 +154,7 @@ public class CollectPhoneActivity extends ActivityGroup {
             activity = gc.activity_online(features);
             check_activity(activity);
 
-            check_position();
+            // check_position();
         }
     }
 
@@ -178,6 +181,7 @@ public class CollectPhoneActivity extends ActivityGroup {
         }
     }
 
+    /*
     private void check_position() {
         // 新周期清空显示
         image_hand.setImageResource(R.drawable.white);
@@ -198,6 +202,7 @@ public class CollectPhoneActivity extends ActivityGroup {
             image_trousers.setImageResource(R.drawable.trousers);
         }
     }
+    */
 
     private void record() {
         String record_line = new String();
@@ -247,20 +252,58 @@ public class CollectPhoneActivity extends ActivityGroup {
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
+        /*
         image_hand = findViewById(R.id.image_hand);
         image_read = findViewById(R.id.image_read);
         image_shirt = findViewById(R.id.image_shirt);
         image_trousers = findViewById(R.id.image_trousers);
+        */
+        online = findViewById(R.id.online);
+        offline = findViewById(R.id.offline);
 
-        tabhost = (TabHost) findViewById(android.R.id.tabhost);
-        tabhost.setup();    //初始化TabHost组件
-        tabhost.setup(this.getLocalActivityManager());
-        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("", getResources().getDrawable(R.drawable.sit_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.stand_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.upstairs_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.downstairs_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("", getResources().getDrawable(R.drawable.walk_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("", getResources().getDrawable(R.drawable.jog_r)).setContent(new Intent(this, BlankActivity.class)));
+        online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(CollectPhoneActivity.this)
+                        .setTitle("实时模式")
+                        .setMessage("实时模式下，将可以实时识别当前行为。如果是通过手机识别，则不仅会显示您的当前行为，还会显示您当前手机位置。")
+                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        offline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(CollectPhoneActivity.this)
+                        .setTitle("离线模式")
+                        .setMessage("离线模式下，手机会连续采集您的运动信息，当您联网后一次性上传数据即可完成行为识别。")
+                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+            }
+        });
 
         switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

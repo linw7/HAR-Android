@@ -374,7 +374,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="33"
                     android:gravity="left"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:text="X-Axis"/>
 
                 <TextView
                     android:id="@+id/show_y"
@@ -382,7 +383,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="33"
                     android:gravity="center"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:text="Y-Axis"/>
 
                 <TextView
                     android:id="@+id/show_z"
@@ -390,7 +392,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="33"
                     android:gravity="right"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:text="Z-Axis"/>
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -422,7 +425,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 app:cpb_cornerRadius="48dp"
-                app:cpb_textError="失败"
+                app:cpb_textError="设置失败"
                 app:cpb_textComplete="记录中"
                 app:cpb_textIdle="开始运动" />
 

@@ -16,7 +16,6 @@ import java.util.Calendar;
 
 public class RemindPhoneActivity extends ActivityGroup {
 
-    private CircularProgressButton setting;
     private CircularProgressButton set_start;
     private TextView time;
     private TextView activity;
@@ -44,7 +43,6 @@ public class RemindPhoneActivity extends ActivityGroup {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remind_phone);
 
-        setting = (CircularProgressButton) findViewById(R.id.set);
         set_start = (CircularProgressButton) findViewById(R.id.set_start);
         time = (TextView) findViewById(R.id.time);
         activity = (TextView) findViewById(R.id.activity);
@@ -95,25 +93,16 @@ public class RemindPhoneActivity extends ActivityGroup {
             }
         });
 
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setting.setIndeterminateProgressMode(true);
-                for(int i = 1; i < 100; i++)
-                    setting.setProgress(i);
-                setting.setProgress(99);
-                alter();
-            }
-        });
-
         set_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 set_start.setIndeterminateProgressMode(true);
                 for(int i = 1; i < 100; i++)
                     set_start.setProgress(i);
-                set_start.setProgress(100);
+                set_start.setProgress(99);
+                alter();
 
+                // set_start.setProgress(100);
                 progressView.startAnimation();
             }
         });
@@ -144,13 +133,13 @@ public class RemindPhoneActivity extends ActivityGroup {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         set_start.setIndeterminateProgressMode(true);
-                        setting.setProgress(100);
+                        set_start.setProgress(100);
                     }
                 })
                 .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        setting.setProgress(-1);
+                        set_start.setProgress(-1);
                     }
                 })
                 .show();

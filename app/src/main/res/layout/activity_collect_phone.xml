@@ -10,124 +10,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:orientation="horizontal">
-
-            <TabHost
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@android:id/tabhost">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contextClickable="true">
-                    </TabWidget>
-
-                    <FrameLayout
-                        android:id="@android:id/tabcontent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    </FrameLayout>
-                </LinearLayout>
-            </TabHost>
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"></FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="#f6f6f6"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.05" />
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/set_online" />
 
             <TextView
+                android:id="@+id/online"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="手机位置"
+                android:text="实时模式"
                 android:layout_gravity="center"
-                android:textSize="16sp"
-                android:textColor="@color/foreground_material_light" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
+                android:textColor="#000000" />
 
             <FrameLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
+                android:layout_weight="10"
+                android:layout_height="match_parent" />
 
             <ImageView
-                android:id="@+id/image_hand"
-                android:layout_width="0dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/set_offline" />
+
+            <TextView
+                android:id="@+id/offline"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
+                android:text="离线模式"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <ImageView
-                android:id="@+id/image_read"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <ImageView
-                android:id="@+id/image_shirt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"  />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <ImageView
-                android:id="@+id/image_trousers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"/>
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <FrameLayout
@@ -138,75 +70,82 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="45dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.05" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="实时数据"
-                android:layout_gravity="center"
-                android:textSize="16sp"
-                android:textColor="@color/foreground_material_light" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
-
-            <Button
-                android:id="@+id/show_x"
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:background="#ffffff"
-                android:text="" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/show_y"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
-                android:layout_weight="0.8"
+                <TextView
+                    android:id="@+id/text_acc"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/foreground_material_light"
+                    android:text="实时加速度"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
                 android:background="#ffffff"
-                android:text="实时数据" />
+                android:orientation="horizontal">
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/show_z"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ff0000"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:background="#ffffff"
-                android:layout_weight="0.8"
-                android:text="" />
+                android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15" />
+
+                <TextView
+                    android:id="@+id/show_x"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:text="X-Axis"/>
+
+                <TextView
+                    android:id="@+id/show_y"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Y-Axis"/>
+
+                <TextView
+                    android:id="@+id/show_z"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="right"
+                    android:layout_gravity="center"
+                    android:text="Z-Axis"/>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15" />
+            </LinearLayout>
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="20dp"
             android:layout_weight="0.5">
         </FrameLayout>
 
@@ -332,6 +271,12 @@
                 android:textColor="@color/foreground_material_light" />
         </LinearLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"></FrameLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -428,32 +373,10 @@
 
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
-        </FrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
+            android:layout_height="50dp"
             android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5">
-            </FrameLayout>
-
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5">
-            </FrameLayout>
-
         </LinearLayout>
 
     </LinearLayout>

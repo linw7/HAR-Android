@@ -311,24 +311,7 @@
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.15" />
-
-                <com.dd.CircularProgressButton
-                    android:id="@+id/set"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.35"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:layout_gravity="center"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="请确认设置"
-                    app:cpb_textComplete="设置完成"
-                    app:cpb_textIdle="确认设置" />
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.15" />
+                    android:layout_weight="0.35" />
 
                 <com.dd.CircularProgressButton
                     android:id="@+id/set_start"
@@ -338,14 +321,14 @@
                     android:layout_gravity="center"
                     android:textColor="#ffffff"
                     app:cpb_cornerRadius="48dp"
-                    app:cpb_textError="上传失败"
+                    app:cpb_textError="设置失败"
                     app:cpb_textComplete="记录中"
                     app:cpb_textIdle="开始运动" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.15" />
+                    android:layout_weight="0.35" />
 
             </LinearLayout>
 

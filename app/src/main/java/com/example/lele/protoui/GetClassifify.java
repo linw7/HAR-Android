@@ -1,7 +1,5 @@
 package com.example.lele.protoui;
 
-import android.app.WallpaperInfo;
-
 /**
  * Created by TeeKee on 2017/12/20.
  */
