@@ -4,10 +4,9 @@ import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
@@ -17,7 +16,6 @@ import java.util.Calendar;
 
 public class RemindPhoneActivity extends ActivityGroup {
 
-    private TabHost tabhost;
     private CircularProgressButton setting;
     private CircularProgressButton set_start;
     private TextView time;
@@ -31,14 +29,14 @@ public class RemindPhoneActivity extends ActivityGroup {
     private boolean [] check = {false, false, false, false, false, false};
     private final String [] ACTIVITY = {"静坐", "站立", "上楼", "下楼", "步行", "慢跑"};
 
-    private void set_activity(){
+    private String set_activity(){
         String str = "监控行为:";
         for(int i = 0; i < check.length; i++){
             if(check[i] == true){
                 str = str + ACTIVITY[i] + " ";
             }
         }
-        activity.setText(str);
+        return str;
     }
 
     @Override
@@ -51,16 +49,6 @@ public class RemindPhoneActivity extends ActivityGroup {
         time = (TextView) findViewById(R.id.time);
         activity = (TextView) findViewById(R.id.activity);
         progressView = (CircularProgressView) findViewById(R.id.progress_view);
-
-        tabhost = (TabHost) findViewById(android.R.id.tabhost);
-        tabhost.setup();
-        tabhost.setup(this.getLocalActivityManager());
-        tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("", getResources().getDrawable(R.drawable.sit_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.stand_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab2").setIndicator("", getResources().getDrawable(R.drawable.upstairs_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab3").setIndicator("", getResources().getDrawable(R.drawable.downstairs_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab4").setIndicator("", getResources().getDrawable(R.drawable.walk_r)).setContent(new Intent(this, BlankActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab5").setIndicator("", getResources().getDrawable(R.drawable.jog_r)).setContent(new Intent(this, BlankActivity.class)));
 
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +63,8 @@ public class RemindPhoneActivity extends ActivityGroup {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                set_activity();
+                                String str = set_activity();
+                                Log.i("activity", str);
                             }
                         })
                         .setMultiChoiceItems(ACTIVITY, null, new DialogInterface.OnMultiChoiceClickListener() {
@@ -99,7 +88,7 @@ public class RemindPhoneActivity extends ActivityGroup {
                         minute = m;
                         second = h * 3600 + m * 60;
                         String time_length = "" + (h * 60 + minute);
-                        RemindPhoneActivity.this.time.setText("设置时长:" + time_length + "分钟");
+                        Log.i("time", "监控时长:" + time_length + "分钟");
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();

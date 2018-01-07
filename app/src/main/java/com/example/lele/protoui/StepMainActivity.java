@@ -44,6 +44,8 @@ public class StepMainActivity extends AppCompatActivity {
     private CircularProgressView progressView;
     private TextView target_step;
     private TextView target_energy;
+    private TextView text_step;
+    private TextView text_energy;
 
     private float energy;
     private float distance;
@@ -57,7 +59,11 @@ public class StepMainActivity extends AppCompatActivity {
     private float mDetector;//步行探测器
     private Timer timer = new Timer();
 
-    private final String [] STEP = {"2000步", "4000步", "6000步", "8000步", "10000步", "10000"};
+    private int set_step = 0;
+    private int set_energy = 0;
+
+    private final String [] STEP = {"2000步", "4000步", "6000步", "8000步", "10000步"};
+    private final String [] ENERGY = {"300卡路里", "600卡路里", "900卡路里", "1200卡路里", "1500卡路里"};
 
 
     TimerTask display_task = new TimerTask() {
@@ -139,6 +145,7 @@ public class StepMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_main);
+
         total_step = (TextView) findViewById(R.id.total_step);
         current_step = (TextView) findViewById(R.id.current_step);
         energy_step = (TextView) findViewById(R.id.energy_step);
@@ -151,6 +158,8 @@ public class StepMainActivity extends AppCompatActivity {
         progressView = (CircularProgressView) findViewById(R.id.progress_view);
         target_step = (TextView) findViewById(R.id.target_step);
         target_energy = (TextView) findViewById(R.id.target_energy);
+        text_step = (TextView) findViewById(R.id.text_step);
+        text_energy = (TextView) findViewById(R.id.text_energy);
 
         target_step.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +170,19 @@ public class StepMainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_SHORT).show();
+
+                                if(which == 0)
+                                    set_step = 2000;
+                                else if(which == 1)
+                                    set_step = 4000;
+                                else if(which == 2)
+                                    set_step = 6000;
+                                else if(which == 3)
+                                    set_step = 8000;
+                                else if(which == 4)
+                                    set_step = 10000;
+
+                                Log.i("step", "设置步数:" + set_step);
                                 dialog.dismiss();
                             }
                         }).create();
@@ -171,7 +193,29 @@ public class StepMainActivity extends AppCompatActivity {
         target_energy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog dialog = new AlertDialog.Builder(StepMainActivity.this).setTitle("请设置卡路里目标")
+                        .setIcon(R.drawable.logo_activity)
+                        .setSingleChoiceItems(ENERGY, -1, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(StepMainActivity.this, ENERGY[which], Toast.LENGTH_SHORT).show();
 
+                                if(which == 0)
+                                    set_energy = 300;
+                                else if(which == 1)
+                                    set_energy = 600;
+                                else if(which == 2)
+                                    set_energy = 900;
+                                else if(which == 3)
+                                    set_energy = 1200;
+                                else if(which == 4)
+                                    set_energy = 1500;
+
+                                Log.i("energy:", "设置卡路里数:" + set_energy);
+                                dialog.dismiss();
+                            }
+                        }).create();
+                dialog.show();
             }
         });
 
@@ -218,6 +262,9 @@ public class StepMainActivity extends AppCompatActivity {
 
                 energy_progress();
                 step_progress();
+
+                text_step.setText("步数进度");
+                text_energy.setText("能量进度");
 
                 circular_button.setProgress(100);
                 progressView.startAnimation();
