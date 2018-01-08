@@ -191,8 +191,6 @@ public class CollectWatchActivity extends AppCompatActivity {
 
         if(array_record_line.size() == BUFFLINE) {
             show_y.setText("Fresh");
-            OfflineFileRW raw_rw = new OfflineFileRW();
-            this.path = raw_rw.write_raw_data(array_record_line);
             array_record_line.clear();
         }
     }

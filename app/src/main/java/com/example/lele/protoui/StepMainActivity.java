@@ -26,11 +26,11 @@ import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 public class StepMainActivity extends AppCompatActivity {
 
-    final float PERCENT = 100;
-    final float DEFAULT_STEP = 1000;
-    final float DEFAULT_ENERGY = 20;
-    float step_pencent = 0;
-    float energy_percent = 0;
+    private boolean runable = false;
+
+    private final float PERCENT = 100;
+    private float step_pencent = 0;
+    private float energy_percent = 0;
 
     private TextView total_step;
     private TextView current_step;
@@ -104,7 +104,7 @@ public class StepMainActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    step_pencent = (float) ((float)range_step / DEFAULT_STEP) * 100 ;
+                    step_pencent = (float) ((float)range_step / set_step) * 100 ;
                     progress_step.setProgress((int)(step_pencent));
                     runOnUiThread(new Runnable() {
                         @Override
@@ -127,13 +127,13 @@ public class StepMainActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    energy_percent = (float) ((float)energy / DEFAULT_ENERGY) * 100;
+                    energy_percent = (float) ((float)energy / set_energy) * 100;
                     Log.i("s","" + energy_percent);
                     progress_energy.setProgress((int) (energy));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            progress_energy_text.setText(" " + (int)energy + "%");
+                            progress_energy_text.setText(" " + (int)(energy) + "%");
                         }
                     });
                 }
@@ -141,6 +141,54 @@ public class StepMainActivity extends AppCompatActivity {
         }.start();
     }
 
+    private void reset(){
+        new AlertDialog.Builder(StepMainActivity.this)
+                .setTitle("请确认")
+                .setMessage("您正在处于步数监测状态，是否退出？")
+                .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        circular_button.setProgress(0);
+                    }
+                })
+                .setNegativeButton(R.string.AlertDialog_no, null)
+                .show();
+    }
+
+    private void run(){
+        runable = true;
+        for (int i = 1; i < 100; i++)
+            circular_button.setProgress(i);
+
+        if(set_step == 0 || set_energy == 0){
+            new AlertDialog.Builder(StepMainActivity.this)
+                    .setTitle("请完成设置")
+                    .setMessage("您还未设置目标，请在上方进行设置！")
+                    .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            runable = false;
+                            circular_button.setProgress(0);
+                        }
+                    })
+                    .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            runable = false;
+                            circular_button.setProgress(0);
+                        }
+                    })
+                    .show();
+        }
+        else {
+            energy_progress();
+            step_progress();
+            text_step.setText("步数进度");
+            text_energy.setText("能量进度");
+            circular_button.setProgress(100);
+            progressView.startAnimation();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,6 +208,9 @@ public class StepMainActivity extends AppCompatActivity {
         target_energy = (TextView) findViewById(R.id.target_energy);
         text_step = (TextView) findViewById(R.id.text_step);
         text_energy = (TextView) findViewById(R.id.text_energy);
+
+        runable = false;
+        circular_button.setIndeterminateProgressMode(true);
 
         target_step.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,32 +293,24 @@ public class StepMainActivity extends AppCompatActivity {
             }
         };
 
+        mCount = 0;
+        mDetector = 0;
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+        mSensorManager.registerListener(step_listener, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
+        mSensorManager.registerListener(step_listener, mStepDetector,SensorManager.SENSOR_DELAY_FASTEST);
+        timer.schedule(display_task, 0, 100);
+
         circular_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                circular_button.setIndeterminateProgressMode(true);
-                for(int i = 1; i < 100; i++)
-                    circular_button.setProgress(i);
-
-                mCount = 0;
-                mDetector = 0;
-
-                mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-                mStepCount = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-                mStepDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-
-                mSensorManager.registerListener(step_listener, mStepCount, SensorManager.SENSOR_DELAY_FASTEST);
-                mSensorManager.registerListener(step_listener, mStepDetector,SensorManager.SENSOR_DELAY_FASTEST);
-                timer.schedule(display_task, 0, 100);
-
-                energy_progress();
-                step_progress();
-
-                text_step.setText("步数进度");
-                text_energy.setText("能量进度");
-
-                circular_button.setProgress(100);
-                progressView.startAnimation();
+                if(!runable) {
+                    run();
+                }
+                else if(runable){
+                    reset();
+                }
             }
         });
 

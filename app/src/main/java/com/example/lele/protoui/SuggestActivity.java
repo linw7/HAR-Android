@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+
 public class SuggestActivity extends AppCompatActivity {
     RatingBar rating_bar;
     TextView suggest;

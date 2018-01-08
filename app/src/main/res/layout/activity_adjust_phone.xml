@@ -47,8 +47,8 @@
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:background="@drawable/set_train" />
 
@@ -145,7 +145,88 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_acc"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/foreground_material_light"
+                    android:text="实时加速度"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="#ffffff"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15" />
+
+                <TextView
+                    android:id="@+id/show_x"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:text="X-Axis"/>
+
+                <TextView
+                    android:id="@+id/show_y"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Y-Axis"/>
+
+                <TextView
+                    android:id="@+id/show_z"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="33"
+                    android:gravity="right"
+                    android:layout_gravity="center"
+                    android:text="Z-Axis"/>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
             android:orientation="horizontal">
         </LinearLayout>
 
@@ -173,8 +254,9 @@
 
                     <ImageView
                         android:id="@+id/collect_sit"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/sit_u" />
 
                     <FrameLayout
@@ -184,8 +266,9 @@
 
                     <ImageView
                         android:id="@+id/collect_stand"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/stand_u" />
 
                     <FrameLayout
@@ -195,8 +278,9 @@
 
                     <ImageView
                         android:id="@+id/collect_upstairs"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/upstairs_u" />
                 </LinearLayout>
 
@@ -214,8 +298,9 @@
 
                     <ImageView
                         android:id="@+id/collect_downstairs"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/downstairs_u" />
 
                     <FrameLayout
@@ -226,8 +311,9 @@
 
                     <ImageView
                         android:id="@+id/collect_walk"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/walk_u" />
 
                     <FrameLayout
@@ -237,8 +323,9 @@
 
                     <ImageView
                         android:id="@+id/collect_jog"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/jog_u" />
 
                 </LinearLayout>
@@ -319,87 +406,6 @@
                     android:layout_weight="15" />
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#ffffff"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/text_acc"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="@color/foreground_material_light"
-                    android:text="实时加速度"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:background="#ffffff"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="15" />
-
-                <TextView
-                    android:id="@+id/show_x"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="33"
-                    android:gravity="left"
-                    android:layout_gravity="center"
-                    android:text="X-Axis"/>
-
-                <TextView
-                    android:id="@+id/show_y"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="33"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="Y-Axis"/>
-
-                <TextView
-                    android:id="@+id/show_z"
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="33"
-                    android:gravity="right"
-                    android:layout_gravity="center"
-                    android:text="Z-Axis"/>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="15" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

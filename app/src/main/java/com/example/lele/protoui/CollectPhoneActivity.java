@@ -5,7 +5,6 @@ import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,11 +12,10 @@ import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
+import com.suke.widget.SwitchButton;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -25,7 +23,7 @@ import java.util.TimerTask;
 
 public class CollectPhoneActivity extends ActivityGroup {
     final int SAMPLE = 40;
-    final int BUFFLINE = 5000;
+    final int BUFFLINE = 5;
 
     private float acc_x;
     private float acc_y;
@@ -37,10 +35,9 @@ public class CollectPhoneActivity extends ActivityGroup {
     private float features[] = new float[8];
     private String activity;
 
-    private Switch switch_online;
-    private Switch switch_offline;
-    private ImageView result_online;
-    private ImageView analysis_offline;
+    private SwitchButton switch_online;
+    private SwitchButton switch_offline;
+
     private TextView show_x;
     private TextView show_y;
     private TextView show_z;
@@ -50,8 +47,8 @@ public class CollectPhoneActivity extends ActivityGroup {
     private ImageView image_shirt;
     private ImageView image_trousers;
     */
-    private TextView online;
-    private TextView offline;
+    private TextView set_upload;
+    private TextView set_analysis;
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -152,32 +149,8 @@ public class CollectPhoneActivity extends ActivityGroup {
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
             GetClassifify gc = new GetClassifify();
             activity = gc.activity_online(features);
-            check_activity(activity);
 
             // check_position();
-        }
-    }
-
-    private void check_activity(String activity) {
-        result_online.setImageResource(R.drawable.white);
-
-        if(activity == W) {
-            result_online.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == J) {
-            result_online.setImageResource(R.drawable.jog_r);
-        }
-        if(activity == U) {
-            result_online.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == D){
-            result_online.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == ST) {
-            result_online.setImageResource(R.drawable.stand_r);
-        }
-        if(activity == SI) {
-            result_online.setImageResource(R.drawable.sit_r);
         }
     }
 
@@ -215,9 +188,8 @@ public class CollectPhoneActivity extends ActivityGroup {
         show_z.setText(String.format("%.2f", this.acc_z));
 
         if(array_record_line.size() == BUFFLINE) {
-            show_y.setText("Fresh");
             OfflineFileRW raw_rw = new OfflineFileRW();
-            this.path = raw_rw.write_raw_data(array_record_line);
+            raw_rw.save(CollectPhoneActivity.this, "record.txt", array_record_line);
             array_record_line.clear();
         }
     }
@@ -245,28 +217,26 @@ public class CollectPhoneActivity extends ActivityGroup {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect_phone);
 
-        switch_online = (Switch) findViewById(R.id.switch_online);
-        switch_offline = (Switch) findViewById(R.id.switch_offline);
-        result_online = (ImageView) findViewById(R.id.result_online);
-        analysis_offline = (ImageView) findViewById(R.id.analysis_offline);
+        switch_online = (SwitchButton) findViewById(R.id.switch_online);
+        switch_offline = (SwitchButton) findViewById(R.id.switch_offline);
+
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
-        /*
-        image_hand = findViewById(R.id.image_hand);
-        image_read = findViewById(R.id.image_read);
-        image_shirt = findViewById(R.id.image_shirt);
-        image_trousers = findViewById(R.id.image_trousers);
-        */
-        online = findViewById(R.id.online);
-        offline = findViewById(R.id.offline);
 
-        online.setOnClickListener(new View.OnClickListener() {
+        set_upload = findViewById(R.id.set_upload);
+        set_analysis = findViewById(R.id.set_analysis);
+
+        acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        sensor_type = Sensor.TYPE_ACCELEROMETER;
+        acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+
+        set_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(CollectPhoneActivity.this)
-                        .setTitle("实时模式")
-                        .setMessage("实时模式下，将可以实时识别当前行为。如果是通过手机识别，则不仅会显示您的当前行为，还会显示您当前手机位置。")
+                        .setTitle("上传数据")
+                        .setMessage("请确认是否上传数据")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -283,12 +253,12 @@ public class CollectPhoneActivity extends ActivityGroup {
             }
         });
 
-        offline.setOnClickListener(new View.OnClickListener() {
+        set_analysis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(CollectPhoneActivity.this)
-                        .setTitle("离线模式")
-                        .setMessage("离线模式下，手机会连续采集您的运动信息，当您联网后一次性上传数据即可完成行为识别。")
+                        .setTitle("分析数据")
+                        .setMessage("请确认开始分析数据")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -305,14 +275,10 @@ public class CollectPhoneActivity extends ActivityGroup {
             }
         });
 
-        switch_online.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switch_online.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if(isChecked) {
-                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-                    sensor_type = Sensor.TYPE_ACCELEROMETER;
-                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
-                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
                     timer.schedule(hint_task, 1000, 1000);
                     timer.schedule(display_task, 5000, 50);
                 } else {
@@ -321,37 +287,19 @@ public class CollectPhoneActivity extends ActivityGroup {
             }
         });
 
-        switch_offline.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switch_offline.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if(isChecked) {
-                    acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-                    sensor_type = Sensor.TYPE_ACCELEROMETER;
-                    acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
-                    // task为任务，1000为延迟1000ms，每隔50ms收集一次
-                    timer.schedule(hint_task, 1000, 1000);
+                    OfflineFileRW raw_rw = new OfflineFileRW();
+                    raw_rw.clear(CollectPhoneActivity.this, "record.txt");
+
+                    // timer.schedule(hint_task, 1000, 1000);
                     timer.schedule(record_task, 5000, 500);
                 } else {
                     timer.cancel();
                 }
             }
         });
-
-        result_online.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(CollectPhoneActivity.this, HistoryActivity.class);
-                startActivity(i);
-            }
-        });
-
-        analysis_offline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(CollectPhoneActivity.this, SuggestActivity.class);
-                startActivity(i);
-            }
-        });
-
     }
 }

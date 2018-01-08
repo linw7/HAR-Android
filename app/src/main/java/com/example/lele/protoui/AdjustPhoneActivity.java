@@ -24,6 +24,8 @@ import java.util.TimerTask;
 
 
 public class AdjustPhoneActivity extends ActivityGroup {
+    boolean runable = false;
+
     private float acc_x;
     private float acc_y;
     private float acc_z;
@@ -213,22 +215,34 @@ public class AdjustPhoneActivity extends ActivityGroup {
         show_y = findViewById(R.id.show_y);
         show_z = findViewById(R.id.show_z);
 
+        acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        sensor_type = Sensor.TYPE_ACCELEROMETER;
+        acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+
         circular_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                circular_button.setIndeterminateProgressMode(true);
-
-                acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-                sensor_type = Sensor.TYPE_ACCELEROMETER;
-                acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
-                // task为任务，1000为延迟1000ms，每隔50ms收集一次
-                collect_progress();
-                timer.schedule(hint_task, 1000, 1000);
-                timer.schedule(display_task, 5000, 500);
-                timer.schedule(button_task, 0, 40);
-
-                text_process.setText("采样进度");
-                text_acc.setText("实时加速度");
+                if(!runable){
+                    runable = true;
+                    circular_button.setIndeterminateProgressMode(true);
+                    collect_progress();
+                    timer.schedule(hint_task, 1000, 1000);
+                    timer.schedule(display_task, 5000, 500);
+                    timer.schedule(button_task, 0, 40);
+                }
+                else {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("请等待")
+                            .setMessage("您已处于行为采集流程中，清先完成该项行为采集后再进行下一项！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 

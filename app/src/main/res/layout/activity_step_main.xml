@@ -66,7 +66,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="18dp"
             android:orientation="vertical">
         </LinearLayout>
 
@@ -341,7 +341,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 app:cpb_cornerRadius="48dp"
-                app:cpb_textError="设置失败"
+                app:cpb_textError="已暂停"
                 app:cpb_textComplete="记录中"
                 app:cpb_textIdle="开始运动" />
 

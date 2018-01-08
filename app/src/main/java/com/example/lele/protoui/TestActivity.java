@@ -1,20 +1,16 @@
 package com.example.lele.protoui;
 
-import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.suke.widget.SwitchButton;
 import com.dd.CircularProgressButton;
-
-import java.util.Calendar;
 
 
 public class TestActivity extends AppCompatActivity {
@@ -38,16 +34,8 @@ public class TestActivity extends AppCompatActivity {
         click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
+                // test
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(TestActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        TestActivity.this.click.setText(hourOfDay +  "-" + minute);
-                    }
-                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
-                timePickerDialog.show();
             }
         });
 
