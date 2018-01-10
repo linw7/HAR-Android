@@ -173,10 +173,10 @@ public class CollectPhoneActivity extends ActivityGroup {
             collect_stand.setImageResource(R.drawable.stand_r);
         }
         if(activity == U) {
-            collect_upstairs.setImageResource(R.drawable.walk_r);
+            collect_walk.setImageResource(R.drawable.walk_r);
         }
         if(activity == D){
-            collect_downstairs.setImageResource(R.drawable.walk_r);
+            collect_walk.setImageResource(R.drawable.walk_r);
         }
         if(activity == W) {
             collect_walk.setImageResource(R.drawable.walk_r);
