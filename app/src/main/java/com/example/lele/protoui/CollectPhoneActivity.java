@@ -9,11 +9,13 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Image;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.suke.widget.SwitchButton;
 
@@ -41,14 +43,17 @@ public class CollectPhoneActivity extends ActivityGroup {
     private TextView show_x;
     private TextView show_y;
     private TextView show_z;
-    /*
-    private ImageView image_hand;
-    private ImageView image_read;
-    private ImageView image_shirt;
-    private ImageView image_trousers;
-    */
+
     private TextView set_upload;
     private TextView set_analysis;
+
+    private ImageView collect_sit;
+    private ImageView collect_stand;
+    private ImageView collect_upstairs;
+    private ImageView collect_downstairs;
+    private ImageView collect_walk;
+    private ImageView collect_jog;
+
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -56,7 +61,6 @@ public class CollectPhoneActivity extends ActivityGroup {
 
     private int sample = 0;
     private int ready = 3;
-    private String path;
 
     final String W = "Walking";
     final String U = "Upstairs";
@@ -149,33 +153,38 @@ public class CollectPhoneActivity extends ActivityGroup {
             features = gf.get_features(acc_x_array, acc_y_array, acc_z_array);
             GetClassifify gc = new GetClassifify();
             activity = gc.activity_online(features);
+            check_activity(activity);
 
-            // check_position();
         }
     }
 
-    /*
-    private void check_position() {
-        // 新周期清空显示
-        image_hand.setImageResource(R.drawable.white);
-        image_read.setImageResource(R.drawable.white);
-        image_shirt.setImageResource(R.drawable.white);
-        image_trousers.setImageResource(R.drawable.white);
+    private void check_activity(String activity) {
+        collect_sit.setImageResource(R.drawable.sit_u);
+        collect_stand.setImageResource(R.drawable.stand_u);
+        collect_upstairs.setImageResource(R.drawable.upstairs_u);
+        collect_downstairs.setImageResource(R.drawable.downstairs_u);
+        collect_walk.setImageResource(R.drawable.walk_u);
+        collect_jog.setImageResource(R.drawable.jog_u);
 
-        if(features[3] > -10 && features[3] <= 5){
-            image_hand.setImageResource(R.drawable.hand);
+        if(activity == SI) {
+            collect_sit.setImageResource(R.drawable.sit_r);
         }
-        if(features[3] > 5 && features[3] <= 9) {
-            image_read.setImageResource(R.drawable.read);
+        if(activity == ST) {
+            collect_stand.setImageResource(R.drawable.stand_r);
         }
-        if(features[3] > 9 && features[3] <= 13) {
-            image_shirt.setImageResource(R.drawable.shirt);
+        if(activity == U) {
+            collect_upstairs.setImageResource(R.drawable.walk_r);
         }
-        if(features[3] > 13){
-            image_trousers.setImageResource(R.drawable.trousers);
+        if(activity == D){
+            collect_downstairs.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == W) {
+            collect_walk.setImageResource(R.drawable.walk_r);
+        }
+        if(activity == J) {
+            collect_jog.setImageResource(R.drawable.jog_r);
         }
     }
-    */
 
     private void record() {
         String record_line = new String();
@@ -226,6 +235,13 @@ public class CollectPhoneActivity extends ActivityGroup {
 
         set_upload = findViewById(R.id.set_upload);
         set_analysis = findViewById(R.id.set_analysis);
+
+        collect_sit = findViewById(R.id.collect_sit);
+        collect_stand = findViewById(R.id.collect_stand);
+        collect_downstairs = findViewById(R.id.collect_downstairs);
+        collect_upstairs = findViewById(R.id.collect_upstairs);
+        collect_walk = findViewById(R.id.collect_walk);
+        collect_jog = findViewById(R.id.collect_jog);
 
         acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sensor_type = Sensor.TYPE_ACCELEROMETER;
