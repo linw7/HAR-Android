@@ -325,6 +325,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[0] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -338,6 +339,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_r);
+                                    clicked[1] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -357,6 +359,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[1] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -370,6 +373,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_stand.setImageResource(R.drawable.stand_r);
+                                    clicked[3] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -389,6 +393,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[2] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -421,6 +426,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[3] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -453,6 +459,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[4] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
@@ -485,6 +492,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     collect_sit.setImageResource(R.drawable.sit_u);
+                                    clicked[5] = 0;
                                 }
                             })
                             .setNegativeButton(R.string.AlertDialog_no, null)
