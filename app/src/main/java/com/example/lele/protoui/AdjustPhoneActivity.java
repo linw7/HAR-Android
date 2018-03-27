@@ -22,6 +22,8 @@ import android.os.Handler;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.os.SystemClock.sleep;
+
 
 public class AdjustPhoneActivity extends ActivityGroup {
     boolean runable = false;
@@ -46,15 +48,17 @@ public class AdjustPhoneActivity extends ActivityGroup {
     private TextView show_y;
     private TextView show_z;
 
+    private int tag = 0;
+    private int click_times = 0;
+
     private CircularProgressButton circular_button;
 
-    private Timer timer = new Timer();
     private SensorManager acc_sensor;
     private int sensor_type;
 
     private int sample = 0;
     private int ready = 3;
-    final int SAMPLE = 200;
+    final int SAMPLE = 120;
     final int PERCENT = 100;
 
     // 开始提示定时任务
@@ -114,6 +118,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
             case 0:
                 show_y.setText("开始！");
                 break;
+            default:
+                //Log.i("HINT", "提示结束！");
         }
     }
 
@@ -127,20 +133,54 @@ public class AdjustPhoneActivity extends ActivityGroup {
             show_y.setText("y:" + String.format("%.2f", this.acc_y));
             show_z.setText("z:" + String.format("%.2f", this.acc_z));
             sample = sample + 1;
+            //Log.i("PERCENTAGE", sample + "");
         } else {
-            Log.v("acc","finish");
+            //Log.i("PERCENTAGE", "采集完成！");
         }
     }
 
-    int i = 0;
     private void button() {
-        if(i < 100){
-            i = i + 1;
-            circular_button.setProgress(i);
+        if(tag == 0){
+            circular_button.setProgress(0);
         }
-        else {
+        else{
             circular_button.setProgress(100);
         }
+    }
+
+    private void stop_task(Timer timer){
+        show_x.setText("X-Axis");
+        show_y.setText("Y-Axis");
+        show_z.setText("Z-Axis");
+        timer.cancel();
+    }
+
+    private void upload_file(){
+        new AlertDialog.Builder(this)
+                .setTitle("文件上传")
+                .setMessage("上传中，请稍后！")
+                .show();
+    }
+
+    private void check_upload(){
+        new AlertDialog.Builder(this)
+                .setTitle("上传失败")
+                .setMessage("请确认已完成六种行为数据的采集！")
+                .show();
+    }
+
+    private void unupload_file(){
+        new AlertDialog.Builder(this)
+                .setTitle("文件不上传")
+                .setMessage("文件无需上传，模型将在本地生成！")
+                .show();
+    }
+
+    private void check_unupload(){
+        new AlertDialog.Builder(this)
+                .setTitle("存在问题")
+                .setMessage("请确认已完成六种行为数据的采集！")
+                .show();
     }
 
     // 加速度数据监听
@@ -168,13 +208,13 @@ public class AdjustPhoneActivity extends ActivityGroup {
             public void run() {
                 int percent = 0;
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 while(percent++ < PERCENT) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -186,7 +226,28 @@ public class AdjustPhoneActivity extends ActivityGroup {
                             progress_text.setText(" " + percent_final + "%");
                         }
                     });
+                    Log.i("PER", percent_final + "%");
                 }
+                Log.i("PER", percent + "%");
+                if(percent == PERCENT + 1) {
+                    Log.i("EOF", "EOF!");
+                    runable = false;
+                    tag = 0;
+                    progress_bar.setProgress(0);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress_text.setText("");
+                        }
+                    });
+
+                    // stop_task(timer);
+                    Log.i("TASK_STOPED", "TASK_STOPED");
+
+                    // Thread.interrupted();
+                    // Log.i("THREAD_STOPED", "THREAD_STOPED");
+                }
+                Log.i("END", "END");
             }
         }.start();
     }
@@ -210,6 +271,9 @@ public class AdjustPhoneActivity extends ActivityGroup {
         progress_text = findViewById(R.id.tvProgress);
         progress_bar = findViewById(R.id.progressSelf);
         circular_button = (CircularProgressButton) findViewById(R.id.circular_button);
+        circular_button.setIndeterminateProgressMode(true);
+        click_times = 0;
+        int[] clicked = {0,0,0,0,0,0};
 
         show_x = findViewById(R.id.show_x);
         show_y = findViewById(R.id.show_y);
@@ -220,15 +284,19 @@ public class AdjustPhoneActivity extends ActivityGroup {
         acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
 
         circular_button.setOnClickListener(new View.OnClickListener() {
+            private Timer timer = new Timer();
             @Override
             public void onClick(View v) {
+                tag = 1;
+                click_times = click_times + 1;
                 if(!runable){
                     runable = true;
-                    circular_button.setIndeterminateProgressMode(true);
                     collect_progress();
-                    timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(display_task, 5000, 500);
-                    timer.schedule(button_task, 0, 40);
+                    if(click_times == 1) {
+                        timer.schedule(hint_task, 1000, 1000);
+                        timer.schedule(display_task, 5000, 500);
+                        timer.schedule(button_task, 0, 100);
+                    }
                 }
                 else {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
@@ -249,102 +317,192 @@ public class AdjustPhoneActivity extends ActivityGroup {
         collect_sit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择静坐行为，确认后一分钟内请保持自然静坐状态，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_sit.setImageResource(R.drawable.sit_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[0] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过静坐行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[0] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择静坐行为，确认后一分钟内请保持自然静坐状态，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
         collect_stand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择站立行为，确认后一分钟内请保持自然站立状态，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_stand.setImageResource(R.drawable.stand_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[1] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过站立行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[1] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择站立行为，确认后一分钟内请保持自然站立状态，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_stand.setImageResource(R.drawable.stand_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
         collect_upstairs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择上楼行为，确认后一分钟内请开始上楼行为，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_upstairs.setImageResource(R.drawable.upstairs_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[2] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过上楼行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[2] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择上楼行为，确认后一分钟内请开始上楼行为，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_upstairs.setImageResource(R.drawable.upstairs_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
         collect_downstairs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择下楼行为，确认后一分钟内请开始下楼行为，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_downstairs.setImageResource(R.drawable.downstairs_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[3] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过下楼行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[3] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择下楼行为，确认后一分钟内请开始下楼行为，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_downstairs.setImageResource(R.drawable.downstairs_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
         collect_walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择步行行为，确认后一分钟内请开始日常行走，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_walk.setImageResource(R.drawable.walk_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[4] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过步行行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[4] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择步行行为，确认后一分钟内请开始日常行走，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_walk.setImageResource(R.drawable.walk_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
         collect_jog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(AdjustPhoneActivity.this)
-                        .setTitle("开始采集行为")
-                        .setMessage("您已选择慢跑行为，确认后一分钟内请到开阔位置慢跑一分钟，我们需要对该行为数据进行采集！")
-                        .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                collect_jog.setImageResource(R.drawable.jog_r);
-                            }
-                        })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
-                        .show();
+                if (clicked[5] == 1) {
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("重复采集")
+                            .setMessage("您已采集过慢跑行为加速度数据，是否需要重新采集？")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_sit.setImageResource(R.drawable.sit_u);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                } else {
+                    clicked[5] = 1;
+                    new AlertDialog.Builder(AdjustPhoneActivity.this)
+                            .setTitle("开始采集行为")
+                            .setMessage("您已选择慢跑行为，确认后一分钟内请到开阔位置慢跑一分钟，我们需要对该行为数据进行采集！")
+                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    collect_jog.setImageResource(R.drawable.jog_r);
+                                }
+                            })
+                            .setNegativeButton(R.string.AlertDialog_no, null)
+                            .show();
+                }
             }
         });
 
@@ -357,10 +515,27 @@ public class AdjustPhoneActivity extends ActivityGroup {
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if((clicked[0] == 1) && (clicked[1] == 1) && (clicked[2] == 1) && (clicked[3] == 1)
+                                        && (clicked[4] == 1) && (clicked[5] == 1)) {
+                                    upload_file();
+                                }
+                                else {
+                                    check_upload();
+                                }
                             }
                         })
-                        .setNegativeButton(R.string.AlertDialog_no, null)
+                        .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if((clicked[0] == 1) && (clicked[1] == 1) && (clicked[2] == 1) && (clicked[3] == 1)
+                                        && (clicked[4] == 1) && (clicked[5] == 1)) {
+                                    unupload_file();
+                                }
+                                else {
+                                    check_unupload();
+                                }
+                            }
+                        })
                         .show();
             }
         });
