@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.os.SystemClock.sleep;
+
 public class CollectPhoneActivity extends ActivityGroup {
     final int SAMPLE = 40;
     final int BUFFLINE = 5;
@@ -68,6 +70,9 @@ public class CollectPhoneActivity extends ActivityGroup {
     final String J = "Jogging";
     final String SI = "Sitting";
     final String ST = "Standing";
+
+    private int is_offline = 0;
+    private int is_load = 0;
 
     private ArrayList<String> array_record_line = new ArrayList<String>();
 
@@ -221,6 +226,58 @@ public class CollectPhoneActivity extends ActivityGroup {
         }
     };
 
+    private void upload_file(){
+        sleep(500);
+        if(is_load == 0) {
+            is_load = 1;
+            new AlertDialog.Builder(this)
+                    .setTitle("文件上传")
+                    .setMessage("上传成功！")
+                    .show();
+        } else {
+            is_load = 0;
+            new AlertDialog.Builder(this)
+                    .setTitle("重复上传")
+                    .setMessage("系统内已存在今日运动数据！")
+                    .show();
+        }
+    }
+
+    private void unupload_file(){
+        new AlertDialog.Builder(this)
+                .setTitle("传输错误")
+                .setMessage("您未开启离线模式，清先开启该模式！")
+                .show();
+    }
+
+    private void unload(){
+        new AlertDialog.Builder(this)
+                .setTitle("放弃上传")
+                .setMessage("该文件将保存于本地，您可稍后上传！")
+                .show();
+    }
+
+    private void is_load_train(){
+        new AlertDialog.Builder(this)
+                .setTitle("请求成功")
+                .setMessage("今日运动时长明细：")
+                .show();
+    }
+
+    private void un_load_train(){
+        new AlertDialog.Builder(this)
+                .setTitle("请求失败")
+                .setMessage("您尚未上传文件！")
+                .show();
+    }
+
+    private void un_train(){
+        new AlertDialog.Builder(this)
+                .setTitle("请求失败")
+                .setMessage("您已取消请求识别结果！")
+                .show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -256,13 +313,21 @@ public class CollectPhoneActivity extends ActivityGroup {
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if(is_offline == 1){
+                                    upload_file();
+                                }else {
+                                    unupload_file();
+                                }
                             }
                         })
                         .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if(is_offline == 1) {
+                                    unload();
+                                }else {
+                                    unupload_file();
+                                }
                             }
                         })
                         .show();
@@ -278,13 +343,17 @@ public class CollectPhoneActivity extends ActivityGroup {
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if(is_load == 1){
+                                    is_load_train();
+                                }else {
+                                    un_load_train();
+                                }
                             }
                         })
                         .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                un_train();
                             }
                         })
                         .show();
@@ -306,14 +375,20 @@ public class CollectPhoneActivity extends ActivityGroup {
         switch_offline.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-                if(isChecked) {
-                    OfflineFileRW raw_rw = new OfflineFileRW();
-                    raw_rw.clear(CollectPhoneActivity.this, "record.txt");
+                if(is_offline == 0) {
+                    is_offline = 1;
+                    if (isChecked) {
+                        OfflineFileRW raw_rw = new OfflineFileRW();
+                        raw_rw.clear(CollectPhoneActivity.this, "record.txt");
 
-                    // timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(record_task, 5000, 500);
-                } else {
-                    timer.cancel();
+                        // timer.schedule(hint_task, 1000, 1000);
+                        timer.schedule(record_task, 5000, 500);
+                    } else {
+                        timer.cancel();
+                    }
+                }
+                else {
+                    is_offline = 0;
                 }
             }
         });
