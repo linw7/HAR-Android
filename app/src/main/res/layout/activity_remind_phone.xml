@@ -254,7 +254,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Start-Time" />
+                            android:text="开始时间" />
 
                         <TextView
                             android:id="@+id/time_to"
@@ -272,7 +272,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="End-Time" />
+                            android:text="结束时间" />
 
 
                     </LinearLayout>
