@@ -179,8 +179,8 @@
                     <com.github.rahatarmanahmed.cpv.CircularProgressView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/progress_view"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         app:cpv_indeterminate="true" />
                 </LinearLayout>

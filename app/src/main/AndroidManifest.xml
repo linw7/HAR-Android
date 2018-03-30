@@ -11,8 +11,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -53,7 +53,10 @@
         <activity android:name=".StepActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".StepMainActivity" />
-        <activity android:name=".BlankActivity"></activity>
+        <activity android:name=".BlankActivity" />
+        <activity android:name=".MainChartActivity" />
+        <activity android:name=".LineActivity" />
+        <activity android:name=".PieActivity"></activity>
     </application>
 
 </manifest>

@@ -59,12 +59,38 @@ public class StepMainActivity extends AppCompatActivity {
     private float mDetector;//步行探测器
     private Timer timer = new Timer();
 
+    private int step_finished = 0;
+    private int energy_finished = 0;
+
     private int set_step = 0;
     private int set_energy = 0;
+
+    int mutex = 1;
 
     private final String [] STEP = {"2000步", "4000步", "6000步", "8000步", "10000步"};
     private final String [] ENERGY = {"300卡路里", "600卡路里", "900卡路里", "1200卡路里", "1500卡路里"};
 
+    private void re_init(){
+        progressView.stopAnimation();
+
+        runable = false;
+        set_energy = 0;
+        set_step = 0;
+        step_finished = 0;
+        energy_finished = 0;
+
+        range_step = 0;
+        energy = 0;
+        distance = 0;
+
+        cur_step = (int)mCount;
+
+        progress_step.setProgress(0);
+        progress_step_text.setText("");
+
+        progress_energy.setProgress(0);
+        progress_energy_text.setText("");
+    }
 
     TimerTask display_task = new TimerTask() {
         @Override
@@ -84,9 +110,15 @@ public class StepMainActivity extends AppCompatActivity {
     };
 
     private void display() {
-        range_step = (int)(mCount - cur_step);
-        distance = (float)((range_step * 0.75) / 1000);
-        energy = (float) (68 * distance * 1.036);
+        if(runable){
+            range_step = (int)(mCount - cur_step);
+            distance = (float)((range_step * 0.75) / 1000);
+            energy = (float) (68 * distance * 1.036);
+        }else{
+            range_step = 0;
+            distance = 0;
+            energy = 0;
+        }
 
         total_step.setText("总计：" + (int)(mCount));
         current_step.setText("当前：" + range_step);
@@ -94,24 +126,71 @@ public class StepMainActivity extends AppCompatActivity {
         distance_step.setText("距离：" + String .format("%.2f", distance));
     }
 
+    // 弹窗、提示、恢复
+    private void recover(){
+        new AlertDialog.Builder(this)
+                .setTitle("温馨提示")
+                .setMessage("您今日的步数和消耗卡路里数已达到预设目标！请继续保持！")
+                .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        re_init();
+                    }
+                })
+                .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        re_init();
+                    }
+                })
+                .show();
+
+        long[] v_mode=new long[]{500,500,500,500,500,500,500,500};
+        BeeAndVibrateManager bv = new BeeAndVibrateManager();
+        bv.vibrate(this, v_mode, false);
+        bv.playBee(this);
+    }
+
     private void step_progress(){
         new Thread(){
             @Override
             public void run() {
-                while(step_pencent <= PERCENT) {
+                while(true) {
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     step_pencent = (float) ((float)range_step / set_step) * 100 ;
+                    if((int)step_pencent > 100)
+                        step_pencent = 100;
                     progress_step.setProgress((int)(step_pencent));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            progress_step_text.setText(" " + (int)(step_pencent) + "%");
+                            progress_step_text.setText((int)(step_pencent) + "%");
                         }
                     });
+                    if(step_pencent >= PERCENT)
+                        break;
+                }
+                while(true) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    progress_step_text.setText("100%");
+                    step_finished = 1;
+                    if ((energy_finished == 1) && (step_finished == 1)) {
+                        if(mutex == 1) {
+                            --mutex;
+                            recover();
+                            break;
+                        }
+                        if(mutex == 0)
+                            break;
+                    }
                 }
             }
         }.start();
@@ -121,21 +200,42 @@ public class StepMainActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                while (energy_percent <= PERCENT) {
+                while (true) {
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     energy_percent = (float) ((float)energy / set_energy) * 100;
-                    Log.i("s","" + energy_percent);
-                    progress_energy.setProgress((int) (energy));
+                    if((int)energy_percent > 100)
+                        energy_percent = 100;
+                    progress_energy.setProgress((int) (energy_percent));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            progress_energy_text.setText(" " + (int)(energy) + "%");
+                            progress_energy_text.setText((int)(energy_percent) + "%");
                         }
                     });
+                    if((int)energy_percent >= PERCENT)
+                        break;;
+                }
+                while(true) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    progress_energy_text.setText("100%");
+                    energy_finished = 1;
+                    if ((energy_finished == 1) && (step_finished == 1)) {
+                        if(mutex == 1) {
+                            --mutex;
+                            recover();
+                            break;
+                        }
+                        if(mutex == 0)
+                            break;
+                    }
                 }
             }
         }.start();
@@ -149,6 +249,7 @@ public class StepMainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         circular_button.setProgress(0);
+                        re_init();
                     }
                 })
                 .setNegativeButton(R.string.AlertDialog_no, null)
@@ -157,8 +258,7 @@ public class StepMainActivity extends AppCompatActivity {
 
     private void run(){
         runable = true;
-        for (int i = 1; i < 100; i++)
-            circular_button.setProgress(i);
+        circular_button.setProgress(60);
 
         if(set_step == 0 || set_energy == 0){
             new AlertDialog.Builder(StepMainActivity.this)
@@ -183,8 +283,6 @@ public class StepMainActivity extends AppCompatActivity {
         else {
             energy_progress();
             step_progress();
-            text_step.setText("步数进度");
-            text_energy.setText("能量进度");
             circular_button.setProgress(100);
             progressView.startAnimation();
         }
@@ -212,6 +310,8 @@ public class StepMainActivity extends AppCompatActivity {
         runable = false;
         circular_button.setIndeterminateProgressMode(true);
 
+
+        // 设置目标
         target_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,7 +321,6 @@ public class StepMainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_SHORT).show();
-
                                 if(which == 0)
                                     set_step = 2000;
                                 else if(which == 1)
@@ -233,6 +332,7 @@ public class StepMainActivity extends AppCompatActivity {
                                 else if(which == 4)
                                     set_step = 10000;
 
+                                set_step = 100;
                                 Log.i("step", "设置步数:" + set_step);
                                 dialog.dismiss();
                             }
@@ -241,6 +341,7 @@ public class StepMainActivity extends AppCompatActivity {
             }
         });
 
+        // 设置能量目标
         target_energy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,7 +363,7 @@ public class StepMainActivity extends AppCompatActivity {
                                 else if(which == 4)
                                     set_energy = 1500;
 
-                                Log.i("energy:", "设置卡路里数:" + set_energy);
+                                set_energy = 6;
                                 dialog.dismiss();
                             }
                         }).create();
@@ -270,6 +371,7 @@ public class StepMainActivity extends AppCompatActivity {
             }
         });
 
+        // 传感器
         final SensorEventListener step_listener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
@@ -308,7 +410,7 @@ public class StepMainActivity extends AppCompatActivity {
                 if(!runable) {
                     run();
                 }
-                else if(runable){
+                else {
                     reset();
                 }
             }

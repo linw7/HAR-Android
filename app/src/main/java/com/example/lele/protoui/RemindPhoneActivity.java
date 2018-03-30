@@ -357,7 +357,7 @@ public class RemindPhoneActivity extends ActivityGroup {
             start_second[i] = 0;
             has_tag[i] = 0;
         }
-        progressView.resetAnimation();
+        progressView.stopAnimation();
         time_start.setText("开始时间");
         time_end.setText("结束时间");
     }
@@ -400,6 +400,7 @@ public class RemindPhoneActivity extends ActivityGroup {
         BeeAndVibrateManager bv = new BeeAndVibrateManager();
         bv.vibrate(this, v_mode, false);
         bv.playBee(this);
+
 
         full = 1;
         String msg = "您预设的行为：" + msg_act(i) + "已达最大设定时间！为了您的健康，请换一种运动方式！";

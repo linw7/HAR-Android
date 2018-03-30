@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,13 +37,13 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:text="步数目标"/>
+                android:text="步数目标"
+                android:textColor="#000000" />
 
             <FrameLayout
                 android:layout_width="0dp"
-                android:layout_weight="10"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -55,8 +57,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:text="能量目标"/>
+                android:text="能量目标"
+                android:textColor="#000000" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -67,8 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,22 +86,21 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/circle_y"
+                android:gravity="center"
                 android:text="总步数" />
 
             <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_width="35dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/current_step"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:background="@drawable/circle_r"
+                android:gravity="center"
                 android:text="当前步数" />
 
             <FrameLayout
@@ -112,7 +112,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -120,11 +120,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <com.github.rahatarmanahmed.cpv.CircularProgressView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/progress_view"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 app:cpv_indeterminate="true" />
 
@@ -148,22 +147,21 @@
                 android:id="@+id/energy_step"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:gravity="center"
                 android:layout_gravity="center"
                 android:background="@drawable/circle_b"
+                android:gravity="center"
                 android:text="卡路里" />
 
             <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.15" />
+                android:layout_width="35dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:id="@+id/distance_step"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:background="@drawable/circle_g"
                 android:layout_gravity="center"
+                android:background="@drawable/circle_g"
                 android:gravity="center"
                 android:text="步行距离" />
 
@@ -175,9 +173,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:layout_height="16dp"
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -198,15 +195,14 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="步数进度"
-                    android:textColor="@color/foreground_material_light"/>
+                    android:textColor="@color/foreground_material_light" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#ffffff"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,20 +218,20 @@
                 <ProgressBar
                     android:id="@+id/progress_step"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="75"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:tooltipText="步数进度"
-                    android:progressDrawable="@drawable/custom_progress" />
+                    android:layout_weight="85"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:tooltipText="步数进度" />
 
                 <TextView
                     android:id="@+id/progress_step_text"
-                    android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="25"
-                    android:gravity="right"
-                    android:layout_gravity="center" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="15"
+                    android:gravity="right" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -248,8 +244,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -266,20 +261,19 @@
                 <TextView
                     android:id="@+id/text_energy"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="@color/foreground_material_light"
-                    android:text="能量进度"/>
+                    android:text="能量进度"
+                    android:textColor="@color/foreground_material_light" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#ffffff"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -295,20 +289,20 @@
                 <ProgressBar
                     android:id="@+id/progress_energy"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="75"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:tooltipText="步数进度"
-                    android:progressDrawable="@drawable/custom_progress" />
+                    android:layout_weight="85"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:tooltipText="步数进度" />
 
                 <TextView
                     android:id="@+id/progress_energy_text"
-                    android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="25"
-                    android:gravity="right"
-                    android:layout_gravity="center" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="15"
+                    android:gravity="right" />
 
                 <FrameLayout
                     android:layout_width="0dp"
@@ -321,8 +315,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -337,12 +330,12 @@
             <com.dd.CircularProgressButton
                 android:id="@+id/circular_button"
                 android:layout_width="0dp"
-                android:layout_weight="0.35"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.35"
                 android:textColor="#ffffff"
                 app:cpb_cornerRadius="48dp"
-                app:cpb_textError="已暂停"
                 app:cpb_textComplete="记录中"
+                app:cpb_textError="已暂停"
                 app:cpb_textIdle="开始运动" />
 
             <FrameLayout
@@ -354,8 +347,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>
 
