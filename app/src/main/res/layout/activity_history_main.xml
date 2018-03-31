@@ -37,14 +37,14 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="95dp"
+                    android:layout_width="105dp"
                     android:layout_height="match_parent">
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/left"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="16sp"
+                    android:layout_height="16sp"
                     android:layout_gravity="center"
                     android:gravity="center" />
 
@@ -58,13 +58,13 @@
 
                 <ImageView
                     android:id="@+id/right"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="16sp"
+                    android:layout_height="16sp"
                     android:layout_gravity="center"
                     android:gravity="center" />
 
                 <LinearLayout
-                    android:layout_width="95dp"
+                    android:layout_width="105dp"
                     android:layout_height="match_parent">
                 </LinearLayout>
 
@@ -280,13 +280,27 @@
                 android:layout_height="0dp"
                 android:layout_weight="1.5"
                 android:orientation="horizontal">
-                <Button
+
+                <LinearLayout
+                    android:layout_width="125dp"
+                    android:layout_height="match_parent">
+                </LinearLayout>
+
+                <com.dd.CircularProgressButton
                     android:id="@+id/button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_gravity="center"
-                    android:text="查看详情" />
+                    android:textColor="#ffffff"
+                    app:cpb_cornerRadius="48dp"
+                    app:cpb_textIdle="查看详情" />
+
+                <LinearLayout
+                    android:layout_width="125dp"
+                    android:layout_height="match_parent">
+                </LinearLayout>
+
             </LinearLayout>
 
     </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dd.CircularProgressButton;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -27,8 +28,7 @@ import java.util.ArrayList;
 
 public class HistoryMainActivity extends AppCompatActivity {
     private CalendarView calendar;
-    private Button button;
-    private BarChart bar_chart;
+    private CircularProgressButton button;
     private TextView sit_time;
     private TextView stand_time;
     private TextView upstairs_time;
@@ -45,7 +45,7 @@ public class HistoryMainActivity extends AppCompatActivity {
     private void show_detail(){
         left.setImageResource(R.drawable.left);
         right.setImageResource(R.drawable.right);
-        String str = c_year + "." + c_month + "." + c_day + "." ;
+        String str = c_year + "." + c_month + "." + c_day ;
         detail_title.setText(str);
     }
 
@@ -98,7 +98,7 @@ public class HistoryMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_main);
         calendar = (CalendarView) findViewById(R.id.calendarView);
-        button = (Button)findViewById(R.id.button);
+        button = (CircularProgressButton)findViewById(R.id.button);
         sit_time = (TextView)findViewById(R.id.sit_time);
         stand_time = (TextView)findViewById(R.id.stand_time);
         upstairs_time = (TextView)findViewById(R.id.upstairs_time);
