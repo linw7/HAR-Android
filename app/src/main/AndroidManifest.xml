@@ -55,7 +55,7 @@
         <activity android:name=".StepMainActivity" />
         <activity android:name=".BlankActivity" />
         <activity android:name=".MainChartActivity" />
-        <activity android:name=".LineActivity" />
+        <activity android:name=".BarActivity" />
         <activity android:name=".PieActivity"></activity>
     </application>
 

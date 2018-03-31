@@ -1,72 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.lele.protoui.PieActivity"
+android:background="#ffffff">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.HistoryMainActivity"
-    android:background="#ffffff">
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical"
+    android:layout_below="@+id/calendarView">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:layout_below="@+id/calendarView">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <FrameLayout
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="当日运动饼状图" />
+
+        <FrameLayout
+            android:layout_weight="0.7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
             android:layout_weight="0.1"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_weight="0.7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:text="当日运动详情" />
-
-            <FrameLayout
-                android:layout_weight="0.7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
-        </LinearLayout>
+            android:layout_height="match_parent">
+        </FrameLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
             android:layout_weight="0.8"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_weight="0.1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0.8" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.50"
+                android:layout_gravity="center" />
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.1"
-                android:layout_height="match_parent">
-            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.50"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="当日运动比重详情" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/sit_r" />
+
+                    <TextView
+                        android:id="@+id/sit_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="静坐" />
+
+                    <FrameLayout
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/stand_r" />
+
+                    <TextView
+                        android:id="@+id/stand_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="站立" />
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/upstairs_r" />
+
+                    <TextView
+                        android:id="@+id/upstairs_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="上楼" />
+
+                    <FrameLayout
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/downstairs_r" />
+
+                    <TextView
+                        android:id="@+id/downstairs_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="下楼" />
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/walk_r" />
+
+                    <TextView
+                        android:id="@+id/walk_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="步行" />
+
+                    <FrameLayout
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/jog_r" />
+
+                    <TextView
+                        android:id="@+id/jog_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="慢跑" />
+
+                    <FrameLayout
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center">
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
+                    android:orientation="horizontal">
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent">
+        </FrameLayout>
     </LinearLayout>
+</LinearLayout>
 </RelativeLayout>

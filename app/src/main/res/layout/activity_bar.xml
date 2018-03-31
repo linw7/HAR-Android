@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.HistoryMainActivity"
+    tools:context="com.example.lele.protoui.BarActivity"
     android:background="#ffffff">
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,83 +16,91 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="近三日运动柱状图" />
+
+            <FrameLayout
+                android:layout_weight="0.7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent">
+            </FrameLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3">
-            </LinearLayout>
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="95dp"
-                    android:layout_height="match_parent">
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/left"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
-
-                <TextView
-                    android:id="@+id/detial_title"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:text="运动详情" />
-
-                <ImageView
-                    android:id="@+id/right"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:gravity="center" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/bar_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.50"
+                    android:layout_gravity="center"/>
 
                 <LinearLayout
-                    android:layout_width="95dp"
-                    android:layout_height="match_parent">
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.25"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.1"
-                    android:orientation="horizontal">
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.50"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.75"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.2"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="当日运动时长详情" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <FrameLayout
@@ -108,11 +110,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/sit"
-                            android:layout_width="21dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/sit_u" />
+                            android:src="@drawable/sit_r" />
 
                         <TextView
                             android:id="@+id/sit_time"
@@ -130,11 +131,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/stand"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/stand_u" />
+                            android:src="@drawable/stand_r" />
 
                         <TextView
                             android:id="@+id/stand_time"
@@ -155,7 +155,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.75"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <FrameLayout
@@ -165,11 +165,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/upstairs"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/upstairs_u" />
+                            android:src="@drawable/upstairs_r" />
 
                         <TextView
                             android:id="@+id/upstairs_time"
@@ -187,11 +186,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/downstairs"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/downstairs_u" />
+                            android:src="@drawable/downstairs_r" />
 
                         <TextView
                             android:id="@+id/downstairs_time"
@@ -207,12 +205,13 @@
                             android:layout_height="25dp"
                             android:layout_gravity="center">
                         </FrameLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="0.75"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <FrameLayout
@@ -222,11 +221,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/walk"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/walk_u" />
+                            android:src="@drawable/walk_r" />
 
                         <TextView
                             android:id="@+id/walk_time"
@@ -244,11 +242,10 @@
                         </FrameLayout>
 
                         <ImageView
-                            android:id="@+id/jog"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/jog_u" />
+                            android:src="@drawable/jog_r" />
 
                         <TextView
                             android:id="@+id/jog_time"
@@ -264,31 +261,26 @@
                             android:layout_height="25dp"
                             android:layout_gravity="center">
                         </FrameLayout>
+
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.1"
-                    android:orientation="horizontal">
-                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:layout_gravity="center"
-                    android:text="查看详情" />
-            </LinearLayout>
-
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent">
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

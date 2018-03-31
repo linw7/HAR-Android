@@ -24,8 +24,8 @@ public class MainChartActivity extends ActivityGroup {
         tabhost.setup(this.getLocalActivityManager());
 
         //添加第一个标签页
-        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("折线图").setContent(new Intent(this, LineActivity.class)));
-        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("柱状图").setContent(new Intent(this, PieActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab").setIndicator("柱状统计").setContent(new Intent(this, BarActivity.class)));
+        tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("饼状统计").setContent(new Intent(this, PieActivity.class)));
 
         title_bar_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
