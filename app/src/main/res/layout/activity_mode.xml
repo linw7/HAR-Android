@@ -54,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#ffffff"
+                android:textSize="18sp"
                 android:text="康复助手" />
         </LinearLayout>
 
@@ -79,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light"
                 android:text="贴心提示" />
@@ -165,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_gravity="center"
                 android:textColor="@color/foreground_material_light"
                 android:text="默认模式" />

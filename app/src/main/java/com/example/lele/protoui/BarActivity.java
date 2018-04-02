@@ -3,6 +3,7 @@ package com.example.lele.protoui;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,16 +29,21 @@ public class BarActivity extends AppCompatActivity {
     private TextView downstairs_time;
     private TextView walk_time;
     private TextView jog_time;
+    public DemoData demodata = new DemoData();
+
+    int sit_yy, stand_yy, upstairs_yy, downstairs_yy, walk_yy, jog_yy;
+    int sit_y, stand_y, upstairs_y, downstairs_y, walk_y, jog_y;
+    int sit_t, stand_t, upstairs_t, downstairs_t, walk_t, jog_t;
 
     private BarDataSet get_bar_set_1(){
         List<BarEntry> entry_list = new ArrayList<>();
 
-        BarEntry entry_sit = new BarEntry(4, 0);
-        BarEntry entry_stand = new BarEntry(2, 1);
-        BarEntry entry_upstairs = new BarEntry(3, 2);
-        BarEntry entry_downstairs = new BarEntry(6, 3);
-        BarEntry entry_walk = new BarEntry(4, 4);
-        BarEntry entry_jog = new BarEntry(7, 5);
+        BarEntry entry_sit = new BarEntry(sit_yy, 0);
+        BarEntry entry_stand = new BarEntry(stand_yy, 1);
+        BarEntry entry_upstairs = new BarEntry(upstairs_yy, 2);
+        BarEntry entry_downstairs = new BarEntry(downstairs_yy, 3);
+        BarEntry entry_walk = new BarEntry(walk_yy, 4);
+        BarEntry entry_jog = new BarEntry(jog_yy, 5);
 
         entry_list.add(entry_sit);
         entry_list.add(entry_stand);
@@ -46,7 +52,7 @@ public class BarActivity extends AppCompatActivity {
         entry_list.add(entry_walk);
         entry_list.add(entry_jog);
 
-        BarDataSet barSet = new BarDataSet(entry_list, "3月29日");
+        BarDataSet barSet = new BarDataSet(entry_list, "前两日数据");
         barSet.setColor(Color.rgb(255, 241, 26));
         barSet.setDrawValues(true);
         return barSet;
@@ -55,12 +61,12 @@ public class BarActivity extends AppCompatActivity {
     private BarDataSet get_bar_set_2(){
         List<BarEntry> entry_list = new ArrayList<>();
 
-        BarEntry entry_sit = new BarEntry(2, 0);
-        BarEntry entry_stand = new BarEntry(5, 1);
-        BarEntry entry_upstairs = new BarEntry(4, 2);
-        BarEntry entry_downstairs = new BarEntry(5, 3);
-        BarEntry entry_walk = new BarEntry(3, 4);
-        BarEntry entry_jog = new BarEntry(1, 5);
+        BarEntry entry_sit = new BarEntry(sit_y, 0);
+        BarEntry entry_stand = new BarEntry(stand_y, 1);
+        BarEntry entry_upstairs = new BarEntry(upstairs_y, 2);
+        BarEntry entry_downstairs = new BarEntry(downstairs_y, 3);
+        BarEntry entry_walk = new BarEntry(walk_y, 4);
+        BarEntry entry_jog = new BarEntry(jog_y, 5);
 
         entry_list.add(entry_sit);
         entry_list.add(entry_stand);
@@ -69,7 +75,7 @@ public class BarActivity extends AppCompatActivity {
         entry_list.add(entry_walk);
         entry_list.add(entry_jog);
 
-        BarDataSet barSet = new BarDataSet(entry_list, "3月30日");
+        BarDataSet barSet = new BarDataSet(entry_list, "前一日数据");
         barSet.setColor(Color.rgb(255, 21, 226));
         barSet.setDrawValues(true);
         return barSet;
@@ -78,12 +84,12 @@ public class BarActivity extends AppCompatActivity {
     private BarDataSet get_bar_set_3(){
         List<BarEntry> entry_list = new ArrayList<>();
 
-        BarEntry entry_sit = new BarEntry(5, 0);
-        BarEntry entry_stand = new BarEntry(1, 1);
-        BarEntry entry_upstairs = new BarEntry(6, 2);
-        BarEntry entry_downstairs = new BarEntry(3, 3);
-        BarEntry entry_walk = new BarEntry(5, 4);
-        BarEntry entry_jog = new BarEntry(3, 5);
+        BarEntry entry_sit = new BarEntry(sit_t, 0);
+        BarEntry entry_stand = new BarEntry(stand_t, 1);
+        BarEntry entry_upstairs = new BarEntry(upstairs_t, 2);
+        BarEntry entry_downstairs = new BarEntry(downstairs_t, 3);
+        BarEntry entry_walk = new BarEntry(walk_t, 4);
+        BarEntry entry_jog = new BarEntry(jog_t, 5);
 
         entry_list.add(entry_sit);
         entry_list.add(entry_stand);
@@ -92,7 +98,7 @@ public class BarActivity extends AppCompatActivity {
         entry_list.add(entry_walk);
         entry_list.add(entry_jog);
 
-        BarDataSet barSet = new BarDataSet(entry_list, "3月31日");
+        BarDataSet barSet = new BarDataSet(entry_list, "今日数据");
         barSet.setColor(Color.rgb(155, 241, 226));
         barSet.setDrawValues(true);
         return barSet;
@@ -122,17 +128,46 @@ public class BarActivity extends AppCompatActivity {
         return barData;
     }
 
-    private void data(){
+    private void get_data(){
+        demodata.set_data();
+        ArrayList<ArrayList> data = demodata.get_elem(HistoryMainActivity.c_day);
 
+        ArrayList yes_yesterday =  data.get(0);
+        ArrayList yesterday = data.get(1);
+        ArrayList today = data.get(2);
+
+        sit_yy = Integer.valueOf(yes_yesterday.get(0).toString()).intValue();
+        sit_y = Integer.valueOf(yesterday.get(0).toString()).intValue();
+        sit_t = Integer.valueOf(today.get(0).toString()).intValue();
+
+        stand_yy = Integer.valueOf(yes_yesterday.get(1).toString()).intValue();
+        stand_y = Integer.valueOf(yesterday.get(1).toString()).intValue();
+        stand_t = Integer.valueOf(today.get(1).toString()).intValue();
+
+        upstairs_yy = Integer.valueOf(yes_yesterday.get(2).toString()).intValue();
+        upstairs_y = Integer.valueOf(yesterday.get(2).toString()).intValue();
+        upstairs_t = Integer.valueOf(today.get(2).toString()).intValue();
+
+        downstairs_yy = Integer.valueOf(yes_yesterday.get(3).toString()).intValue();
+        downstairs_y = Integer.valueOf(yesterday.get(3).toString()).intValue();
+        downstairs_t = Integer.valueOf(today.get(3).toString()).intValue();
+
+        walk_yy = Integer.valueOf(yes_yesterday.get(4).toString()).intValue();
+        walk_y = Integer.valueOf(yesterday.get(4).toString()).intValue();
+        walk_t = Integer.valueOf(today.get(4).toString()).intValue();
+
+        jog_yy = Integer.valueOf(yes_yesterday.get(5).toString()).intValue();
+        jog_y = Integer.valueOf(yesterday.get(5).toString()).intValue();
+        jog_t = Integer.valueOf(today.get(5).toString()).intValue();
     }
 
     private void show_data() {
-        sit_time.setText("5分钟");
-        stand_time.setText("1分钟");
-        upstairs_time.setText("6分钟");
-        downstairs_time.setText("3分钟");
-        walk_time.setText("5分钟");
-        jog_time.setText("3分钟");
+        sit_time.setText(sit_yy + sit_y + sit_t + "分钟");
+        stand_time.setText(stand_yy + stand_y + stand_t + "分钟");
+        upstairs_time.setText(upstairs_yy + upstairs_y + upstairs_t + "分钟");
+        downstairs_time.setText(downstairs_yy + downstairs_y + downstairs_t + "分钟");
+        walk_time.setText(walk_yy + walk_y + walk_t + "分钟");
+        jog_time.setText(jog_yy + jog_y + jog_t + "分钟");
     }
 
     private void draw_pic(){
@@ -164,6 +199,7 @@ public class BarActivity extends AppCompatActivity {
         walk_time = (TextView)findViewById(R.id.walk_time);
         jog_time = (TextView)findViewById(R.id.jog_time);
 
+        get_data();
         show_data();
         draw_pic();
     }

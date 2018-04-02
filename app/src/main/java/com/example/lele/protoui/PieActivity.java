@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -15,6 +17,21 @@ import java.util.ArrayList;
 
 public class PieActivity extends AppCompatActivity {
     private PieChart pie_chart;
+    public DemoData demodata = new DemoData();
+    int sit, stand, upstairs, downstairs, walk, jog;
+    TextView sit_time, stand_time, upstairs_time, downstairs_time, walk_time, jog_time;
+
+    private void get_data(){
+        demodata.set_data();
+        ArrayList<ArrayList> data = demodata.get_elem(HistoryMainActivity.c_day);
+        ArrayList today = data.get(2);
+        sit = Integer.valueOf(today.get(0).toString()).intValue();
+        stand = Integer.valueOf(today.get(1).toString()).intValue();
+        upstairs = Integer.valueOf(today.get(2).toString()).intValue();
+        downstairs = Integer.valueOf(today.get(3).toString()).intValue();
+        walk = Integer.valueOf(today.get(4).toString()).intValue();
+        jog = Integer.valueOf(today.get(5).toString()).intValue();
+    }
 
     private PieData get_pie_data() {
         ArrayList<String> xValues = new ArrayList<String>();  //xVals用来表示每个饼块上的内容
@@ -26,12 +43,12 @@ public class PieActivity extends AppCompatActivity {
         xValues.add("慢跑");
 
         ArrayList<Entry> yValues = new ArrayList<Entry>();  //yVals用来表示封装每个饼块的实际数据
-        yValues.add(new Entry(18, 0));
-        yValues.add(new Entry(14, 1));
-        yValues.add(new Entry(34, 2));
-        yValues.add(new Entry(38, 3));
-        yValues.add(new Entry(41, 4));
-        yValues.add(new Entry(25, 5));
+        yValues.add(new Entry(sit, 0));
+        yValues.add(new Entry(stand, 1));
+        yValues.add(new Entry(upstairs, 2));
+        yValues.add(new Entry(downstairs, 3));
+        yValues.add(new Entry(walk, 4));
+        yValues.add(new Entry(jog, 5));
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
         colors.add(Color.rgb(205, 205, 205));
@@ -71,13 +88,33 @@ public class PieActivity extends AppCompatActivity {
         pie_chart.animateXY(2000, 2000);  //设置动画
     }
 
+    private void set_percent(){
+        float sum_time = sit + stand + upstairs + downstairs + walk + jog;
+
+        sit_time.setText(String.format("%.2f", sit/sum_time*100) + "%");
+        stand_time.setText(String.format("%.2f", stand/sum_time*100) + "%");
+        upstairs_time.setText(String.format("%.2f", upstairs/sum_time*100) + "%");
+        downstairs_time.setText(String.format("%.2f", downstairs/sum_time*100) + "%");
+        walk_time.setText(String.format("%.2f", walk/sum_time*100) + "%");
+        jog_time.setText(String.format("%.2f", jog/sum_time*100) + "%");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie);
 
         pie_chart = (PieChart) findViewById(R.id.pie_chart);
+        sit_time = (TextView) findViewById(R.id.sit_time);
+        stand_time = (TextView) findViewById(R.id.stand_time);
+        upstairs_time = (TextView) findViewById(R.id.upstairs_time);
+        downstairs_time = (TextView) findViewById(R.id.downstairs_time);
+        walk_time = (TextView) findViewById(R.id.walk_time);
+        jog_time = (TextView) findViewById(R.id.jog_time);
+
+        get_data();
         PieData pie_data = get_pie_data();
         show_pie_chart(pie_chart, pie_data);
+        set_percent();
     }
 }

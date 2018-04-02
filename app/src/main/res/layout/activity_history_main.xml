@@ -43,8 +43,8 @@
 
                 <ImageView
                     android:id="@+id/left"
-                    android:layout_width="16sp"
-                    android:layout_height="16sp"
+                    android:layout_width="18sp"
+                    android:layout_height="18sp"
                     android:layout_gravity="center"
                     android:gravity="center" />
 
@@ -54,12 +54,13 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:gravity="center"
+                    android:textColor="#000000"
                     android:text="运动详情" />
 
                 <ImageView
                     android:id="@+id/right"
-                    android:layout_width="16sp"
-                    android:layout_height="16sp"
+                    android:layout_width="18sp"
+                    android:layout_height="18sp"
                     android:layout_gravity="center"
                     android:gravity="center" />
 
@@ -109,14 +110,14 @@
 
                         <ImageView
                             android:id="@+id/sit"
-                            android:layout_width="21dp"
+                            android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/sit_u" />
 
                         <TextView
                             android:id="@+id/sit_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -131,14 +132,14 @@
 
                         <ImageView
                             android:id="@+id/stand"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/stand_u" />
 
                         <TextView
                             android:id="@+id/stand_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -166,14 +167,14 @@
 
                         <ImageView
                             android:id="@+id/upstairs"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/upstairs_u" />
 
                         <TextView
                             android:id="@+id/upstairs_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -188,14 +189,14 @@
 
                         <ImageView
                             android:id="@+id/downstairs"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/downstairs_u" />
 
                         <TextView
                             android:id="@+id/downstairs_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -223,14 +224,14 @@
 
                         <ImageView
                             android:id="@+id/walk"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/walk_u" />
 
                         <TextView
                             android:id="@+id/walk_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -245,14 +246,14 @@
 
                         <ImageView
                             android:id="@+id/jog"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/jog_u" />
 
                         <TextView
                             android:id="@+id/jog_time"
-                            android:layout_width="wrap_content"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_gravity="center"
@@ -282,22 +283,18 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="125dp"
+                    android:layout_width="165dp"
                     android:layout_height="match_parent">
                 </LinearLayout>
 
-                <com.dd.CircularProgressButton
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:layout_gravity="center"
-                    android:textColor="#ffffff"
-                    app:cpb_cornerRadius="48dp"
-                    app:cpb_textIdle="查看详情" />
+                <ImageView
+                    android:id="@+id/more"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center" />
 
                 <LinearLayout
-                    android:layout_width="125dp"
+                    android:layout_width="165dp"
                     android:layout_height="match_parent">
                 </LinearLayout>
 

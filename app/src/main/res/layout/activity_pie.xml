@@ -33,6 +33,7 @@ android:background="#ffffff">
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:gravity="center"
+            android:textColor="#000000"
             android:text="当日运动饼状图" />
 
         <FrameLayout
@@ -93,6 +94,7 @@ android:background="#ffffff">
                         android:textSize="16sp"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:textColor="#000000"
                         android:text="当日运动比重详情" />
 
                 </LinearLayout>
@@ -117,7 +119,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/sit_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
@@ -138,7 +140,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/stand_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
@@ -172,7 +174,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/upstairs_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
@@ -193,7 +195,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/downstairs_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
@@ -228,7 +230,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/walk_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
@@ -249,7 +251,7 @@ android:background="#ffffff">
 
                     <TextView
                         android:id="@+id/jog_time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center"
