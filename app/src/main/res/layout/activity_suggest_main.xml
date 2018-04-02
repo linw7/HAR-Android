@@ -51,7 +51,7 @@
                 android:clickable="true"
                 android:text="今日医嘱"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout
@@ -63,9 +63,9 @@
 
             <TextView
                 android:id="@+id/suggest"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="10"
                 android:layout_gravity="center"
                 android:text="今日运动量过大" />
 
@@ -109,7 +109,7 @@
                 android:clickable="true"
                 android:text="运动强度"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout
@@ -167,7 +167,7 @@
                 android:clickable="true"
                 android:text="个人反馈"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText,PrivateResource" />
 
             <FrameLayout

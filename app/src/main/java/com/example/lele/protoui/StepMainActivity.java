@@ -32,8 +32,6 @@ public class StepMainActivity extends AppCompatActivity {
     private float step_pencent = 0;
     private float energy_percent = 0;
 
-    private TextView total_step;
-    private TextView current_step;
     private TextView energy_step;
     private TextView distance_step;
     private CircularProgressButton circular_button;
@@ -120,8 +118,6 @@ public class StepMainActivity extends AppCompatActivity {
             energy = 0;
         }
 
-        total_step.setText("总计：" + (int)(mCount));
-        current_step.setText("当前：" + range_step);
         energy_step.setText("卡路里：" + String .format("%.2f", energy));
         distance_step.setText("距离：" + String .format("%.2f", distance));
     }
@@ -292,8 +288,6 @@ public class StepMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_main);
 
-        total_step = (TextView) findViewById(R.id.total_step);
-        current_step = (TextView) findViewById(R.id.current_step);
         energy_step = (TextView) findViewById(R.id.energy_step);
         distance_step = (TextView) findViewById(R.id.distance_step);
         circular_button = (CircularProgressButton) findViewById(R.id.circular_button);

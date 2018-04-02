@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import android.os.Handler;
@@ -47,6 +48,9 @@ public class AdjustPhoneActivity extends ActivityGroup {
     private TextView show_x;
     private TextView show_y;
     private TextView show_z;
+
+    private SeekBar seekbar;
+    private ImageView pos;
 
     private int tag = 0;
     private int click_times = 0;
@@ -272,6 +276,10 @@ public class AdjustPhoneActivity extends ActivityGroup {
         progress_bar = findViewById(R.id.progressSelf);
         circular_button = (CircularProgressButton) findViewById(R.id.circular_button);
         circular_button.setIndeterminateProgressMode(true);
+        seekbar = (SeekBar)findViewById(R.id.seekBar);
+        pos = (ImageView) findViewById(R.id.pos);
+        pos.setImageResource(R.drawable.pos_hand);
+
         click_times = 0;
         int[] clicked = {0,0,0,0,0,0};
 
@@ -301,7 +309,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 else {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("请等待")
-                            .setMessage("您已处于行为采集流程中，清先完成该项行为采集后再进行下一项！")
+                            .setMessage("您已处于行为采集流程中，请先完成该项行为采集后再进行下一项！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -562,6 +570,29 @@ public class AdjustPhoneActivity extends ActivityGroup {
                         })
                         .setNegativeButton(R.string.AlertDialog_no, null)
                         .show();
+            }
+        });
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //textView.setText("Value:"+ Integer.toString( progress ) );
+                if(progress == 0){
+                    pos.setImageResource(R.drawable.pos_hand);
+                }else if(progress == 1){
+                    pos.setImageResource(R.drawable.pos_read);
+                }else if(progress == 2){
+                    pos.setImageResource(R.drawable.pos_shirt);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.e("------------","开始滑动！");
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.e("------------","停止滑动！");
             }
         });
     }

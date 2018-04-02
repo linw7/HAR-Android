@@ -56,6 +56,8 @@ public class CollectPhoneActivity extends ActivityGroup {
     private ImageView collect_walk;
     private ImageView collect_jog;
 
+    private ImageView pos_read, pos_hand, pos_shirt;
+
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -138,6 +140,8 @@ public class CollectPhoneActivity extends ActivityGroup {
 
     // 展示任务执行
     private void display() {
+        pos_hand.setImageResource(R.drawable.pos_hand);
+
         if(sample < SAMPLE) {
             acc_x_array[sample]=this.acc_x;
             acc_y_array[sample]=this.acc_y;
@@ -300,6 +304,10 @@ public class CollectPhoneActivity extends ActivityGroup {
         collect_walk = findViewById(R.id.collect_walk);
         collect_jog = findViewById(R.id.collect_jog);
 
+        pos_hand = (ImageView)findViewById(R.id.pos_hand);
+        pos_read = (ImageView)findViewById(R.id.pos_read);
+        pos_shirt = (ImageView)findViewById(R.id.pos_shirt);
+
         acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sensor_type = Sensor.TYPE_ACCELEROMETER;
         acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
@@ -367,6 +375,7 @@ public class CollectPhoneActivity extends ActivityGroup {
                     timer.schedule(hint_task, 1000, 1000);
                     timer.schedule(display_task, 5000, 50);
                 } else {
+                    pos_hand.setImageResource(R.drawable.pos_hand_u);
                     timer.cancel();
                 }
             }
