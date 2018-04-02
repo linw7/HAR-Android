@@ -34,13 +34,14 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_weight="0.8"
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:text="新用户"
+                android:gravity="center"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="28sp" />
+                android:textSize="20sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -57,9 +58,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1.5">
+            android:layout_height="55dp"
+            android:orientation="horizontal">
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -69,13 +69,14 @@
             <EditText
                 android:id="@+id/register_user_name"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="8.5"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:background="@drawable/editor_rec"
                 android:elegantTextHeight="true"
-                android:hint="医保号/医师号"
-                android:textSize="15sp" />
+                android:hint="登录账号"
+                android:textSize="14sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -92,8 +93,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5">
+            android:layout_height="55dp">
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -108,9 +108,10 @@
                 android:background="@drawable/editor_rec"
                 android:ems="10"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:hint="登录密码"
                 android:inputType="textPassword"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -127,8 +128,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5">
+            android:layout_height="55dp">
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -144,6 +144,7 @@
                 android:ems="10"
                 android:hint="确认密码"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:inputType="textPassword"
                 android:textSize="15sp" />
 
@@ -162,8 +163,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5">
+            android:layout_height="55dp">
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -172,25 +172,29 @@
 
             <TextView
                 android:id="@+id/reg_next_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3.5"
                 android:background="@drawable/editor_rec"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:text="完善信息"
+                android:gravity="center"
                 android:textColor="@color/foreground_material_light"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.8" />
+                android:layout_weight="1.5" />
 
             <TextView
                 android:id="@+id/reg_giveup_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3.5"
+                android:layout_height="40dp"
                 android:background="@drawable/editor_rec"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="返回首页"
                 android:textColor="@color/foreground_material_light"
                 android:textSize="15sp" />

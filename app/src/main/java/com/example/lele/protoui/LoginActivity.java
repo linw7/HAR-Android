@@ -88,17 +88,11 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private void no_name_or_pwd(){
-        new AlertDialog.Builder(this)
-                .setTitle("警告！")
-                .setMessage("请确保已填写账号和密码！")
-                .show();
+        Toast.makeText(LoginActivity.this, "请确保已填写账号和密码！", Toast.LENGTH_SHORT).show();
     }
 
     private void wrong_name_or_pwd(){
-        new AlertDialog.Builder(this)
-                .setTitle("警告！")
-                .setMessage("您的账号或密码不正确！")
-                .show();
+        Toast.makeText(LoginActivity.this, "您的账号或密码不正确！", Toast.LENGTH_SHORT).show();
     }
 
     @Override
