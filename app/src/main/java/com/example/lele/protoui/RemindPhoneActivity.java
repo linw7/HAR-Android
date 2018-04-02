@@ -403,7 +403,7 @@ public class RemindPhoneActivity extends ActivityGroup {
 
 
         full = 1;
-        String msg = "您预设的行为：" + msg_act(i) + "已达最大设定时间！为了您的健康，请换一种运动方式！";
+        String msg = msg_act(i) + "已达最大设定时间！"+  "为了您的健康，请换一种运动方式！";
 
         new AlertDialog.Builder(this)
                 .setTitle("警告！")
@@ -545,6 +545,7 @@ public class RemindPhoneActivity extends ActivityGroup {
                     public void onTimeSet(TimePicker view, int h, int m) {
                         hour = h;
                         minute = m;
+                        // 此处为test
                         second = 10;
                         // second = h * 3600 + m * 60;
                         String time_length = "" + (h * 60 + minute);

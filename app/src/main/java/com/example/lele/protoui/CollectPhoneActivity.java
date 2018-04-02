@@ -55,8 +55,13 @@ public class CollectPhoneActivity extends ActivityGroup {
     private ImageView collect_downstairs;
     private ImageView collect_walk;
     private ImageView collect_jog;
+    private int recheck = 0;
+    private int closed = 0;
 
     private ImageView pos_read, pos_hand, pos_shirt;
+
+    private int sit_time, stand_time, upstairs_time, downstairs_time, walk_time, jog_time;
+    private int c_sit, c_stand, c_upstairs, c_downstairs, c_walk, c_jog;
 
 
     private Timer timer = new Timer();
@@ -140,7 +145,10 @@ public class CollectPhoneActivity extends ActivityGroup {
 
     // 展示任务执行
     private void display() {
-        pos_hand.setImageResource(R.drawable.pos_hand);
+        if(closed == 0)
+            pos_hand.setImageResource(R.drawable.pos_hand);
+        else if(closed == 1)
+            pos_hand.setImageResource(R.drawable.pos_hand_u);
 
         if(sample < SAMPLE) {
             acc_x_array[sample]=this.acc_x;
@@ -148,9 +156,15 @@ public class CollectPhoneActivity extends ActivityGroup {
             acc_z_array[sample]=this.acc_z;
 
             if(sample % 10 == 0) {
-                show_x.setText(String.format("%.2f", this.acc_x));
-                show_y.setText(String.format("%.2f", this.acc_y));
-                show_z.setText(String.format("%.2f", this.acc_z));
+                if(closed == 0) {
+                    show_x.setText(String.format("%.2f", this.acc_x));
+                    show_y.setText(String.format("%.2f", this.acc_y));
+                    show_z.setText(String.format("%.2f", this.acc_z));
+                }else if(closed == 1){
+                    show_x.setText("");
+                    show_y.setText("");
+                    show_z.setText("");
+                }
             }
 
             sample = sample + 1;
@@ -163,7 +177,6 @@ public class CollectPhoneActivity extends ActivityGroup {
             GetClassifify gc = new GetClassifify();
             activity = gc.activity_online(features);
             check_activity(activity);
-
         }
     }
 
@@ -175,23 +188,37 @@ public class CollectPhoneActivity extends ActivityGroup {
         collect_walk.setImageResource(R.drawable.walk_u);
         collect_jog.setImageResource(R.drawable.jog_u);
 
-        if(activity == SI) {
-            collect_sit.setImageResource(R.drawable.sit_r);
-        }
-        if(activity == ST) {
-            collect_stand.setImageResource(R.drawable.stand_r);
-        }
-        if(activity == U) {
-            collect_walk.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == D){
-            collect_walk.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == W) {
-            collect_walk.setImageResource(R.drawable.walk_r);
-        }
-        if(activity == J) {
-            collect_jog.setImageResource(R.drawable.jog_r);
+        if(closed == 0) {
+            if (activity == SI) {
+                collect_sit.setImageResource(R.drawable.sit_r);
+                if (is_offline == 1)
+                    sit_time = sit_time + 2;
+            }
+            if (activity == ST) {
+                collect_stand.setImageResource(R.drawable.stand_r);
+                if (is_offline == 1)
+                    stand_time = stand_time + 2;
+            }
+            if (activity == U) {
+                collect_walk.setImageResource(R.drawable.walk_r);
+                if (is_offline == 1)
+                    upstairs_time = upstairs_time + 2;
+            }
+            if (activity == D) {
+                collect_walk.setImageResource(R.drawable.walk_r);
+                if (is_offline == 1)
+                    downstairs_time = downstairs_time + 2;
+            }
+            if (activity == W) {
+                collect_walk.setImageResource(R.drawable.walk_r);
+                if (is_offline == 1)
+                    walk_time = walk_time + 2;
+            }
+            if (activity == J) {
+                collect_jog.setImageResource(R.drawable.jog_r);
+                if (is_offline == 1)
+                    jog_time = jog_time + 2;
+            }
         }
     }
 
@@ -201,9 +228,15 @@ public class CollectPhoneActivity extends ActivityGroup {
                 + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
         array_record_line.add(record_line);
 
-        show_x.setText(String.format("%.2f", this.acc_x));
-        show_y.setText(String.format("%.2f", this.acc_y));
-        show_z.setText(String.format("%.2f", this.acc_z));
+        if(closed == 0) {
+            show_x.setText(String.format("%.2f", this.acc_x));
+            show_y.setText(String.format("%.2f", this.acc_y));
+            show_z.setText(String.format("%.2f", this.acc_z));
+        } else if(closed == 1){
+            show_x.setText("");
+            show_y.setText("");
+            show_z.setText("");
+        }
 
         if(array_record_line.size() == BUFFLINE) {
             OfflineFileRW raw_rw = new OfflineFileRW();
@@ -234,6 +267,16 @@ public class CollectPhoneActivity extends ActivityGroup {
         sleep(500);
         if(is_load == 0) {
             is_load = 1;
+
+            if(is_load == 1){
+                c_sit = sit_time;
+                c_stand = stand_time;
+                c_upstairs = upstairs_time;
+                c_downstairs = downstairs_time;
+                c_walk = walk_time;
+                c_jog = jog_time;
+            }
+
             new AlertDialog.Builder(this)
                     .setTitle("文件上传")
                     .setMessage("上传成功！")
@@ -262,10 +305,33 @@ public class CollectPhoneActivity extends ActivityGroup {
     }
 
     private void is_load_train(){
+        is_load = 0;
+        String msg = new String();
+        msg = "运动时长明细：" + "\n";
+
+        String sit_str =  "静坐：" + c_sit + "秒" + "\n";
+        String stand_str = "站立：" + c_stand + "秒" + "\n";
+        String upstairs_str = "上楼：" + c_upstairs + "秒" + "\n";
+        String downstairs = "下楼：" + c_downstairs + "秒" + "\n";
+        String walk_str =  "步行：" + (c_walk  + c_downstairs + c_upstairs )+ "秒" + "\n";
+        String jog_str = "慢跑：" + c_jog + "秒";
+
+        if(c_sit != 0)
+            msg = msg + sit_str;
+        if(c_stand != 0)
+            msg = msg + stand_str;
+        if((c_walk + c_upstairs + c_downstairs) != 0)
+            msg = msg + walk_str;
+        if(c_jog != 0)
+            msg = msg + jog_str;
+
         new AlertDialog.Builder(this)
                 .setTitle("请求成功")
-                .setMessage("今日运动时长明细：")
+                .setMessage(msg)
                 .show();
+
+        reset_time();
+        reset_c_time();
     }
 
     private void un_load_train(){
@@ -280,6 +346,25 @@ public class CollectPhoneActivity extends ActivityGroup {
                 .setTitle("请求失败")
                 .setMessage("您已取消请求识别结果！")
                 .show();
+    }
+
+    private void reset_time()
+    {
+        sit_time = 0;
+        stand_time = 0;
+        upstairs_time = 0;
+        downstairs_time = 0;
+        walk_time = 0;
+        jog_time = 0;
+    }
+
+    private void reset_c_time(){
+        c_sit = 0;
+        c_stand = 0;
+        c_upstairs = 0;
+        c_downstairs = 0;
+        c_walk = 0;
+        c_jog = 0;
     }
 
     @Override
@@ -311,6 +396,10 @@ public class CollectPhoneActivity extends ActivityGroup {
         acc_sensor = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sensor_type = Sensor.TYPE_ACCELEROMETER;
         acc_sensor.registerListener(acc_listener, acc_sensor.getDefaultSensor(sensor_type), SensorManager.SENSOR_DELAY_FASTEST);
+
+        c_sit = c_stand = c_upstairs = c_downstairs = c_walk = c_jog = 0;
+
+        is_offline = 0;
 
         set_upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -372,11 +461,15 @@ public class CollectPhoneActivity extends ActivityGroup {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if(isChecked) {
-                    timer.schedule(hint_task, 1000, 1000);
-                    timer.schedule(display_task, 5000, 50);
+                    closed = 0;
+                    if(recheck == 0) {
+                        recheck = 1;
+                        timer.schedule(hint_task, 1000, 1000);
+                        timer.schedule(display_task, 5000, 50);
+                    }
                 } else {
-                    pos_hand.setImageResource(R.drawable.pos_hand_u);
-                    timer.cancel();
+                    closed = 1;
+                    // timer.cancel();
                 }
             }
         });
@@ -384,20 +477,15 @@ public class CollectPhoneActivity extends ActivityGroup {
         switch_offline.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-                if(is_offline == 0) {
+                if (isChecked) {
                     is_offline = 1;
-                    if (isChecked) {
-                        OfflineFileRW raw_rw = new OfflineFileRW();
-                        raw_rw.clear(CollectPhoneActivity.this, "record.txt");
-
-                        // timer.schedule(hint_task, 1000, 1000);
-                        timer.schedule(record_task, 5000, 500);
-                    } else {
-                        timer.cancel();
-                    }
-                }
-                else {
+                    // OfflineFileRW raw_rw = new OfflineFileRW();
+                    // raw_rw.clear(CollectPhoneActivity.this, "record.txt");
+                    // timer.schedule(record_task, 5000, 500);
+                } else {
                     is_offline = 0;
+                    reset_time();
+                    // timer.cancel();
                 }
             }
         });

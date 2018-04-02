@@ -65,8 +65,8 @@ public class StepMainActivity extends AppCompatActivity {
 
     int mutex = 1;
 
-    private final String [] STEP = {"2000步", "4000步", "6000步", "8000步", "10000步"};
-    private final String [] ENERGY = {"300卡路里", "600卡路里", "900卡路里", "1200卡路里", "1500卡路里"};
+    private final String [] STEP = {"50步", "4000步", "6000步", "8000步", "10000步"};
+    private final String [] ENERGY = {"3卡路里", "600卡路里", "900卡路里", "1200卡路里", "1500卡路里"};
 
     private void re_init(){
         progressView.stopAnimation();
@@ -316,7 +316,7 @@ public class StepMainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_SHORT).show();
                                 if(which == 0)
-                                    set_step = 2000;
+                                    set_step = 50;
                                 else if(which == 1)
                                     set_step = 4000;
                                 else if(which == 2)
@@ -325,8 +325,6 @@ public class StepMainActivity extends AppCompatActivity {
                                     set_step = 8000;
                                 else if(which == 4)
                                     set_step = 10000;
-
-                                set_step = 100;
                                 Log.i("step", "设置步数:" + set_step);
                                 dialog.dismiss();
                             }
@@ -347,7 +345,7 @@ public class StepMainActivity extends AppCompatActivity {
                                 Toast.makeText(StepMainActivity.this, ENERGY[which], Toast.LENGTH_SHORT).show();
 
                                 if(which == 0)
-                                    set_energy = 300;
+                                    set_energy = 3;
                                 else if(which == 1)
                                     set_energy = 600;
                                 else if(which == 2)
@@ -356,8 +354,6 @@ public class StepMainActivity extends AppCompatActivity {
                                     set_energy = 1200;
                                 else if(which == 4)
                                     set_energy = 1500;
-
-                                set_energy = 6;
                                 dialog.dismiss();
                             }
                         }).create();

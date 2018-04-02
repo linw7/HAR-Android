@@ -1,12 +1,15 @@
 package com.example.lele.protoui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -84,6 +87,20 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    private void no_name_or_pwd(){
+        new AlertDialog.Builder(this)
+                .setTitle("警告！")
+                .setMessage("请确保已填写账号和密码！")
+                .show();
+    }
+
+    private void wrong_name_or_pwd(){
+        new AlertDialog.Builder(this)
+                .setTitle("警告！")
+                .setMessage("您的账号或密码不正确！")
+                .show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,13 +116,22 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
-                // if (loginCheck())//登陆字串检查
-                //{
-                //    dialog = ProgressDialog.show(LoginActivity.this, getString(R.string.login_msg_dialog_title), getString(R.string.login_msg_dialog_content)); //弹出ProgressDialog
-                //    new login().start();//开始后台登陆
-                //}
+                if(TextUtils.isEmpty(editTextName.getText()) || TextUtils.isEmpty(editTextPwd.getText())){
+                    no_name_or_pwd();
+                } else{
+                    if((editTextName.getText().toString().equals("16214237")) && (editTextPwd.getText().toString().equals("Lwnetid4237"))) {
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i);
+                    }
+                    else {
+                        wrong_name_or_pwd();
+                    }
+                    // if (loginCheck())//登陆字串检查
+                    //{
+                    //    dialog = ProgressDialog.show(LoginActivity.this, getString(R.string.login_msg_dialog_title), getString(R.string.login_msg_dialog_content)); //弹出ProgressDialog
+                    //    new login().start();//开始后台登陆
+                    //}
+                }
             }
         });
         registerbtn.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         visitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
