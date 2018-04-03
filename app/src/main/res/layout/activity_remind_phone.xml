@@ -273,8 +273,6 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="结束时间" />
-
-
                     </LinearLayout>
 
                 </LinearLayout>

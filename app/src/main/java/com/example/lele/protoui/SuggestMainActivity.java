@@ -10,6 +10,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SuggestMainActivity extends AppCompatActivity {
     RatingBar rating_bar;
@@ -24,8 +25,14 @@ public class SuggestMainActivity extends AppCompatActivity {
         String msg = "请确认反馈建议";
         new AlertDialog.Builder(this)
                 .setTitle(R.string.Alert_submit)
+                .setIcon(R.drawable.commit_r)
                 .setMessage(msg)
-                .setPositiveButton(R.string.AlertDialog_yes, null)
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(SuggestMainActivity.this, "反馈意见提交成功！", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .setNegativeButton(R.string.AlertDialog_no, null)
                 .show();
     }
@@ -42,9 +49,10 @@ public class SuggestMainActivity extends AppCompatActivity {
 
     private void alter(){
         String date = c_year + "年" + c_month + "月" + c_day + "日";
-        String msg = "您选中的时间为：" + "\n" + date;
+        String msg = "您选中的时间为：" + date;
         new AlertDialog.Builder(SuggestMainActivity.this)
                 .setTitle("确认设置")
+                .setIcon(R.drawable.date)
                 .setMessage(msg)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override

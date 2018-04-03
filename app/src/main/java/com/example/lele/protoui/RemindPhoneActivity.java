@@ -401,12 +401,12 @@ public class RemindPhoneActivity extends ActivityGroup {
         bv.vibrate(this, v_mode, false);
         bv.playBee(this);
 
-
         full = 1;
         String msg = msg_act(i) + "已达最大设定时间！"+  "为了您的健康，请换一种运动方式！";
 
         new AlertDialog.Builder(this)
                 .setTitle("警告！")
+                .setIcon(R.drawable.warning)
                 .setMessage(msg)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override

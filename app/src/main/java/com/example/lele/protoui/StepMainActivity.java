@@ -126,6 +126,7 @@ public class StepMainActivity extends AppCompatActivity {
     private void recover(){
         new AlertDialog.Builder(this)
                 .setTitle("温馨提示")
+                .setIcon(R.drawable.finish_b)
                 .setMessage("您今日的步数和消耗卡路里数已达到预设目标！请继续保持！")
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -140,7 +141,6 @@ public class StepMainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
-
         long[] v_mode=new long[]{500,500,500,500,500,500,500,500};
         BeeAndVibrateManager bv = new BeeAndVibrateManager();
         bv.vibrate(this, v_mode, false);

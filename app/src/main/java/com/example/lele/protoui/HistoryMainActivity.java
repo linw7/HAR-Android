@@ -144,9 +144,10 @@ public class HistoryMainActivity extends AppCompatActivity {
 
     private void alter(){
         String date = c_year + "年" + c_month + "月" + c_day + "日";
-        String msg = "您选中的时间为：" + "\n" + date;
+        String msg = "您选中的时间为：" + date;
         new AlertDialog.Builder(HistoryMainActivity.this)
                 .setTitle("确认设置")
+                .setIcon(R.drawable.date)
                 .setMessage(msg)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override

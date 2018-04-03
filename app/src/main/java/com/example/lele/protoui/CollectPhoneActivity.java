@@ -17,9 +17,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.suke.widget.SwitchButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -58,11 +61,12 @@ public class CollectPhoneActivity extends ActivityGroup {
     private int recheck = 0;
     private int closed = 0;
 
+    private Calendar calendar = Calendar.getInstance();
+
     private ImageView pos_read, pos_hand, pos_shirt;
 
     private int sit_time, stand_time, upstairs_time, downstairs_time, walk_time, jog_time;
     private int c_sit, c_stand, c_upstairs, c_downstairs, c_walk, c_jog;
-
 
     private Timer timer = new Timer();
     private SensorManager acc_sensor;
@@ -80,6 +84,7 @@ public class CollectPhoneActivity extends ActivityGroup {
 
     private int is_offline = 0;
     private int is_load = 0;
+    private int mMonth, mDay;
 
     private ArrayList<String> array_record_line = new ArrayList<String>();
 
@@ -223,11 +228,6 @@ public class CollectPhoneActivity extends ActivityGroup {
     }
 
     private void record() {
-        String record_line = new String();
-        record_line = String.format("%.2f", this.acc_x) + "," + String.format("%.2f", this.acc_y)
-                + "," + String.format("%.2f", this.acc_z) + ";" + array_record_line.size() + "\n";
-        array_record_line.add(record_line);
-
         if(closed == 0) {
             show_x.setText(String.format("%.2f", this.acc_x));
             show_y.setText(String.format("%.2f", this.acc_y));
@@ -238,11 +238,13 @@ public class CollectPhoneActivity extends ActivityGroup {
             show_z.setText("");
         }
 
+        /*
         if(array_record_line.size() == BUFFLINE) {
             OfflineFileRW raw_rw = new OfflineFileRW();
             raw_rw.save(CollectPhoneActivity.this, "record.txt", array_record_line);
             array_record_line.clear();
         }
+        */
     }
 
     // 加速度数据监听
@@ -264,7 +266,7 @@ public class CollectPhoneActivity extends ActivityGroup {
     };
 
     private void upload_file(){
-        sleep(500);
+        sleep(1000);
         if(is_load == 0) {
             is_load = 1;
 
@@ -276,32 +278,27 @@ public class CollectPhoneActivity extends ActivityGroup {
                 c_walk = walk_time;
                 c_jog = jog_time;
             }
-
-            new AlertDialog.Builder(this)
-                    .setTitle("文件上传")
-                    .setMessage("上传成功！")
-                    .show();
+            Toast.makeText(CollectPhoneActivity.this, "文件上传成功！", Toast.LENGTH_SHORT).show();
         } else {
             is_load = 0;
-            new AlertDialog.Builder(this)
-                    .setTitle("重复上传")
-                    .setMessage("系统内已存在今日运动数据！")
-                    .show();
+            Toast.makeText(CollectPhoneActivity.this, "重复上传，系统内已存在今日运动数据！", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void unupload_file(){
-        new AlertDialog.Builder(this)
-                .setTitle("传输错误")
-                .setMessage("您未开启离线模式，清先开启该模式！")
-                .show();
+        Toast.makeText(CollectPhoneActivity.this, "传输错误，您未开启离线模式，清先开启该模式！", Toast.LENGTH_SHORT).show();
     }
 
     private void unload(){
-        new AlertDialog.Builder(this)
-                .setTitle("放弃上传")
-                .setMessage("该文件将保存于本地，您可稍后上传！")
-                .show();
+        Toast.makeText(CollectPhoneActivity.this, "放弃上传，该文件将保存于本地，您可稍后上传！", Toast.LENGTH_SHORT).show();
+    }
+
+    private void un_load_train(){
+        Toast.makeText(CollectPhoneActivity.this, "请求失败,您尚未上传文件！", Toast.LENGTH_SHORT).show();
+    }
+
+    private void un_train(){
+        Toast.makeText(CollectPhoneActivity.this, "请求失败,您已取消请求识别结果！", Toast.LENGTH_SHORT).show();
     }
 
     private void is_load_train(){
@@ -330,22 +327,33 @@ public class CollectPhoneActivity extends ActivityGroup {
                 .setMessage(msg)
                 .show();
 
+        write_file();
+        get_file();
         reset_time();
         reset_c_time();
     }
 
-    private void un_load_train(){
-        new AlertDialog.Builder(this)
-                .setTitle("请求失败")
-                .setMessage("您尚未上传文件！")
-                .show();
+    private void clear_file(){
+        OfflineFileRW raw_rw = new OfflineFileRW();
+        raw_rw.clear(CollectPhoneActivity.this, "history.txt");
     }
 
-    private void un_train(){
-        new AlertDialog.Builder(this)
-                .setTitle("请求失败")
-                .setMessage("您已取消请求识别结果！")
-                .show();
+    private void get_file(){
+        String date = "" + mMonth + "." + mDay;
+        Log.i("日期" ,date);
+        OfflineFileRW raw_rw = new OfflineFileRW();
+        ArrayList result = raw_rw.get(CollectPhoneActivity.this, "history.txt", date);
+        String res_str = result.get(0) + "-" + result.get(1) + "-" + result.get(2) + "-" + result.get(3) + "-" + result.get(4) + "-" + result.get(5);
+        Log.i("总计", res_str);
+    }
+
+    private void write_file(){
+        OfflineFileRW raw_rw = new OfflineFileRW();
+        String record_line = new String();
+        record_line =  mMonth + "." + mDay + ":" + c_sit + "-" + c_stand + "-" + c_upstairs +  "-" + c_downstairs + "-" + c_walk + "-" + c_jog + "\n";
+        array_record_line.add(record_line);
+        raw_rw.save(CollectPhoneActivity.this, "history.txt", array_record_line);
+        array_record_line.clear();
     }
 
     private void reset_time()
@@ -399,6 +407,9 @@ public class CollectPhoneActivity extends ActivityGroup {
 
         c_sit = c_stand = c_upstairs = c_downstairs = c_walk = c_jog = 0;
 
+        mMonth = calendar.get(Calendar.MONTH) + 1;
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
         is_offline = 0;
 
         set_upload.setOnClickListener(new View.OnClickListener() {
@@ -406,6 +417,7 @@ public class CollectPhoneActivity extends ActivityGroup {
             public void onClick(View v) {
                 new AlertDialog.Builder(CollectPhoneActivity.this)
                         .setTitle("上传数据")
+                        .setIcon(R.drawable.set_upload)
                         .setMessage("请确认是否上传数据")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
@@ -436,6 +448,7 @@ public class CollectPhoneActivity extends ActivityGroup {
             public void onClick(View v) {
                 new AlertDialog.Builder(CollectPhoneActivity.this)
                         .setTitle("分析数据")
+                        .setIcon(R.drawable.set_analysis)
                         .setMessage("请确认开始分析数据")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
@@ -461,6 +474,7 @@ public class CollectPhoneActivity extends ActivityGroup {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if(isChecked) {
+                    Toast.makeText(CollectPhoneActivity.this, "开启实时模式！", Toast.LENGTH_SHORT).show();
                     closed = 0;
                     if(recheck == 0) {
                         recheck = 1;
@@ -468,6 +482,7 @@ public class CollectPhoneActivity extends ActivityGroup {
                         timer.schedule(display_task, 5000, 50);
                     }
                 } else {
+                    Toast.makeText(CollectPhoneActivity.this, "关闭实时模式！", Toast.LENGTH_SHORT).show();
                     closed = 1;
                     // timer.cancel();
                 }
@@ -478,11 +493,13 @@ public class CollectPhoneActivity extends ActivityGroup {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if (isChecked) {
+                    Toast.makeText(CollectPhoneActivity.this, "开启离线模式！", Toast.LENGTH_SHORT).show();
                     is_offline = 1;
                     // OfflineFileRW raw_rw = new OfflineFileRW();
                     // raw_rw.clear(CollectPhoneActivity.this, "record.txt");
                     // timer.schedule(record_task, 5000, 500);
                 } else {
+                    Toast.makeText(CollectPhoneActivity.this, "关闭离线模式！", Toast.LENGTH_SHORT).show();
                     is_offline = 0;
                     reset_time();
                     // timer.cancel();

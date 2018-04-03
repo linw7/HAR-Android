@@ -19,7 +19,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import android.os.Handler;
+import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -159,32 +161,28 @@ public class AdjustPhoneActivity extends ActivityGroup {
         timer.cancel();
     }
 
-    private void upload_file(){
-        new AlertDialog.Builder(this)
-                .setTitle("文件上传")
-                .setMessage("上传中，请稍后！")
-                .show();
-    }
-
-    private void check_upload(){
-        new AlertDialog.Builder(this)
-                .setTitle("上传失败")
-                .setMessage("请确认已完成六种行为数据的采集！")
-                .show();
-    }
-
     private void unupload_file(){
-        new AlertDialog.Builder(this)
-                .setTitle("文件不上传")
-                .setMessage("文件无需上传，模型将在本地生成！")
-                .show();
+        Toast.makeText(AdjustPhoneActivity.this, "不上传，模型将在本地生成！", Toast.LENGTH_SHORT).show();
+        sleep(4000);
+        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（本地）训练成功！", Toast.LENGTH_SHORT).show();
     }
 
     private void check_unupload(){
-        new AlertDialog.Builder(this)
-                .setTitle("存在问题")
-                .setMessage("请确认已完成六种行为数据的采集！")
-                .show();
+        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_SHORT).show();
+    }
+
+    private void check_upload(){
+        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_SHORT).show();
+    }
+
+    private void ok_load(){
+        sleep(2000);
+        Toast.makeText(AdjustPhoneActivity.this, "文件上传成功！", Toast.LENGTH_SHORT).show();
+    }
+
+    private void ok_train(){
+        sleep(4000);
+        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（服务端）训练成功！", Toast.LENGTH_SHORT).show();
     }
 
     // 加速度数据监听
@@ -328,6 +326,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[0] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过静坐行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -341,7 +340,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[0] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("采集行为")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择静坐行为，确认后一分钟内请保持自然静坐状态，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -362,6 +362,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[1] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过站立行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -375,7 +376,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[1] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("采集行为")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择站立行为，确认后一分钟内请保持自然站立状态，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -396,6 +398,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[2] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过上楼行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -409,7 +412,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[2] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("采集行为")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择上楼行为，确认后一分钟内请开始上楼行为，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -429,6 +433,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[3] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过下楼行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -442,7 +447,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[3] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("采集行为")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择下楼行为，确认后一分钟内请开始下楼行为，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -462,6 +468,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[4] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过步行行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -475,7 +482,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[4] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("开始采集")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择步行行为，确认后一分钟内请开始日常行走，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -495,6 +503,7 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 if (clicked[5] == 1) {
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
                             .setTitle("重复采集")
+                            .setIcon(R.drawable.repeat_r)
                             .setMessage("您已采集过慢跑行为加速度数据，是否需要重新采集？")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -508,7 +517,8 @@ public class AdjustPhoneActivity extends ActivityGroup {
                 } else {
                     clicked[5] = 1;
                     new AlertDialog.Builder(AdjustPhoneActivity.this)
-                            .setTitle("开始采集行为")
+                            .setTitle("开始采集")
+                            .setIcon(R.drawable.collect_r)
                             .setMessage("您已选择慢跑行为，确认后一分钟内请到开阔位置慢跑一分钟，我们需要对该行为数据进行采集！")
                             .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                                 @Override
@@ -527,13 +537,14 @@ public class AdjustPhoneActivity extends ActivityGroup {
             public void onClick(View v) {
                 new AlertDialog.Builder(AdjustPhoneActivity.this)
                         .setTitle("上传个人数据")
+                        .setIcon(R.drawable.set_upload)
                         .setMessage("确认后您将上传刚刚采集到的您的个人行为数据，这些数据将有助于为您提供更精确的行为识别服务！")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if((clicked[0] == 1) && (clicked[1] == 1) && (clicked[2] == 1) && (clicked[3] == 1)
                                         && (clicked[4] == 1) && (clicked[5] == 1)) {
-                                    upload_file();
+                                    ok_load();
                                 }
                                 else {
                                     check_upload();
@@ -561,11 +572,12 @@ public class AdjustPhoneActivity extends ActivityGroup {
             public void onClick(View v) {
                 new AlertDialog.Builder(AdjustPhoneActivity.this)
                         .setTitle("开始训练模型")
+                        .setIcon(R.drawable.set_train)
                         .setMessage("点击确认后，我们将在服务端开始计算服务，计算可能需要一些时间，请耐心等待！")
                         .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                ok_train();
                             }
                         })
                         .setNegativeButton(R.string.AlertDialog_no, null)
@@ -585,7 +597,6 @@ public class AdjustPhoneActivity extends ActivityGroup {
                     pos.setImageResource(R.drawable.pos_shirt);
                 }
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 Log.e("------------","开始滑动！");

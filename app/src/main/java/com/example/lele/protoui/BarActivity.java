@@ -35,6 +35,19 @@ public class BarActivity extends AppCompatActivity {
     int sit_y, stand_y, upstairs_y, downstairs_y, walk_y, jog_y;
     int sit_t, stand_t, upstairs_t, downstairs_t, walk_t, jog_t;
 
+    public ArrayList<ArrayList> get_data(int day, int month){
+        OfflineFileRW rw = new OfflineFileRW();
+        ArrayList yes_yesterday = new ArrayList();
+        ArrayList yesterday = new ArrayList();
+        ArrayList today = new ArrayList();
+        ArrayList<ArrayList> data = new ArrayList<ArrayList>();
+
+        data.add(yes_yesterday);
+        data.add(yesterday);
+        data.add(today);
+        return data;
+    }
+
     private BarDataSet get_bar_set_1(){
         List<BarEntry> entry_list = new ArrayList<>();
 

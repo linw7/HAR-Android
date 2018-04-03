@@ -51,11 +51,11 @@ public class PieActivity extends AppCompatActivity {
         yValues.add(new Entry(jog, 5));
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.rgb(205, 205, 205));
-        colors.add(Color.rgb(114, 188, 223));
-        colors.add(Color.rgb(255, 123, 124));
-        colors.add(Color.rgb(57, 135, 200));
-        colors.add(Color.rgb(255, 21, 226));
+        colors.add(Color.rgb(0, 245, 255));
+        colors.add(Color.rgb(131, 111, 255));
+        colors.add(Color.rgb(192, 255, 62));
+        colors.add(Color.rgb(255, 160, 122));
+        colors.add(Color.rgb(255, 187, 255));
         colors.add(Color.rgb(155, 241, 226));
 
         PieDataSet pieDataSet = new PieDataSet(yValues, "");
