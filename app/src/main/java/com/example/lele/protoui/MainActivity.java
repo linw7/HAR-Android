@@ -18,6 +18,7 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
     private NavigationView nav_view;
     private DrawerLayout drawer;
     private TabHost tabhost;
+    private ImageView rank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,11 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
         nav_view = findViewById(R.id.nav_view);
         nav_view.setItemTextColor(null);
         nav_view.setItemIconTintList(null);
+        nav_view.setNavigationItemSelectedListener(this);
+        tabhost = (TabHost) findViewById(android.R.id.tabhost);
+        tabhost.setup();
+        tabhost.setup(this.getLocalActivityManager());
+        rank = (ImageView)findViewById(R.id.rank);
 
         menuImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +42,15 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
                 drawer.openDrawer(GravityCompat.START);
             }
         });
-        nav_view.setNavigationItemSelectedListener(this);
 
-        tabhost = (TabHost) findViewById(android.R.id.tabhost);
-        tabhost.setup();
-        tabhost.setup(this.getLocalActivityManager());
+        rank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent(MainActivity.this, RankActivity.class);
+                startActivity(i);
+            }
+        });
+
 
         tabhost.addTab(tabhost.newTabSpec("tab0").setIndicator("首页").setContent(new Intent(this, ModeActivity.class)));
         tabhost.addTab(tabhost.newTabSpec("tab1").setIndicator("", getResources().getDrawable(R.drawable.nav_retarget)).setContent(new Intent(this, AdjustPhoneActivity.class)));

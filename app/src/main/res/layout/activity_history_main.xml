@@ -86,7 +86,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.05"
                     android:orientation="horizontal">
                 </LinearLayout>
 
@@ -271,7 +271,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.01"
                     android:orientation="horizontal">
                 </LinearLayout>
             </LinearLayout>

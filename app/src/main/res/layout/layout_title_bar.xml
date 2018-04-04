@@ -18,7 +18,23 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:layout_gravity="center"
             android:background="@drawable/bars_white" />
+
+        <FrameLayout
+            android:layout_width="278dp"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/rank"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/rank" />
+
 
     </LinearLayout>
 </RelativeLayout>

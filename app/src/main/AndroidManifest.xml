@@ -56,7 +56,13 @@
         <activity android:name=".BlankActivity" />
         <activity android:name=".MainChartActivity" />
         <activity android:name=".BarActivity" />
-        <activity android:name=".PieActivity"></activity>
+        <activity android:name=".PieActivity" />
+        <activity android:name=".RankActivity" />
+        <activity android:name=".RankSitActivity" />
+        <activity android:name=".RankStandActivity" />
+        <activity android:name=".RankWalkActivity" />
+        <activity android:name=".RankJogActivity" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

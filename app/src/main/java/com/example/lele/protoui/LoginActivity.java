@@ -110,12 +110,16 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(i);
                 if(TextUtils.isEmpty(editTextName.getText()) || TextUtils.isEmpty(editTextPwd.getText())){
                     no_name_or_pwd();
                 } else{
                     if((editTextName.getText().toString().equals("16214237")) && (editTextPwd.getText().toString().equals("Lwnetid4237"))) {
+                        /*
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(i);
+                        */
                     }
                     else {
                         wrong_name_or_pwd();
