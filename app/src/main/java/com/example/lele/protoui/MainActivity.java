@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +17,6 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
 
     private NavigationView nav_view;
     private DrawerLayout drawer;
-
     private TabHost tabhost;
 
     @Override

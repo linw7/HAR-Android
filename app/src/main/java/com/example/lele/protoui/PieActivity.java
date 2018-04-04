@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -14,6 +13,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class PieActivity extends AppCompatActivity {
     private PieChart pie_chart;
@@ -22,6 +22,19 @@ public class PieActivity extends AppCompatActivity {
     TextView sit_time, stand_time, upstairs_time, downstairs_time, walk_time, jog_time;
 
     private void get_data(){
+
+        OfflineFileRW raw = new OfflineFileRW();
+        String date = HistoryMainActivity.c_month + "." + HistoryMainActivity.c_day;
+        Map<String, String> result = raw.get(PieActivity.this, "history.txt", date);
+
+        sit = Integer.valueOf(result.get("sit").toString()).intValue();
+        stand = Integer.valueOf(result.get("stand").toString()).intValue();
+        upstairs = Integer.valueOf(result.get("upstairs").toString()).intValue();
+        downstairs = Integer.valueOf(result.get("downstairs").toString()).intValue();
+        walk = Integer.valueOf(result.get("walk").toString()).intValue();
+        jog = Integer.valueOf(result.get("jog").toString()).intValue();
+
+        /*
         demodata.set_data();
         ArrayList<ArrayList> data = demodata.get_elem(HistoryMainActivity.c_day);
         ArrayList today = data.get(2);
@@ -31,6 +44,7 @@ public class PieActivity extends AppCompatActivity {
         downstairs = Integer.valueOf(today.get(3).toString()).intValue();
         walk = Integer.valueOf(today.get(4).toString()).intValue();
         jog = Integer.valueOf(today.get(5).toString()).intValue();
+        */
     }
 
     private PieData get_pie_data() {

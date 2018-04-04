@@ -51,13 +51,13 @@ public class LoginActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             //输入检查
             if (msg.what == 197) {
-                Toast.makeText(LoginActivity.this, getString(R.string.login_msg_nouser) + "," + getString(R.string.login_msg_nopwd), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, getString(R.string.login_msg_nouser) + "," + getString(R.string.login_msg_nopwd), Toast.LENGTH_LONG).show();
             }
             if (msg.what == 198) {
-                Toast.makeText(LoginActivity.this, R.string.login_msg_nouser, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.login_msg_nouser, Toast.LENGTH_LONG).show();
             }
             if (msg.what == 199) {
-                Toast.makeText(LoginActivity.this, R.string.login_msg_nopwd, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.login_msg_nopwd, Toast.LENGTH_LONG).show();
             }
             //超时
             if (msg.what == 200) {
@@ -88,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private void no_name_or_pwd(){
-        Toast.makeText(LoginActivity.this, "请确保已填写账号和密码！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "请确保已填写账号和密码！", Toast.LENGTH_LONG).show();
     }
 
     private void wrong_name_or_pwd(){
-        Toast.makeText(LoginActivity.this, "您的账号或密码不正确！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "您的账号或密码不正确！", Toast.LENGTH_LONG).show();
     }
 
     @Override

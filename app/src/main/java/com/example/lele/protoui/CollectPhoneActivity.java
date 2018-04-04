@@ -5,6 +5,7 @@ import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -23,6 +24,7 @@ import com.suke.widget.SwitchButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -342,8 +344,8 @@ public class CollectPhoneActivity extends ActivityGroup {
         String date = "" + mMonth + "." + mDay;
         Log.i("日期" ,date);
         OfflineFileRW raw_rw = new OfflineFileRW();
-        ArrayList result = raw_rw.get(CollectPhoneActivity.this, "history.txt", date);
-        String res_str = result.get(0) + "-" + result.get(1) + "-" + result.get(2) + "-" + result.get(3) + "-" + result.get(4) + "-" + result.get(5);
+        Map<String,String> result = raw_rw.get(CollectPhoneActivity.this, "history.txt", date);
+        String res_str = result.get("sit") + "-" + result.get("stand") + "-" + result.get("upstairs") + "-" + result.get("downstairs") + "-" + result.get("walk") + "-" + result.get("jog");
         Log.i("总计", res_str);
     }
 

@@ -162,27 +162,27 @@ public class AdjustPhoneActivity extends ActivityGroup {
     }
 
     private void unupload_file(){
-        Toast.makeText(AdjustPhoneActivity.this, "不上传，模型将在本地生成！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "不上传，模型将在本地生成！", Toast.LENGTH_LONG).show();
         sleep(4000);
-        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（本地）训练成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（本地）训练成功！", Toast.LENGTH_LONG).show();
     }
 
     private void check_unupload(){
-        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_LONG).show();
     }
 
     private void check_upload(){
-        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "请确认已完成六种行为数据的采集！", Toast.LENGTH_LONG).show();
     }
 
     private void ok_load(){
         sleep(2000);
-        Toast.makeText(AdjustPhoneActivity.this, "文件上传成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "文件上传成功！", Toast.LENGTH_LONG).show();
     }
 
     private void ok_train(){
         sleep(4000);
-        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（服务端）训练成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdjustPhoneActivity.this, "个性化模型（服务端）训练成功！", Toast.LENGTH_LONG).show();
     }
 
     // 加速度数据监听

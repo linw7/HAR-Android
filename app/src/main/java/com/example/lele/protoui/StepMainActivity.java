@@ -314,7 +314,7 @@ public class StepMainActivity extends AppCompatActivity {
                         .setSingleChoiceItems(STEP, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_SHORT).show();
+                                Toast.makeText(StepMainActivity.this, STEP[which], Toast.LENGTH_LONG).show();
                                 if(which == 0)
                                     set_step = 50;
                                 else if(which == 1)
@@ -342,7 +342,7 @@ public class StepMainActivity extends AppCompatActivity {
                         .setSingleChoiceItems(ENERGY, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(StepMainActivity.this, ENERGY[which], Toast.LENGTH_SHORT).show();
+                                Toast.makeText(StepMainActivity.this, ENERGY[which], Toast.LENGTH_LONG).show();
 
                                 if(which == 0)
                                     set_energy = 3;

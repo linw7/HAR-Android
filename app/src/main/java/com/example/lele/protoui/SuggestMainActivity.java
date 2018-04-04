@@ -30,7 +30,7 @@ public class SuggestMainActivity extends AppCompatActivity {
                 .setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(SuggestMainActivity.this, "反馈意见提交成功！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SuggestMainActivity.this, "反馈意见提交成功！", Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(R.string.AlertDialog_no, null)

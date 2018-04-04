@@ -69,9 +69,9 @@ public class OfflineFileRW {
         jog_time = jog_time + Integer.valueOf(data[5]).intValue();
     }
 
-    public ArrayList get(Context context, String file_name, String input_date) {
+    public Map<String, String> get(Context context, String file_name, String input_date) {
         init();
-        ArrayList date_data = new ArrayList();
+        Map<String, String> date_data = new HashMap<>();
         String text = new String();
 
         File file = new File(context.getFilesDir(), file_name);
@@ -90,12 +90,12 @@ public class OfflineFileRW {
             // text = text.substring(0,text.length() - 1);
             br.close();
 
-            date_data.add(sit_time);
-            date_data.add(stand_time);
-            date_data.add(upstairs_time);
-            date_data.add(downstairs_time);
-            date_data.add(walk_time);
-            date_data.add(jog_time);
+            date_data.put("sit", "" + sit_time);
+            date_data.put("stand", "" + stand_time);
+            date_data.put("upstairs", "" + upstairs_time);
+            date_data.put("downstairs", "" + downstairs_time);
+            date_data.put("walk",  "" + walk_time);
+            date_data.put("jog", "" + jog_time);
             return date_data;
         } catch (Exception e) {
             return date_data;

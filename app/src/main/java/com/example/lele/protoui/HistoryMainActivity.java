@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
 import com.github.mikephil.charting.charts.BarChart;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class HistoryMainActivity extends AppCompatActivity {
     private CalendarView calendar;
@@ -43,10 +45,69 @@ public class HistoryMainActivity extends AppCompatActivity {
     public static int c_year, c_month, c_day;
     public DemoData demodata = new DemoData();
 
+    private String trans_time(int second){
+        String show_time = new String();
+        if(second < 60)
+            show_time = second + "秒";
+        else if(second == 60)
+            show_time = "1分钟";
+        else if(second > 60)
+            show_time = (second/60) + "分" + (second/60) + "秒";
+        return show_time;
+    }
+
     private void show_data() {
         left.setImageResource(R.drawable.left);
         right.setImageResource(R.drawable.right);
 
+        OfflineFileRW raw = new OfflineFileRW();
+        String date = c_month + "." + c_day;
+        Map<String, String> result = raw.get(HistoryMainActivity.this, "history.txt", date);
+
+        if((Integer.valueOf(result.get("sit")).intValue() == 0) && (Integer.valueOf(result.get("stand")).intValue() == 0) && (Integer.valueOf(result.get("upstairs")).intValue() == 0)
+                && (Integer.valueOf(result.get("downstairs")).intValue() == 0) && (Integer.valueOf(result.get("walk")).intValue() == 0) && (Integer.valueOf(result.get("jog")).intValue() == 0)){
+
+            detail_title.setText("暂无数据");
+            sit_time.setText("-");
+            stand_time.setText("-");
+            upstairs_time.setText("-");
+            downstairs_time.setText("-");
+            walk_time.setText("-");
+            jog_time.setText("-");
+
+            more.setImageResource(R.drawable.more_r);
+            sit.setImageResource(R.drawable.sit_u);
+            stand.setImageResource(R.drawable.stand_u);
+            upstairs.setImageResource(R.drawable.upstairs_u);
+            downstairs.setImageResource(R.drawable.downstairs_u);
+            walk.setImageResource(R.drawable.walk_u);
+            jog.setImageResource(R.drawable.jog_u);
+            left.setImageResource(R.drawable.left_r);
+            right.setImageResource(R.drawable.right_r);
+            reset();
+        } else {
+            String str = c_year + "." + c_month + "." + c_day ;
+            detail_title.setText(str);
+            sit.setImageResource(R.drawable.sit_r);
+            stand.setImageResource(R.drawable.stand_r);
+            upstairs.setImageResource(R.drawable.upstairs_r);
+            downstairs.setImageResource(R.drawable.downstairs_r);
+            walk.setImageResource(R.drawable.walk_r);
+            jog.setImageResource(R.drawable.jog_r);
+
+            sit_time.setText(trans_time( Integer.valueOf(result.get("sit")).intValue()));
+            stand_time.setText(trans_time(Integer.valueOf(result.get("stand")).intValue()));
+            upstairs_time.setText(trans_time( Integer.valueOf(result.get("upstairs")).intValue()));
+            downstairs_time.setText(trans_time( Integer.valueOf(result.get("downstairs")).intValue()));
+            walk_time.setText(trans_time( Integer.valueOf(result.get("walk")).intValue()));
+            jog_time.setText(trans_time( Integer.valueOf(result.get("jog")).intValue()));
+
+            more.setImageResource(R.drawable.more_blue);
+            left.setImageResource(R.drawable.left_blue);
+            right.setImageResource(R.drawable.right_blue);
+        }
+
+        /*
         demodata.set_data();
         ArrayList<ArrayList> data = demodata.get_elem(c_day);
         ArrayList today = data.get(2);
@@ -134,6 +195,7 @@ public class HistoryMainActivity extends AppCompatActivity {
             right.setImageResource(R.drawable.right_r);
             reset();
         }
+        */
     }
 
     private void reset(){
@@ -208,7 +270,11 @@ public class HistoryMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // reset_tip();
+
                 if(c_day != 0) {
+                    Intent i = new Intent(HistoryMainActivity.this, MainChartActivity.class);
+                    startActivity(i);
+                    /*
                     if(c_month == 3) {
                         Intent i = new Intent(HistoryMainActivity.this, MainChartActivity.class);
                         startActivity(i);
@@ -253,24 +319,11 @@ public class HistoryMainActivity extends AppCompatActivity {
                                 })
                                 .show();
                     }
+                    */
                 }
                 if(c_day == 0){
-                    new AlertDialog.Builder(HistoryMainActivity.this)
-                            .setTitle("确认设置")
-                            .setMessage("请选择有效日期！")
-                            .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    reset();
-                                }
-                            })
-                            .setNegativeButton(R.string.AlertDialog_no, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    reset();
-                                }
-                            })
-                            .show();
+                    Toast.makeText(HistoryMainActivity.this, "该日无运动数据！", Toast.LENGTH_LONG).show();
+                    reset();
                 }
             }
         });

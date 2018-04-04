@@ -37,19 +37,19 @@ public class RegisterActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             //输入检查
             if (msg.what == 195) {
-                Toast.makeText(RegisterActivity.this, R.string.register_msg_psd_unconfirm, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, R.string.register_msg_psd_unconfirm, Toast.LENGTH_LONG).show();
             }
             if (msg.what == 196) {
-                Toast.makeText(RegisterActivity.this, R.string.register_msg_psd_confirm, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, R.string.register_msg_psd_confirm, Toast.LENGTH_LONG).show();
             }
             if (msg.what == 197) {
-                Toast.makeText(RegisterActivity.this, getString(R.string.login_msg_nouser) + "," + getString(R.string.login_msg_nopwd), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, getString(R.string.login_msg_nouser) + "," + getString(R.string.login_msg_nopwd), Toast.LENGTH_LONG).show();
             }
             if (msg.what == 198) {
-                Toast.makeText(RegisterActivity.this, R.string.login_msg_nouser, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, R.string.login_msg_nouser, Toast.LENGTH_LONG).show();
             }
             if (msg.what == 199) {
-                Toast.makeText(RegisterActivity.this, R.string.login_msg_nopwd, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, R.string.login_msg_nopwd, Toast.LENGTH_LONG).show();
             }
         }
     };
