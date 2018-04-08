@@ -9,9 +9,11 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="344dp"
+        android:layout_height="551dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
 
         <ImageView
             android:id="@+id/rank_bg"
@@ -87,7 +89,6 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="20分10秒" />
-
 
         </LinearLayout>
 

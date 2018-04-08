@@ -105,7 +105,7 @@ public class SuggestMainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 c_year = year;
-                c_month = month;
+                c_month = month + 1;
                 c_day = dayOfMonth;
                 alter();
             }

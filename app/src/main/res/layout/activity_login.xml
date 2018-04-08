@@ -26,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4.5"
+            android:layout_weight="4"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -36,11 +36,11 @@
             </FrameLayout>
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/logo_activity"
                 android:contentDescription="@string/logo"
+                android:layout_gravity="center"
                 android:scaleType="centerInside" />
 
             <FrameLayout
@@ -53,7 +53,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="12.5"
+            android:layout_weight="13"
             android:orientation="vertical">
 
             <LinearLayout
@@ -243,7 +243,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="8"
+                    android:layout_weight="12"
                     android:orientation="horizontal">
                 </LinearLayout>
 
@@ -251,7 +251,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="0dp">
 
                     <Button
                         android:layout_width="wrap_content"
@@ -259,11 +260,14 @@
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:stateListAnimator="@null"
-                        android:textSize="14sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="10sp"
                         android:text="中山大学数字家庭中心" />
                 </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

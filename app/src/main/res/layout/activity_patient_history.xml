@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lele.protoui.HistoryMainActivity"
+    tools:context="com.example.lele.protoui.PatientHistoryActivity"
     android:background="#ffffff">
 
     <CalendarView
@@ -69,12 +69,6 @@
                     android:layout_height="match_parent">
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
             </LinearLayout>
 
             <LinearLayout
@@ -279,21 +273,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.6">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
                 </LinearLayout>
-
 
                 <ImageView
                     android:id="@+id/more"
@@ -303,12 +290,45 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/back_r" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
                 </LinearLayout>
 
             </LinearLayout>
 
-    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
+            </LinearLayout>
+
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

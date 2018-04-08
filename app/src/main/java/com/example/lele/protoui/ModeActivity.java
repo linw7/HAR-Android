@@ -3,6 +3,7 @@ package com.example.lele.protoui;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ public class ModeActivity extends AppCompatActivity {
 
     private ImageView phone_mode;
     private ImageView watch_mode;
+    private ImageView doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,15 @@ public class ModeActivity extends AppCompatActivity {
 
         phone_mode = findViewById(R.id.phone_mode);
         watch_mode = findViewById(R.id.watch_mode);
+        doctor = (ImageView)findViewById(R.id.doctor);
+
+        doctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ModeActivity.this, DoctorActivity.class);
+                startActivity(i);
+            }
+        });
 
         phone_mode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +68,7 @@ public class ModeActivity extends AppCompatActivity {
         msg = now_mode + "是否切换？";
         new AlertDialog.Builder(this)
                 .setTitle(R.string.Alert_phone_mode)
+                .setIcon(R.drawable.mode_phone)
                 .setMessage(msg)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override
@@ -98,6 +110,7 @@ public class ModeActivity extends AppCompatActivity {
         msg = now_mode + "开始匹配手环？";
         new AlertDialog.Builder(this)
                 .setTitle(R.string.Alert_watch_mode)
+                .setIcon(R.drawable.mode_watch)
                 .setMessage(msg)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override

@@ -2,7 +2,6 @@ package com.example.lele.protoui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.Map;
 
-public class HistoryMainActivity extends AppCompatActivity {
+public class PatientHistoryActivity extends AppCompatActivity {
     private CalendarView calendar;
     private ImageView more;
     private TextView sit_time;
@@ -23,6 +22,7 @@ public class HistoryMainActivity extends AppCompatActivity {
     private TextView walk_time;
     private TextView jog_time;
     private TextView detail_title;
+    private ImageView btn;
 
     private ImageView left, right;
     private ImageView sit, stand, upstairs, downstairs, walk, jog;
@@ -47,7 +47,7 @@ public class HistoryMainActivity extends AppCompatActivity {
 
         OfflineFileRW raw = new OfflineFileRW();
         String date = c_month + "." + c_day;
-        Map<String, String> result = raw.get(HistoryMainActivity.this, "history.txt", date);
+        Map<String, String> result = raw.get(PatientHistoryActivity.this, "history.txt", date);
 
         if((Integer.valueOf(result.get("sit")).intValue() == 0) && (Integer.valueOf(result.get("stand")).intValue() == 0) && (Integer.valueOf(result.get("upstairs")).intValue() == 0)
                 && (Integer.valueOf(result.get("downstairs")).intValue() == 0) && (Integer.valueOf(result.get("walk")).intValue() == 0) && (Integer.valueOf(result.get("jog")).intValue() == 0)){
@@ -192,7 +192,7 @@ public class HistoryMainActivity extends AppCompatActivity {
     private void alter(){
         String date = c_year + "年" + c_month + "月" + c_day + "日";
         String msg = "您选中的时间为：" + date;
-        new AlertDialog.Builder(HistoryMainActivity.this)
+        new AlertDialog.Builder(PatientHistoryActivity.this)
                 .setTitle("确认设置")
                 .setIcon(R.drawable.date)
                 .setMessage(msg)
@@ -228,7 +228,8 @@ public class HistoryMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_main);
+        setContentView(R.layout.activity_patient_history);
+
         calendar = (CalendarView) findViewById(R.id.calendarView);
         more = (ImageView) findViewById(R.id.more);
         sit_time = (TextView)findViewById(R.id.sit_time);
@@ -246,6 +247,7 @@ public class HistoryMainActivity extends AppCompatActivity {
         downstairs = (ImageView)findViewById(R.id.downstairs);
         walk = (ImageView)findViewById(R.id.walk);
         jog = (ImageView)findViewById(R.id.jog);
+        btn = (ImageView)findViewById(R.id.btn);
 
         c_year = c_month = c_day = 0;
 
@@ -257,7 +259,7 @@ public class HistoryMainActivity extends AppCompatActivity {
                 // reset_tip();
 
                 if(c_day != 0) {
-                    Intent i = new Intent(HistoryMainActivity.this, MainChartActivity.class);
+                    Intent i = new Intent(PatientHistoryActivity.this, MainChartActivity.class);
                     startActivity(i);
                     /*
                     if(c_month == 3) {
@@ -307,7 +309,7 @@ public class HistoryMainActivity extends AppCompatActivity {
                     */
                 }
                 if(c_day == 0){
-                    Toast.makeText(HistoryMainActivity.this, "该日无运动数据！", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PatientHistoryActivity.this, "该日无运动数据！", Toast.LENGTH_LONG).show();
                     reset();
                 }
             }
@@ -320,6 +322,14 @@ public class HistoryMainActivity extends AppCompatActivity {
                 c_month = month + 1;
                 c_day = dayOfMonth;
                 alter();
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PatientHistoryActivity.this, DoctorActivity.class);
+                startActivity(i);
             }
         });
 

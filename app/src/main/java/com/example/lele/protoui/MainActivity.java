@@ -65,27 +65,27 @@ public class MainActivity extends ActivityGroup implements NavigationView.OnNavi
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_retarget) {
-            Intent i = new Intent(MainActivity.this, AdjustActivity.class);
+            Intent i = new Intent(MainActivity.this, AdjustPhoneActivity.class);
             startActivity(i);
         }
         if (id == R.id.nav_collect) {
-            Intent i = new Intent(MainActivity.this, CollectActivity.class);
+            Intent i = new Intent(MainActivity.this, CollectPhoneActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_remind){
-            Intent i = new Intent(MainActivity.this, RemindActivity.class);
+            Intent i = new Intent(MainActivity.this, RemindPhoneActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_step){
-            Intent i = new Intent(MainActivity.this, StepActivity.class);
+            Intent i = new Intent(MainActivity.this, StepMainActivity.class);
             startActivity(i);
         }
         if (id == R.id.nav_his) {
-            Intent i = new Intent(MainActivity.this, HistoryActivity.class);
+            Intent i = new Intent(MainActivity.this, HistoryMainActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_sugg){
-            Intent i = new Intent(MainActivity.this, SuggestActivity.class);
+            Intent i = new Intent(MainActivity.this, SuggestMainActivity.class);
             startActivity(i);
         }
         if(id == R.id.nav_setting){

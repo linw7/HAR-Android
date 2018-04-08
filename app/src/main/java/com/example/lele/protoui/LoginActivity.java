@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
         visitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, TestActivity.class);
+                Intent i = new Intent(LoginActivity.this, DoctorActivity.class);
                 startActivity(i);
             }
         });

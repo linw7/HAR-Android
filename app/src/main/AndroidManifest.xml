@@ -38,22 +38,12 @@
         <activity android:name=".UploadPicInfoActivity" />
         <activity android:name=".AdjustPhoneActivity" />
         <activity android:name=".CollectPhoneActivity" />
-        <activity android:name=".HistoryActivity" />
-        <activity android:name=".SuggestActivity" />
-        <activity android:name=".AdjustWatchActivity" />
-        <activity android:name=".CollectWatchActivity" />
-        <activity android:name=".AdjustActivity" />
-        <activity android:name=".CollectActivity" />
-        <activity android:name=".RemindActivity" />
-        <activity android:name=".RemindWatchActivity" />
         <activity android:name=".RemindPhoneActivity" />
         <activity android:name=".HistoryMainActivity" />
         <activity android:name=".SuggestMainActivity" />
         <activity android:name=".ModeActivity" />
-        <activity android:name=".StepActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".StepMainActivity" />
-        <activity android:name=".BlankActivity" />
         <activity android:name=".MainChartActivity" />
         <activity android:name=".BarActivity" />
         <activity android:name=".PieActivity" />
@@ -62,7 +52,10 @@
         <activity android:name=".RankStandActivity" />
         <activity android:name=".RankWalkActivity" />
         <activity android:name=".RankJogActivity" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".RankiniActivity" />
+        <activity android:name=".DoctorActivity" />
+        <activity android:name=".PatientHistoryActivity"></activity>
     </application>
 
 </manifest>
