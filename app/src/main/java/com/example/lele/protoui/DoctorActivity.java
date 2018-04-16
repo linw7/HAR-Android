@@ -4,13 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import static android.os.SystemClock.sleep;
-
+import android.widget.Toast;
 
 public class DoctorActivity extends AppCompatActivity {
     private ImageView more_1, more_2, more_3;
@@ -20,9 +19,17 @@ public class DoctorActivity extends AppCompatActivity {
     private ImageView search, btn;
     private EditText text;
 
+    public static String name = new String();
+    public static int id = 0;
+
     private boolean moreable[] = {false, false, false};
 
     private void alter(int i){
+        Intent activity = new Intent(DoctorActivity.this, PatientHistoryActivity.class);
+        startActivity(activity);
+        more_1.setImageResource(R.drawable.more_b);
+
+        /*
         new AlertDialog.Builder(DoctorActivity.this)
                 .setTitle("查看详情")
                 .setIcon(R.drawable.more_info)
@@ -46,31 +53,32 @@ public class DoctorActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+                */
     }
 
-    private void do_search(String input){
+    private void do_search(int input_int){
         new AlertDialog.Builder(DoctorActivity.this)
                 .setTitle("快搜")
                 .setIcon(R.drawable.more_info)
-                .setMessage("请确认搜索以下用户：" + "\n" + input)
+                .setMessage("请确认搜索以下用户：" + "\n" + input_int)
                 .setPositiveButton(R.string.AlertDialog_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         remind_text.setText("快搜结果");
 
                         rank_1.setImageResource(R.drawable.ch_1);
-                        rank_2.setImageResource(R.drawable.ch_2);
-                        rank_3.setImageResource(R.drawable.ch_3);
+                        //rank_2.setImageResource(R.drawable.ch_2);
+                        //rank_3.setImageResource(R.drawable.ch_3);
                         more_1.setImageResource(R.drawable.more_b);
-                        more_2.setImageResource(R.drawable.more_b);
-                        more_3.setImageResource(R.drawable.more_b);
+                        //more_2.setImageResource(R.drawable.more_b);
+                        //more_3.setImageResource(R.drawable.more_b);
                         name_1.setText("关羽");
-                        name_2.setText("刘备");
-                        name_3.setText("张飞");
+                        //name_2.setText("刘备");
+                        //name_3.setText("张飞");
 
                         moreable[0] = true;
-                        moreable[1] = true;
-                        moreable[2] = true;
+                        //moreable[1] = true;
+                        //moreable[2] = true;
 
                         search.setImageResource(R.drawable.search_b);
                     }
@@ -82,6 +90,23 @@ public class DoctorActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        if(str.equals(""))
+            return false;
+        for(int i = 0;i < str.length(); i ++) {
+            int chr = str.charAt(i);
+            if(chr < 48 || chr > 57)
+                return false;
+        }
+        return true;
+    }
+
+    private void alter_not_a_num(){
+        search.setImageResource(R.drawable.search_b);
+        Toast.makeText(DoctorActivity.this, "请输入正确就诊号！", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -117,7 +142,12 @@ public class DoctorActivity extends AppCompatActivity {
                 search.setImageResource(R.drawable.search_blue);
                 String input = new String();
                 input = text.getText().toString();
-                do_search(input);
+                if(isNumeric(input)) {
+                    int input_int = Integer.valueOf(input).intValue();
+                    id = input_int;
+                    do_search(input_int);
+                } else
+                    alter_not_a_num();
             }
         });
 
@@ -125,6 +155,7 @@ public class DoctorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moreable[0] == true){
+                    name = "关羽";
                     more_1.setImageResource(R.drawable.more_blue);
                     alter(1);
                 }
@@ -135,6 +166,7 @@ public class DoctorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moreable[1] == true) {
+                    name = "张飞";
                     more_2.setImageResource(R.drawable.more_blue);
                     alter(2);
                 }
@@ -145,6 +177,7 @@ public class DoctorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moreable[2] == true) {
+                    name = "刘备";
                     more_3.setImageResource(R.drawable.more_blue);
                     alter(3);
                 }

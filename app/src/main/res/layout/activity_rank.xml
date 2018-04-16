@@ -30,8 +30,8 @@
 
         <ImageView
             android:id="@+id/search"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="3.0dip"
             android:layout_marginRight="3.0dip"
@@ -52,8 +52,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.7">
-        </FrameLayout>
+            android:layout_weight="0.7"></FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -7,7 +7,6 @@
     tools:context="com.example.lele.protoui.RankWalkActivity"
     android:background="#ffffff">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,7 +84,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="58分54秒" />
 
 
         </LinearLayout>
@@ -130,7 +129,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="39分15秒" />
 
         </LinearLayout>
 
@@ -174,7 +173,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="32分33秒" />
 
         </LinearLayout>
 

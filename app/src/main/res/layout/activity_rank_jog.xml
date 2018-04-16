@@ -9,11 +9,9 @@
 
 
     <LinearLayout
-        android:layout_width="344dp"
-        android:layout_height="551dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/rank_bg"
@@ -45,7 +43,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="18sp"
-                android:text="凌波微步"/>
+                android:text="跑步达人"/>
 
             <FrameLayout
                 android:layout_width="110dp"
@@ -88,7 +86,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="43分10秒" />
 
         </LinearLayout>
 
@@ -132,7 +130,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="15分34秒" />
 
         </LinearLayout>
 
@@ -176,7 +174,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="9分10秒" />
 
 
         </LinearLayout>

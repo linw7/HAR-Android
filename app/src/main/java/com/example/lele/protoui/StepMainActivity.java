@@ -107,6 +107,13 @@ public class StepMainActivity extends AppCompatActivity {
         }
     };
 
+    private boolean is_zero(float num){
+        if((num >= -0.000001) && (num <= 0.000001))
+            return true;
+        else
+            return false;
+    }
+
     private void display() {
         if(runable){
             range_step = (int)(mCount - cur_step);
@@ -118,6 +125,10 @@ public class StepMainActivity extends AppCompatActivity {
             energy = 0;
         }
 
+        if((Float.compare(energy,0.0f) == 0) && (Float.compare(distance,0.0f) == 0)){
+            energy_step.setText("卡路里");
+            distance_step.setText("距离");
+        }
         energy_step.setText("卡路里：" + String .format("%.2f", energy));
         distance_step.setText("距离：" + String .format("%.2f", distance));
     }

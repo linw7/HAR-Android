@@ -26,8 +26,7 @@
 
             <FrameLayout
                 android:layout_width="110dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
             <ImageView
                 android:layout_width="40dp"
@@ -38,24 +37,23 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:textColor="#000000"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="18sp"
-                android:text="净坛使者"/>
+                android:text="静坐达人"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
             <FrameLayout
                 android:layout_width="110dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:background="#f8f8f8">
+            android:background="#f8f8f8"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/rank_1"
@@ -75,30 +73,28 @@
 
             <FrameLayout
                 android:layout_width="150dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
             <TextView
                 android:id="@+id/time_1"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="54分4秒" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:background="#f8f8f8">
+            android:background="#f8f8f8"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/rank_2"
@@ -118,31 +114,29 @@
 
             <FrameLayout
                 android:layout_width="150dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
             <TextView
                 android:id="@+id/time_2"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="43分21秒" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:background="#f8f8f8">
+            android:background="#f8f8f8"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/rank_3"
@@ -162,17 +156,16 @@
 
             <FrameLayout
                 android:layout_width="150dp"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
             <TextView
                 android:id="@+id/time_3"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:text="20分10秒" />
+                android:text="20分18秒" />
 
 
         </LinearLayout>

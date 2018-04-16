@@ -39,6 +39,11 @@
                 <LinearLayout
                     android:layout_width="105dp"
                     android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </FrameLayout>
                 </LinearLayout>
 
                 <ImageView
@@ -54,8 +59,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:gravity="center"
-                    android:textColor="#000000"
-                    android:text="运动详情" />
+                    android:textColor="#000000" />
 
                 <ImageView
                     android:id="@+id/right"
@@ -96,55 +100,33 @@
                         android:layout_weight="0.75"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="运动强度"
+                            android:layout_gravity="center" />
+
                         <FrameLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent">
                         </FrameLayout>
 
-                        <ImageView
-                            android:id="@+id/sit"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                        <ProgressBar
+                            android:id="@+id/progressSelf"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_height="wrap_content"
+                            android:layout_width="195dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/sit_u" />
+                            android:progressDrawable="@drawable/custom_progress" />
 
                         <TextView
-                            android:id="@+id/sit_time"
-                            android:layout_width="50dp"
+                            android:id="@+id/tvProgress"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="静坐" />
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
-
-                        <ImageView
-                            android:id="@+id/stand"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/stand_u" />
-
-                        <TextView
-                            android:id="@+id/stand_time"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="站立" />
-
-                        <FrameLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
+                            android:layout_weight="10"
+                            android:gravity="right"
+                            android:layout_gravity="center" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -153,55 +135,23 @@
                         android:layout_weight="0.75"
                         android:orientation="horizontal">
 
-                        <FrameLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
-
-                        <ImageView
-                            android:id="@+id/upstairs"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:gravity="center"
                             android:layout_gravity="center"
-                            android:src="@drawable/upstairs_u" />
+                            android:text="病人反馈"/>
 
                         <TextView
-                            android:id="@+id/upstairs_time"
-                            android:layout_width="50dp"
+                            android:id="@+id/suggest"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="95"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="上楼" />
+                            android:text="暂无反馈"/>
 
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
-
-                        <ImageView
-                            android:id="@+id/downstairs"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/downstairs_u" />
-
-                        <TextView
-                            android:id="@+id/downstairs_time"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="下楼" />
-
-                        <FrameLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -210,62 +160,42 @@
                         android:layout_weight="0.75"
                         android:orientation="horizontal">
 
-                        <FrameLayout
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
-
-                        <ImageView
-                            android:id="@+id/walk"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/walk_u" />
-
                         <TextView
-                            android:id="@+id/walk_time"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_weight="25"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="步行" />
+                            android:clickable="true"
+                            android:text="运动建议" />
 
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
-
-                        <ImageView
-                            android:id="@+id/jog"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                        <EditText
+                            android:id="@+id/commit_text"
+                            android:layout_width="0dp"
+                            android:layout_weight="80"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:src="@drawable/jog_u" />
+                            android:textSize="12sp"
+                            android:gravity="center" />
 
-                        <TextView
-                            android:id="@+id/jog_time"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="慢跑" />
-
-                        <FrameLayout
-                            android:layout_width="25dp"
+                        <Button
+                            android:id="@+id/commit_button"
+                            android:layout_width="0dp"
+                            android:layout_weight="15"
                             android:layout_height="25dp"
-                            android:layout_gravity="center">
-                        </FrameLayout>
+                            android:textSize="14sp"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/btn_selector"
+                            android:text="提交" />
+
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.01"
+                    android:layout_weight="0.05"
                     android:orientation="horizontal">
                 </LinearLayout>
             </LinearLayout>
