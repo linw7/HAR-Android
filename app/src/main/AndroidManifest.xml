@@ -20,15 +20,15 @@
     <application
         android:allowBackup="true"
         android:configChanges="orientation|keyboardHidden"
-        android:icon="@drawable/head_circle"
+        android:icon="@drawable/logo_activity"
         android:label="康复助手"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
